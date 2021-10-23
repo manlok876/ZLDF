@@ -16,7 +16,7 @@ namespace ZLDF.Classes
 				return String.Format("{0} {1}", LastName, FirstName);
 			} 
 		}
-		public DateTime Birthdate { get; set; }
+		public DateTime Birthday { get; set; }
 
 		public string City { get; set; }
 		public Club Club { get; set; }
@@ -28,7 +28,7 @@ namespace ZLDF.Classes
 		{
 			FirstName = "Ivan";
 			LastName = "Ivanov";
-			Birthdate = new DateTime(2000, 1, 1);
+			Birthday = new DateTime(2000, 1, 1);
 
 			City = "City";
 			Club = null;
