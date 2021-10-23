@@ -10,5 +10,6 @@ namespace ZLDF.Classes
 	{
 		public abstract Fighter[] Fighters { get; }
 
+		public abstract float GetFighterScore(Fighter TheFighter);
 	}
 }

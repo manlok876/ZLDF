@@ -25,6 +25,30 @@ namespace ZLDF.Classes
 			}
 		}
 
+		public float FighterOneScore
+		{
+			get; private set;
+		}
+		public float FighterTwoScore
+		{
+			get; private set;
+		}
+		public override float GetFighterScore(Fighter TheFighter)
+		{
+			if (TheFighter == FighterOne)
+			{
+				return FighterOneScore;
+			}
+			else if (TheFighter == FighterTwo)
+			{
+				return FighterTwoScore;
+			}
+			else
+			{
+				return 0.0f;
+			}
+		}
+
 		Duel()
 		{
 			FighterOne = null;
