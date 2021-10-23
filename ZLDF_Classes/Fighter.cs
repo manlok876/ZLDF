@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ZLDF_Classes
+namespace ZLDF.Classes
 {
 	class Fighter
 	{
