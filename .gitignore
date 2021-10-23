@@ -1,4 +1,4 @@
 .vs
 
-ZLDF_MainHost/bin
-ZLDF_MainHost/obj
+ZLDF_*/bin
+ZLDF_*/obj
