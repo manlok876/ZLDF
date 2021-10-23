@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace ZLDF.Classes
 {
-	class Fight
+	abstract class Fight
 	{
+		public abstract Fighter[] Fighters { get; }
+
 	}
 }
