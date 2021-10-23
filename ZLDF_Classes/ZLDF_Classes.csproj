@@ -4,6 +4,10 @@
     <TargetFramework>net5.0-windows</TargetFramework>
     <UseWPF>true</UseWPF>
     <RootNamespace>ZLDF.Classes</RootNamespace>
+    <Authors>Denis Maximenko</Authors>
+    <Company>Golden Forests</Company>
+    <Product>ZLDF Class Library</Product>
+    <Description>Common classes used by ZLDF software</Description>
   </PropertyGroup>
 
 </Project>
