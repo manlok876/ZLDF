@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ZLDF.Classes
 {
-	class Fighter
+	public class Fighter
 	{
 		public string FirstName { get; set; }
 		public string LastName { get; set; }
