@@ -5,7 +5,9 @@ VisualStudioVersion = 16.0.31321.278
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZLDF_MainHost", "ZLDF_MainHost\ZLDF_MainHost.csproj", "{C5EE75EB-E243-478C-A700-90CD5B1FC26B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZLDF_Classes", "ZLDF_Classes\ZLDF_Classes.csproj", "{839E62FA-51D3-4840-8555-71570E33CB09}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ZLDF_Classes", "ZLDF_Classes\ZLDF_Classes.csproj", "{839E62FA-51D3-4840-8555-71570E33CB09}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZLDF_Scoreboard", "ZLDF_Scoreboard\ZLDF_Scoreboard.csproj", "{52E137A0-1E70-424F-95D6-E936CDA4284E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{839E62FA-51D3-4840-8555-71570E33CB09}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{839E62FA-51D3-4840-8555-71570E33CB09}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{839E62FA-51D3-4840-8555-71570E33CB09}.Release|Any CPU.Build.0 = Release|Any CPU
+		{52E137A0-1E70-424F-95D6-E936CDA4284E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{52E137A0-1E70-424F-95D6-E936CDA4284E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{52E137A0-1E70-424F-95D6-E936CDA4284E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{52E137A0-1E70-424F-95D6-E936CDA4284E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
