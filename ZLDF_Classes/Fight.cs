@@ -1,15 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using Prism.Mvvm;
 
 namespace ZLDF.Classes
 {
-	public abstract class Fight
+	public abstract class Fight : BindableBase
 	{
+		public string Id { get; set; }
 		public abstract Fighter[] Fighters { get; }
 
 		public abstract float GetFighterScore(Fighter TheFighter);
+
+		// Judges?
 	}
 }

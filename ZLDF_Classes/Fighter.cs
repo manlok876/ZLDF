@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using Prism.Mvvm;
 
 namespace ZLDF.Classes
 {
-	public class Fighter
+	public class Fighter : BindableBase
 	{
+		public string Id { get; set; }
 		public string FirstName { get; set; }
 		public string LastName { get; set; }
 		public string FullName { 
