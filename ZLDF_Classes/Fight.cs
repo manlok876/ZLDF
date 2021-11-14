@@ -7,7 +7,7 @@ namespace ZLDF.Classes
 {
 	public abstract class Fight : BindableBase
 	{
-		public string Id { get; set; }
+		public string Id { get { return "noID"; } }
 		public abstract Fighter[] Fighters { get; }
 
 		public abstract float GetFighterScore(Fighter TheFighter);

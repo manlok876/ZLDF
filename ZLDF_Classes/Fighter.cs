@@ -19,13 +19,14 @@ namespace ZLDF.Classes
 		public DateTime Birthday { get; set; }
 
 		public string City { get; set; }
-		public Club Club { get; set; }
+		public Club? Club { get; set; }
 
 		public string Email { get; set; }
 		public string Phone { get; set; }
 
 		public Fighter()
 		{
+			Id = "noID";
 			FirstName = "Ivan";
 			LastName = "Ivanov";
 			Birthday = new DateTime(2000, 1, 1);

@@ -47,12 +47,6 @@ namespace ZLDF.Classes
 			}
 		}
 
-		Duel()
-		{
-			FighterOne = null;
-			FighterTwo = null;
-		}
-
 		Duel(Fighter FirstFighter, Fighter SecondFighter)
 		{
 			FighterOne = FirstFighter;
