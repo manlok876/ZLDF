@@ -8,4 +8,12 @@
     <RootNamespace>$(MSBuildProjectName.Replace("_", "."))</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Prism.Wpf" Version="8.1.97" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ZLDF_Classes\ZLDF_Classes.csproj" />
+  </ItemGroup>
+
 </Project>
