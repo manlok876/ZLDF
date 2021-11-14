@@ -10,4 +10,8 @@
     <Description>Common classes used by ZLDF software</Description>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Prism.Core" Version="8.1.97" />
+  </ItemGroup>
+
 </Project>
