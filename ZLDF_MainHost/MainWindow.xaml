@@ -9,6 +9,25 @@
 		Height="450" Width="800"
 		WindowState="Maximized"
 		>
+<!--
+	<Window.Resources>
+		<DataTemplate DataType="{x:Type local:RegistrationViewModel}">
+			<local:RegistrationView />
+		</DataTemplate>
+		<DataTemplate DataType="{x:Type local:TournamentHostViewModel}">
+			<local:TournamentHostView />
+		</DataTemplate>
+		<DataTemplate DataType="{x:Type local:NominationViewModel}">
+			<local:NominationView />
+		</DataTemplate>
+		<DataTemplate DataType="{x:Type local:TourViewModel}">
+			<local:TourView />
+		</DataTemplate>
+		<DataTemplate DataType="{x:Type local:ProductsViewModel}">
+			<local:ProductsView />
+		</DataTemplate>
+	</Window.Resources>
+-->
 	<Grid>
 
 	</Grid>

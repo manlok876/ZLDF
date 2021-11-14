@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace ZLDF_MainHost
+namespace ZLDF.MainHost
 {
 	/// <summary>
 	/// Interaction logic for MainWindow.xaml

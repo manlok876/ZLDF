@@ -6,7 +6,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{EEA0B612-680A-486C-8DDF-6D46C9ED3923}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>ZLDF_Registration</RootNamespace>
+    <RootNamespace>ZLDF.Registration</RootNamespace>
     <AssemblyName>ZLDF_Registration</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>

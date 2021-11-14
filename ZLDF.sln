@@ -4,6 +4,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 16.0.31321.278
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZLDF_MainHost", "ZLDF_MainHost\ZLDF_MainHost.csproj", "{C5EE75EB-E243-478C-A700-90CD5B1FC26B}"
+	ProjectSection(ProjectDependencies) = postProject
+		{839E62FA-51D3-4840-8555-71570E33CB09} = {839E62FA-51D3-4840-8555-71570E33CB09}
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ZLDF_Classes", "ZLDF_Classes\ZLDF_Classes.csproj", "{839E62FA-51D3-4840-8555-71570E33CB09}"
 EndProject
