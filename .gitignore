@@ -3,6 +3,9 @@
 ZLDF_*/bin
 ZLDF_*/obj
 
+# Ignore MSVS user settings
+*.user
+
 # Ignore NuGet Packages
 *.nupkg
 
