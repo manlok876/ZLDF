@@ -4,13 +4,24 @@
 		xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 		xmlns:local="clr-namespace:ZLDF.MainHost.Views"
+		xmlns:classes="clr-namespace:ZLDF.Classes;assembly=ZLDF_Classes"
 		mc:Ignorable="d"
-		Title="AppView" Height="450" Width="800">
+		Title="ZLDF" Height="450" Width="800">
+
 	<Grid>
-		<TextBox x:Name="textBox"
+		<TextBlock x:Name="TextBlock"
 			HorizontalAlignment="Left" VerticalAlignment="Top"
 			Margin="210,129,0,0" Width="120"
-			TextWrapping="Wrap" Text="App"/>
-
+			TextWrapping="Wrap" Text="{Binding SelectedTournament.Fights.Count}"/>
+		<ItemsControl ItemsSource="{Binding SelectedTournament.Fights}" Margin="400,10,10,10">
+			<ItemsControl.Resources>
+				<DataTemplate DataType="{x:Type classes:Duel}">
+					<StackPanel Orientation="Horizontal">
+						<TextBlock Text="{Binding FighterOne.FirstName}"/>
+						<TextBlock Text="{Binding FighterTwo.FirstName}"/>
+					</StackPanel>
+				</DataTemplate>
+			</ItemsControl.Resources>
+		</ItemsControl>
 	</Grid>
 </Window>
