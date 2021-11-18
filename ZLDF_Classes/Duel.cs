@@ -6,10 +6,17 @@ namespace ZLDF.Classes
 {
 	public class Duel : Fight
 	{
+		/// <summary>
+		/// First fighter in a duel. Immutable, if pairings changed - create new fights
+		/// </summary>
 		public Fighter FighterOne
 		{
 			get; private set;
 		}
+		
+		/// <summary>
+		/// Second fighter in a duel. Immutable, if pairings changed - create new fights
+		/// </summary>
 		public Fighter FighterTwo
 		{
 			get; private set;
@@ -47,7 +54,7 @@ namespace ZLDF.Classes
 			}
 		}
 
-		Duel(Fighter FirstFighter, Fighter SecondFighter)
+		public Duel(Fighter FirstFighter, Fighter SecondFighter)
 		{
 			FighterOne = FirstFighter;
 			FighterTwo = SecondFighter;
