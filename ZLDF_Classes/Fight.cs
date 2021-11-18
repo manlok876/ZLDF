@@ -5,13 +5,54 @@ using Prism.Mvvm;
 
 namespace ZLDF.Classes
 {
+	public enum FightState
+	{
+		NotStarted,
+		Scheduled,
+		InProgress,
+		Paused,
+		Finished,
+		Cancelled
+	}
+
 	public abstract class Fight : BindableBase
 	{
-		public string Id { get { return "noID"; } }
-		public abstract Fighter[] Fighters { get; }
+		private string _id;
+		private FightState _state;
 
+		/// <summary>
+		/// Id property is used for persistent tracking of fights, especially between different runs
+		/// </summary>
+		public string Id
+		{
+			get
+			{
+				return _id;
+			}
+			set
+			{
+				SetProperty(ref _id, value);
+			}
+		}
+		public FightState State
+		{
+			get
+			{
+				return _state;
+			}
+			set
+			{
+				SetProperty(ref _state, value);
+			}
+		}
+
+		public abstract Fighter[] Fighters { get; }
 		public abstract float GetFighterScore(Fighter TheFighter);
 
-		// Judges?
+		protected Fight()
+		{
+			_id = "noId";
+			_state = FightState.NotStarted;
+		}
 	}
 }
