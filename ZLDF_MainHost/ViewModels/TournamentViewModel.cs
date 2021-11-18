@@ -47,6 +47,9 @@ namespace ZLDF.MainHost.ViewModels
 		public TournamentViewModel()
 		{
 			Model = new Tournament();
+			NumFighters = 5;
+			Fights = new ObservableCollection<Fight>();
+			GenerateFights();
 			GenFightsCommand = new DelegateCommand(GenerateFights, () => true);
 		}
 
