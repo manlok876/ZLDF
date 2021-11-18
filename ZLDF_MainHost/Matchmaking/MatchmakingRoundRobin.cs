@@ -64,8 +64,9 @@ namespace ZLDF.MainHost.Matchmaking
 
 					// Compute next indices
 					FirstFighterIdx = (SecondFighterIdx + 1) % FightersCount;
+					SecondFighterIdx = (FirstFighterIdx + Step) % FightersCount;
 					if (UsedFighters.Contains(AllFighters[FirstFighterIdx]) ||
-						FighterWasInPrevDuel(AllFighters[FirstFighterIdx]))
+						FighterWasInPrevDuel(AllFighters[SecondFighterIdx]))
 					{
 						FirstFighterIdx++;
 					}
