@@ -6,8 +6,9 @@ namespace ZLDF.Classes
 {
 	public class Tournament : Event
 	{
-		private Fighter[] _fighters;
-		public Fighter[] Fighters
+		private List<Fighter> _fighters;
+
+		public List<Fighter> Fighters
 		{
 			get { return _fighters; }
 			set
@@ -15,9 +16,10 @@ namespace ZLDF.Classes
 				SetProperty(ref _fighters, value);
 			}
 		}
+
 		public Tournament()
 		{
-			Fighters = new Fighter[0];
+			_fighters = new List<Fighter>();
 		}
 	}
 }

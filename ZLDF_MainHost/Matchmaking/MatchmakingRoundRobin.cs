@@ -9,28 +9,27 @@ namespace ZLDF.MainHost.Matchmaking
 {
 	internal class MatchmakingRoundRobin : MatchmakingBase
 	{
-		public static Fight[] GetFightsFor(Fighter[] AllFighters)
+		public static List<Fight> GetFightsFor(IEnumerable<Fighter> AllFighters)
 		{
-			int FightersCount = AllFighters.Length;
+			Fighter[] FightersArray = AllFighters.ToArray();
+
+			int FightersCount = FightersArray.Length;
 			if (FightersCount < 2)
 			{
-				return new Fight[0];
+				return new List<Fight>();
 			}
-			int FightsCount = FightersCount * (FightersCount - 1) / 2;
-			Fight[] Result = new Fight[FightsCount];
 
-			int NextFightIdx = 0;
+			int FightsCount = FightersCount * (FightersCount - 1) / 2;
+			List<Fight> Result = new List<Fight>(FightsCount);
+
 			// Idea is to repeat going around the group in one direction with given step
 			// until every fighter is used as first in a duel
 			HashSet<Fighter> UsedFighters = new HashSet<Fighter>();
 
+			// Ideally, we don't want 2 fights in a row for any fighter
+			Duel? PrevDuel = null;
 			bool FighterWasInPrevDuel(Fighter CurrFighter)
 			{
-				if (NextFightIdx < 1)
-				{
-					return false;
-				}
-				Duel? PrevDuel = Result[NextFightIdx - 1] as Duel;
 				if (PrevDuel == null)
 				{
 					return false;
@@ -42,7 +41,7 @@ namespace ZLDF.MainHost.Matchmaking
 			for (int Step = 1; Step <= FightersCount / 2; Step++)
 			{
 				int FirstFighterIdx = 0;
-				if (FighterWasInPrevDuel(AllFighters[FirstFighterIdx]))
+				if (FighterWasInPrevDuel(FightersArray[FirstFighterIdx]))
 				{
 					FirstFighterIdx++;
 				}
@@ -50,13 +49,15 @@ namespace ZLDF.MainHost.Matchmaking
 
 				while (UsedFighters.Count < FightersCount)
 				{
-					Fighter FirstFighter = AllFighters[FirstFighterIdx];
-					Fighter SecondFighter = AllFighters[SecondFighterIdx];
+					Fighter FirstFighter = FightersArray[FirstFighterIdx];
+					Fighter SecondFighter = FightersArray[SecondFighterIdx];
 
-					Result[NextFightIdx] = new Duel(FirstFighter, SecondFighter);
-					NextFightIdx++;
+					Duel NewDuel = new Duel(FirstFighter, SecondFighter);
+					Result.Add(NewDuel);
+					PrevDuel = NewDuel;
 
 					UsedFighters.Add(FirstFighter);
+					// For even N, X + N/2 + N/2 = X (mod N), => we are marking both fighters "used" at this step
 					if (Step * 2 == FightersCount)
 					{
 						UsedFighters.Add(SecondFighter);
@@ -65,14 +66,14 @@ namespace ZLDF.MainHost.Matchmaking
 					// Compute next indices
 					FirstFighterIdx = (SecondFighterIdx + 1) % FightersCount;
 					SecondFighterIdx = (FirstFighterIdx + Step) % FightersCount;
-					if (UsedFighters.Contains(AllFighters[FirstFighterIdx]) ||
-						FighterWasInPrevDuel(AllFighters[SecondFighterIdx]))
+					// TODO: test
+					if (UsedFighters.Contains(FightersArray[FirstFighterIdx]) ||
+						FighterWasInPrevDuel(FightersArray[SecondFighterIdx]))
 					{
 						FirstFighterIdx++;
 					}
 					FirstFighterIdx = FirstFighterIdx % FightersCount;
 					SecondFighterIdx = (FirstFighterIdx + Step) % FightersCount;
-					
 				}
 				UsedFighters.Clear();
 			}
@@ -81,11 +82,3 @@ namespace ZLDF.MainHost.Matchmaking
 		}
 	}
 }
-
-/*
- * 2: 0-1
- * 3: 0-1 1-2 0-2
- * 4: 0-1 2-3 1-2 1-3 0-2 0-3
- * 5: 0-1 2-3 0-4 1-2 1-3 0-2 0-3
- *    0-4 1-4 2-4 3-4
- */
