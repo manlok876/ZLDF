@@ -49,6 +49,12 @@ namespace ZLDF.MainHost.Matchmaking
 
 				while (UsedFighters.Count < FightersCount)
 				{
+					while (UsedFighters.Contains(FightersArray[FirstFighterIdx]) ||
+						FighterWasInPrevDuel(FightersArray[SecondFighterIdx]))
+					{
+						FirstFighterIdx = (FirstFighterIdx + 1) % FightersCount;
+						SecondFighterIdx = (FirstFighterIdx + Step) % FightersCount;
+					}
 					Fighter FirstFighter = FightersArray[FirstFighterIdx];
 					Fighter SecondFighter = FightersArray[SecondFighterIdx];
 
@@ -65,14 +71,6 @@ namespace ZLDF.MainHost.Matchmaking
 
 					// Compute next indices
 					FirstFighterIdx = (SecondFighterIdx + 1) % FightersCount;
-					SecondFighterIdx = (FirstFighterIdx + Step) % FightersCount;
-					// TODO: test
-					if (UsedFighters.Contains(FightersArray[FirstFighterIdx]) ||
-						FighterWasInPrevDuel(FightersArray[SecondFighterIdx]))
-					{
-						FirstFighterIdx++;
-					}
-					FirstFighterIdx = FirstFighterIdx % FightersCount;
 					SecondFighterIdx = (FirstFighterIdx + Step) % FightersCount;
 				}
 				UsedFighters.Clear();
