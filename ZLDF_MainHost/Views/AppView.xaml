@@ -23,5 +23,7 @@
 				</DataTemplate>
 			</ItemsControl.Resources>
 		</ItemsControl>
+		<Button x:Name="button" Content="Gen Fights" HorizontalAlignment="Left" Margin="120,384,0,0" VerticalAlignment="Top" Height="40" Width="130" Command="{Binding SelectedTournament.GenFightsCommand}"/>
+		<TextBox x:Name="textBox" HorizontalAlignment="Left" Margin="100,99,0,0" TextWrapping="Wrap" Text="{Binding SelectedTournament.NumFighters}" VerticalAlignment="Top" Width="120" />
 	</Grid>
 </Window>
