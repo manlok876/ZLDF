@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Prism.Mvvm;
+using ZLDF.Classes;
 
 namespace ZLDF.MainHost.ViewModels
 {
@@ -22,7 +23,7 @@ namespace ZLDF.MainHost.ViewModels
 
 		public AppViewModel()
 		{
-			_selectedTournament = new TournamentViewModel();
+			_selectedTournament = new TournamentViewModel(new Tournament());
 		}
 
 	}

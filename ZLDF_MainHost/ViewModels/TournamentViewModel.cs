@@ -25,11 +25,16 @@ namespace ZLDF.MainHost.ViewModels
 				SetProperty(ref _model, value);
 			}
 		}
-		public ObservableCollection<Fight> Fights { get; set; }
+
+		private ObservableCollection<Fight> _fights = new ObservableCollection<Fight>();
+		public ObservableCollection<Fight> Fights
+		{
+			get { return _fights; }
+		}
 
 		public int NumFighters
 		{
-			get { return Model.Fighters.Count; }
+			get { return Model.Fighters.Length; }
 			set
 			{
 				List<Fighter> GenFighters = new List<Fighter>(value);
@@ -38,17 +43,17 @@ namespace ZLDF.MainHost.ViewModels
 					Fighter NewFighter = new Fighter { FirstName = i.ToString() };
 					GenFighters.Add(NewFighter);
 				}
-				Model.Fighters = GenFighters;
+				Model.ClearFighters();
+				Model.AddFighters(GenFighters);
 			}
 		}
 
 		public ICommand GenFightsCommand { get; private set; }
 
-		public TournamentViewModel()
+		public TournamentViewModel(Tournament TournamentModel)
 		{
-			_model = new Tournament();
+			_model = TournamentModel;
 			NumFighters = 5;
-			Fights = new ObservableCollection<Fight>();
 			GenerateFights();
 			GenFightsCommand = new DelegateCommand(GenerateFights, () => true);
 		}

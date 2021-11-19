@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Text;
 
 namespace ZLDF.Classes
@@ -22,11 +23,11 @@ namespace ZLDF.Classes
 			get; private set;
 		}
 
-		public override Fighter[] Fighters
+		public override ImmutableArray<Fighter> Fighters
 		{
 			get
 			{
-				return new Fighter[2] { FighterOne, FighterTwo };
+				return new ImmutableArray<Fighter> { FighterOne, FighterTwo };
 			}
 		}
 

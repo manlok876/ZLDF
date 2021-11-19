@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Text;
 using Prism.Mvvm;
 
@@ -46,7 +47,7 @@ namespace ZLDF.Classes
 			}
 		}
 
-		public abstract Fighter[] Fighters { get; }
+		public abstract ImmutableArray<Fighter> Fighters { get; }
 		public abstract float GetFighterScore(Fighter TheFighter);
 
 		protected Fight()
