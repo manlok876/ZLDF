@@ -50,19 +50,19 @@ namespace ZLDF.MainHost.ViewModels
 
 		public ICommand GenFightsCommand { get; private set; }
 
+		public void GenerateFights()
+		{
+			Fights.Clear();
+			List<Fight> newFights = MatchmakingRoundRobin.GetFightsFor(Model.Fighters.ToArray());
+			Fights.AddRange(newFights);
+		}
+
 		public TournamentViewModel(Tournament tournamentModel)
 		{
 			_model = tournamentModel;
 			NumFighters = 5;
 			GenerateFights();
 			GenFightsCommand = new DelegateCommand(GenerateFights, () => true);
-		}
-
-		public void GenerateFights()
-		{
-			Fights.Clear();
-			List<Fight> newFights = MatchmakingRoundRobin.GetFightsFor(Model.Fighters.ToArray());
-			Fights.AddRange(newFights);
 		}
 	}
 }
