@@ -12,18 +12,17 @@
 		<TextBlock x:Name="TextBlock"
 			HorizontalAlignment="Left" VerticalAlignment="Top"
 			Margin="210,129,0,0" Width="120"
-			TextWrapping="Wrap" Text="{Binding SelectedTournament.Fights.Count}"/>
-		<ItemsControl ItemsSource="{Binding SelectedTournament.Fights}" Margin="400,10,10,10">
+			TextWrapping="Wrap" Text="{Binding Tournaments.Count}"/>
+		<ListBox x:Name="TournamentsListBox" ItemsSource="{Binding Tournaments}" Margin="400,10,10,10">
 			<ItemsControl.Resources>
-				<DataTemplate DataType="{x:Type classes:Duel}">
-					<StackPanel Orientation="Horizontal">
-						<TextBlock Text="{Binding FighterOne.FirstName}"/>
-						<TextBlock Text="{Binding FighterTwo.FirstName}"/>
-					</StackPanel>
+				<DataTemplate DataType="{x:Type classes:Tournament}">
+					<ListBoxItem>
+						<TextBlock Text="Tournament"/>
+					</ListBoxItem>
 				</DataTemplate>
 			</ItemsControl.Resources>
-		</ItemsControl>
-		<Button x:Name="button" Content="Gen Fights" HorizontalAlignment="Left" Margin="120,384,0,0" VerticalAlignment="Top" Height="40" Width="130" Command="{Binding SelectedTournament.GenFightsCommand}"/>
-		<TextBox x:Name="textBox" HorizontalAlignment="Left" Margin="100,99,0,0" TextWrapping="Wrap" Text="{Binding SelectedTournament.NumFighters}" VerticalAlignment="Top" Width="120" />
+		</ListBox>
+		<Button x:Name="CreateTournamentButton" Content="Create tournament" HorizontalAlignment="Left" Margin="120,384,0,0" VerticalAlignment="Top" Height="40" Width="130" Command="{Binding CreateTournamentCommand}"/>
+		<Button x:Name="OpenTournamentButton" Content="Open tournament" HorizontalAlignment="Left" Margin="120,249,0,0" VerticalAlignment="Top" Height="40" Width="130" Command="{Binding OpenTournamentCommand}" CommandParameter="{Binding ElementName=TournamentsListBox, Path=SelectedItem}"/>
 	</Grid>
 </Window>
