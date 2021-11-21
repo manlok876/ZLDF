@@ -6,6 +6,8 @@
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
     <RootNamespace>$(MSBuildProjectName.Replace("_", "."))</RootNamespace>
+    <ApplicationIcon>logo.ico</ApplicationIcon>
+    <PackageIcon>logo.ico</PackageIcon>
   </PropertyGroup>
 
   <ItemGroup>
@@ -14,6 +16,14 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ZLDF_Classes\ZLDF_Classes.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="logo.ico">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>
