@@ -11,7 +11,7 @@ namespace ZLDF.Classes
 
 		public ImmutableArray<Fighter> Fighters
 		{
-			get { return _fighters.ToImmutableArray<Fighter>(); }
+			get { return _fighters.ToImmutableArray(); }
 		}
 		// TODO: check uniqueness
 		public void AddFighter(Fighter newFighter)
