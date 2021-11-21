@@ -8,6 +8,16 @@ namespace ZLDF.Classes
 {
 	public abstract class Nomination : Event
 	{
+		private string _name;
+		public string Name
+		{
+			get { return _name; }
+			set
+			{
+				SetProperty(ref _name, value);
+			}
+		}
+
 		// Participants
 		public abstract ImmutableArray<Fighter> Fighters { get; }
 		// Fight rules
@@ -18,5 +28,10 @@ namespace ZLDF.Classes
 
 
 		// Judges?
+		protected Nomination()
+		{
+			_name = "Some Nomination";
+		}
+
 	}
 }
