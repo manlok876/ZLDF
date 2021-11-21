@@ -14,34 +14,34 @@ namespace ZLDF.Classes
 			get { return _fighters.ToImmutableArray<Fighter>(); }
 		}
 		// TODO: check uniqueness
-		public void AddFighter(Fighter NewFighter)
+		public void AddFighter(Fighter newFighter)
 		{
-			_fighters.Add(NewFighter);
+			_fighters.Add(newFighter);
 			RaisePropertyChanged("Fighters");
 		}
-		public void AddFighters(IEnumerable<Fighter> NewFighters)
+		public void AddFighters(IEnumerable<Fighter> newFighters)
 		{
-			foreach (var Fighter in NewFighters)
+			foreach (var fighter in newFighters)
 			{
-				_fighters.Add(Fighter);
+				_fighters.Add(fighter);
 			}
 			RaisePropertyChanged("Fighters");
 		}
 		
-		public void RemoveFighter(Fighter FighterToRemove)
+		public void RemoveFighter(Fighter fighterToRemove)
 		{
-			bool bSuccess = _fighters.Remove(FighterToRemove);
+			bool bSuccess = _fighters.Remove(fighterToRemove);
 			if (bSuccess)
 			{
 				RaisePropertyChanged("Fighters");
 			}
 		}
-		public void RemoveFighters(IEnumerable<Fighter> FightersToRemove)
+		public void RemoveFighters(IEnumerable<Fighter> fightersToRemove)
 		{
 			bool bSuccess = false;
-			foreach (var Fighter in FightersToRemove)
+			foreach (var fighter in fightersToRemove)
 			{
-				bSuccess = bSuccess || _fighters.Remove(Fighter);
+				bSuccess = bSuccess || _fighters.Remove(fighter);
 			}
 			if (bSuccess)
 			{

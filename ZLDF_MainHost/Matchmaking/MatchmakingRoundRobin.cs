@@ -11,72 +11,72 @@ namespace ZLDF.MainHost.Matchmaking
 	{
 		public static List<Fight> GetFightsFor(IEnumerable<Fighter> AllFighters)
 		{
-			Fighter[] FightersArray = AllFighters.ToArray();
+			Fighter[] fightersArray = AllFighters.ToArray();
 
-			int FightersCount = FightersArray.Length;
-			if (FightersCount < 2)
+			int fightersCount = fightersArray.Length;
+			if (fightersCount < 2)
 			{
 				return new List<Fight>();
 			}
 
-			int FightsCount = FightersCount * (FightersCount - 1) / 2;
-			List<Fight> Result = new List<Fight>(FightsCount);
+			int fightsCount = fightersCount * (fightersCount - 1) / 2;
+			List<Fight> result = new List<Fight>(fightsCount);
 
 			// Idea is to repeat going around the group in one direction with given step
 			// until every fighter is used as first in a duel
-			HashSet<Fighter> UsedFighters = new HashSet<Fighter>();
+			HashSet<Fighter> usedFighters = new HashSet<Fighter>();
 
 			// Ideally, we don't want 2 fights in a row for any fighter
-			Duel? PrevDuel = null;
-			bool FighterWasInPrevDuel(Fighter CurrFighter)
+			Duel? prevDuel = null;
+			bool FighterWasInPrevDuel(Fighter currFighter)
 			{
-				if (PrevDuel == null)
+				if (prevDuel == null)
 				{
 					return false;
 				}
-				return PrevDuel.FighterOne == CurrFighter ||
-					PrevDuel.FighterTwo == CurrFighter;
+				return prevDuel.FighterOne == currFighter ||
+					prevDuel.FighterTwo == currFighter;
 			}
 
-			for (int Step = 1; Step <= FightersCount / 2; Step++)
+			for (int step = 1; step <= fightersCount / 2; step++)
 			{
-				int FirstFighterIdx = 0;
-				if (FighterWasInPrevDuel(FightersArray[FirstFighterIdx]))
+				int firstFighterIdx = 0;
+				if (FighterWasInPrevDuel(fightersArray[firstFighterIdx]))
 				{
-					FirstFighterIdx++;
+					firstFighterIdx++;
 				}
-				int SecondFighterIdx = (FirstFighterIdx + Step) % FightersCount;
+				int secondFighterIdx = (firstFighterIdx + step) % fightersCount;
 
-				while (UsedFighters.Count < FightersCount)
+				while (usedFighters.Count < fightersCount)
 				{
-					while (UsedFighters.Contains(FightersArray[FirstFighterIdx]) ||
-						FighterWasInPrevDuel(FightersArray[SecondFighterIdx]))
+					while (usedFighters.Contains(fightersArray[firstFighterIdx]) ||
+						FighterWasInPrevDuel(fightersArray[secondFighterIdx]))
 					{
-						FirstFighterIdx = (FirstFighterIdx + 1) % FightersCount;
-						SecondFighterIdx = (FirstFighterIdx + Step) % FightersCount;
+						firstFighterIdx = (firstFighterIdx + 1) % fightersCount;
+						secondFighterIdx = (firstFighterIdx + step) % fightersCount;
 					}
-					Fighter FirstFighter = FightersArray[FirstFighterIdx];
-					Fighter SecondFighter = FightersArray[SecondFighterIdx];
+					Fighter firstFighter = fightersArray[firstFighterIdx];
+					Fighter secondFighter = fightersArray[secondFighterIdx];
 
-					Duel NewDuel = new Duel(FirstFighter, SecondFighter);
-					Result.Add(NewDuel);
-					PrevDuel = NewDuel;
+					Duel newDuel = new Duel(firstFighter, secondFighter);
+					result.Add(newDuel);
+					prevDuel = newDuel;
 
-					UsedFighters.Add(FirstFighter);
+					usedFighters.Add(firstFighter);
 					// For even N, X + N/2 + N/2 = X (mod N), => we are marking both fighters "used" at this step
-					if (Step * 2 == FightersCount)
+					if (step * 2 == fightersCount)
 					{
-						UsedFighters.Add(SecondFighter);
+						usedFighters.Add(secondFighter);
 					}
 
 					// Compute next indices
-					FirstFighterIdx = (SecondFighterIdx + 1) % FightersCount;
-					SecondFighterIdx = (FirstFighterIdx + Step) % FightersCount;
+					firstFighterIdx = (secondFighterIdx + 1) % fightersCount;
+					secondFighterIdx = (firstFighterIdx + step) % fightersCount;
 				}
-				UsedFighters.Clear();
+				usedFighters.Clear();
 			}
 
-			return Result;
+			return result;
 		}
 	}
 }

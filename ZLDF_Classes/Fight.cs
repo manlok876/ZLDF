@@ -48,7 +48,7 @@ namespace ZLDF.Classes
 		}
 
 		public abstract ImmutableArray<Fighter> Fighters { get; }
-		public abstract float GetFighterScore(Fighter TheFighter);
+		public abstract float GetFighterScore(Fighter fighter);
 
 		protected Fight()
 		{

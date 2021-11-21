@@ -39,13 +39,13 @@ namespace ZLDF.Classes
 		{
 			get; private set;
 		}
-		public override float GetFighterScore(Fighter TheFighter)
+		public override float GetFighterScore(Fighter fighter)
 		{
-			if (TheFighter == FighterOne)
+			if (fighter == FighterOne)
 			{
 				return FighterOneScore;
 			}
-			else if (TheFighter == FighterTwo)
+			else if (fighter == FighterTwo)
 			{
 				return FighterTwoScore;
 			}

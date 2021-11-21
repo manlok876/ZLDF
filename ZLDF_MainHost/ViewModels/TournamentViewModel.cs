@@ -37,22 +37,22 @@ namespace ZLDF.MainHost.ViewModels
 			get { return Model.Fighters.Length; }
 			set
 			{
-				List<Fighter> GenFighters = new List<Fighter>(value);
-				for (int i = 0; i < value; i++)
+				List<Fighter> genFighters = new List<Fighter>(value);
+				for (int fighterIdx = 0; fighterIdx < value; fighterIdx++)
 				{
-					Fighter NewFighter = new Fighter { FirstName = i.ToString() };
-					GenFighters.Add(NewFighter);
+					Fighter newFighter = new Fighter { FirstName = fighterIdx.ToString() };
+					genFighters.Add(newFighter);
 				}
 				Model.ClearFighters();
-				Model.AddFighters(GenFighters);
+				Model.AddFighters(genFighters);
 			}
 		}
 
 		public ICommand GenFightsCommand { get; private set; }
 
-		public TournamentViewModel(Tournament TournamentModel)
+		public TournamentViewModel(Tournament tournamentModel)
 		{
-			_model = TournamentModel;
+			_model = tournamentModel;
 			NumFighters = 5;
 			GenerateFights();
 			GenFightsCommand = new DelegateCommand(GenerateFights, () => true);
@@ -61,8 +61,8 @@ namespace ZLDF.MainHost.ViewModels
 		public void GenerateFights()
 		{
 			Fights.Clear();
-			List<Fight> NewFights = MatchmakingRoundRobin.GetFightsFor(Model.Fighters.ToArray());
-			Fights.AddRange(NewFights);
+			List<Fight> newFights = MatchmakingRoundRobin.GetFightsFor(Model.Fighters.ToArray());
+			Fights.AddRange(newFights);
 		}
 	}
 }
