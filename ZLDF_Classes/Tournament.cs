@@ -7,6 +7,16 @@ namespace ZLDF.Classes
 {
 	public class Tournament : Event
 	{
+		private string _name;
+		public string Name
+		{
+			get { return _name; }
+			set
+			{
+				SetProperty(ref _name, value);
+			}
+		}
+
 		private List<Fighter> _fighters = new List<Fighter>();
 
 		public ImmutableArray<Fighter> Fighters
@@ -61,6 +71,7 @@ namespace ZLDF.Classes
 
 		public Tournament()
 		{
+			_name = "Some Tournament";
 		}
 	}
 }
