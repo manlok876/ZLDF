@@ -12,9 +12,7 @@
 	<Window.Resources>
 		<CollectionViewSource x:Key="Nominations" Source="{Binding Nominations}"/>
 		<DataTemplate DataType="{x:Type vm:NominationViewModel}">
-			<TabItem Header="{Binding Model.Name}">
-				<local:NominationView/>
-			</TabItem>
+			<local:NominationView/>
 		</DataTemplate>
 	</Window.Resources>
 	<Grid>
@@ -27,6 +25,11 @@
 					<CollectionContainer Collection="{Binding Source={StaticResource Nominations}}"/>
 				</CompositeCollection>
 			</TabControl.ItemsSource>
+			<TabControl.ItemContainerStyle>
+				<Style TargetType="TabItem">
+					<Setter Property="Header" Value="{Binding Model.Name}"/>
+				</Style>
+			</TabControl.ItemContainerStyle>
 		</TabControl>
 	</Grid>
 </Window>
