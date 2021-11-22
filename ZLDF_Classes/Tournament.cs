@@ -17,6 +17,16 @@ namespace ZLDF.Classes
 			}
 		}
 
+		private List<Nomination> _nominations;
+		public List<Nomination> Nominations
+		{
+			get { return _nominations; }
+			set
+			{
+				SetProperty(ref _nominations, value);
+			}
+		}
+
 		private List<Fighter> _fighters = new List<Fighter>();
 
 		public ImmutableArray<Fighter> Fighters
@@ -72,6 +82,7 @@ namespace ZLDF.Classes
 		public Tournament()
 		{
 			_name = "Some Tournament";
+			_nominations = new List<Nomination>();
 		}
 	}
 }
