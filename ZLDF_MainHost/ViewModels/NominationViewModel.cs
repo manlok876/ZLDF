@@ -35,12 +35,7 @@ namespace ZLDF.MainHost.ViewModels
 			get { return Model.Fighters.Length; }
 			set
 			{
-				List<Fighter> genFighters = new List<Fighter>(value);
-				for (int fighterIdx = 0; fighterIdx < value; fighterIdx++)
-				{
-					Fighter newFighter = new Fighter { FirstName = fighterIdx.ToString() };
-					genFighters.Add(newFighter);
-				}
+				List<Fighter> genFighters = new List<Fighter>(TestData.GenerateTestFighters(value));
 				Model.ClearFighters();
 				Model.AddFighters(genFighters);
 			}
@@ -60,7 +55,7 @@ namespace ZLDF.MainHost.ViewModels
 		public NominationViewModel(Nomination nomination)
 		{
 			_model = nomination;
-			NumFighters = 5;
+			// NumFighters = 5;
 			GenerateFights();
 			GenFightsCommand = new DelegateCommand(GenerateFights, () => true);
 		}
