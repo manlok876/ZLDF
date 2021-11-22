@@ -17,7 +17,7 @@
 			<ItemsControl.Resources>
 				<DataTemplate DataType="{x:Type classes:Tournament}">
 					<ListBoxItem>
-						<TextBlock Text="Tournament"/>
+						<TextBlock Text="{Binding Name}"/>
 					</ListBoxItem>
 				</DataTemplate>
 			</ItemsControl.Resources>
