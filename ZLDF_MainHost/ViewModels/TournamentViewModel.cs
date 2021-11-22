@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
@@ -26,10 +27,10 @@ namespace ZLDF.MainHost.ViewModels
 			}
 		}
 
-		private ObservableCollection<Fight> _fights = new ObservableCollection<Fight>();
-		public ObservableCollection<Fight> Fights
+		public ImmutableArray<NominationViewModel> Nominations
 		{
-			get { return _fights; }
+			get;
+			private set;
 		}
 
 		public int NumFighters
@@ -43,23 +44,37 @@ namespace ZLDF.MainHost.ViewModels
 					Fighter newFighter = new Fighter { FirstName = fighterIdx.ToString() };
 					genFighters.Add(newFighter);
 				}
-				Model.ClearFighters();
-				Model.AddFighters(genFighters);
+				foreach (NominationViewModel nomination in Nominations)
+				{
+					nomination.Model.ClearFighters();
+					nomination.Model.AddFighters(genFighters);
+				}
 			}
 		}
 
 		public ICommand GenFightsCommand { get; private set; }
-
 		public void GenerateFights()
 		{
-			Fights.Clear();
-			List<Fight> newFights = MatchmakingRoundRobin.GetFightsFor(Model.Fighters.ToArray());
-			Fights.AddRange(newFights);
+			foreach (NominationViewModel nomination in Nominations)
+			{
+				nomination.Model.Fights.Clear();
+				List<Fight> newFights = MatchmakingRoundRobin.GetFightsFor(Model.Fighters.ToArray());
+				nomination.Fights.AddRange(newFights);
+			}
 		}
+
+		// Our matchmaking
+		// Break into groups -> round-robin in each group -> get X best -> bracket between them
 
 		public TournamentViewModel(Tournament tournamentModel)
 		{
 			_model = tournamentModel;
+			List<NominationViewModel> nominationViewModels = new List<NominationViewModel>();
+			foreach (Nomination nominationModel in Model.Nominations)
+			{
+				nominationViewModels.Add(new NominationViewModel(nominationModel));
+			}
+			Nominations = nominationViewModels.ToImmutableArray();
 			NumFighters = 5;
 			GenerateFights();
 			GenFightsCommand = new DelegateCommand(GenerateFights, () => true);

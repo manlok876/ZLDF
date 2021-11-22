@@ -33,13 +33,19 @@ namespace ZLDF.MainHost.ViewModels
 		public ICommand CreateTournamentCommand { get; private set; }
 		private void CreateTournament(string name)
 		{
-			_tournaments.Add(new Tournament());
+			Tournament newTournament = new Tournament();
+			newTournament.Nominations.Add(new Nomination());
+			_tournaments.Add(newTournament);
 			RaisePropertyChanged("Tournaments");
 		}
 
 		public ICommand SelectTournamentCommand { get; private set; }
 		private void SelectTournament(Tournament tournament)
 		{
+			if (tournament == null)
+			{
+				return;
+			}
 			SelectedTournament = new TournamentViewModel(tournament);
 		}
 
