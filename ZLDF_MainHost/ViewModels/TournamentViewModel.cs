@@ -44,6 +44,8 @@ namespace ZLDF.MainHost.ViewModels
 					Fighter newFighter = new Fighter { FirstName = fighterIdx.ToString() };
 					genFighters.Add(newFighter);
 				}
+				Model.ClearFighters();
+				Model.AddFighters(genFighters);
 				foreach (NominationViewModel nomination in Nominations)
 				{
 					nomination.Model.ClearFighters();
@@ -57,7 +59,7 @@ namespace ZLDF.MainHost.ViewModels
 		{
 			foreach (NominationViewModel nomination in Nominations)
 			{
-				nomination.Model.Fights.Clear();
+				nomination.Fights.Clear();
 				List<Fight> newFights = MatchmakingRoundRobin.GetFightsFor(Model.Fighters.ToArray());
 				nomination.Fights.AddRange(newFights);
 			}
