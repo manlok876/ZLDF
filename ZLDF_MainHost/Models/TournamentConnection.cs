@@ -20,7 +20,7 @@ namespace ZLDF.MainHost.Models
 
 		public string URL { get; set; }
 
-		TournamentConnection()
+		internal TournamentConnection()
 		{
 			Name = "Some Tournament";
 			ConnectionType = TournamentConnectionType.Test;
