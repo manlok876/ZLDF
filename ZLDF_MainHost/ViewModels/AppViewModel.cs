@@ -69,12 +69,20 @@ namespace ZLDF.MainHost.ViewModels
 
 		public AppViewModel()
 		{
+			// Find all tournament files in dedicated folder
+			// Create list of available connections
+
 			_tournaments = new List<Tournament>();
 			_selectedTournament = null;
 
+			// TODO: change to create new db file
 			CreateTournamentCommand = new DelegateCommand<string>(CreateTournament, (name) => true);
+			
 			SelectTournamentCommand = new DelegateCommand<Tournament>(SelectTournament, (tournament) => true);
 			OpenSelectedTournamentCommand = new DelegateCommand(OpenSelectedTournament, CanOpenSelectedTournament);
+
+			// TODO: change to add ability to load from different file
+			// OpenTournamentFileCommand
 			OpenTournamentCommand = new DelegateCommand<Tournament>(OpenTournament, (tournament) => true);
 		}
 
