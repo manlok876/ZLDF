@@ -13,7 +13,6 @@ namespace ZLDF.Classes
 
 		protected Fight()
 		{
-			_id = "noId";
 		}
 	}
 }
