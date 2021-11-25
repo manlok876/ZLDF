@@ -8,7 +8,6 @@ namespace ZLDF.MainHost.Data
 {
 	internal enum TournamentConnectionType
 	{
-		Test,
 		SQLite
 	}
 
@@ -23,7 +22,7 @@ namespace ZLDF.MainHost.Data
 		internal TournamentConnection()
 		{
 			Name = "Some Tournament";
-			ConnectionType = TournamentConnectionType.Test;
+			ConnectionType = TournamentConnectionType.SQLite;
 			URL = "";
 		}
 
