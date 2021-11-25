@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ZLDF.Classes;
+using ZLDF.MainHost.Data;
 
 namespace ZLDF.MainHost
 {
@@ -48,6 +49,15 @@ namespace ZLDF.MainHost
 
 			_generatedTournamentsCounter++;
 			return tournament;
+		}
+
+		internal static TournamentConnection GenerateTestConnection()
+		{
+			TournamentConnection tournamentConnection = new TournamentConnection();
+			tournamentConnection.Name = "Test connection";
+			tournamentConnection.ConnectionType = TournamentConnectionType.SQLite;
+			tournamentConnection.URL = "testing.db";
+			return tournamentConnection;
 		}
 
 		private static int _generatedNominationsCounter = 0;
