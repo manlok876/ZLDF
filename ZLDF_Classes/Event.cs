@@ -18,7 +18,24 @@ namespace ZLDF.Classes
 
 	public abstract class Event : BindableBase
 	{
+		private string _id;
 		private EventState _state;
+
+		/// <summary>
+		/// Id property is used for persistent tracking of events, especially between different runs
+		/// </summary>
+		public string Id
+		{
+			get
+			{
+				return _id;
+			}
+			private set
+			{
+				SetProperty(ref _id, value);
+			}
+		}
+
 		public EventState State
 		{
 			get
