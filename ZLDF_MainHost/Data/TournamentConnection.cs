@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ZLDF.MainHost.Models
+namespace ZLDF.MainHost.Data
 {
 	internal enum TournamentConnectionType
 	{
@@ -25,6 +25,13 @@ namespace ZLDF.MainHost.Models
 			Name = "Some Tournament";
 			ConnectionType = TournamentConnectionType.Test;
 			URL = "";
+		}
+
+		internal TournamentConnection(string url)
+		{
+			Name = "Some Tournament";
+			ConnectionType = TournamentConnectionType.SQLite;
+			URL = url;
 		}
 	}
 }
