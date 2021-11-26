@@ -13,14 +13,21 @@ namespace ZLDF.MainHost.Data.EF
 		public string ConnectionString { get; private set; }
 
 		internal DbSet<Tournament> Tournaments { get; set; }
+		internal DbSet<Nomination> Nominations { get; set; }
+		internal DbSet<Fight> Fights { get; set; }
 		internal DbSet<Fighter> Fighters { get; set; }
+		internal DbSet<Club> Clubs { get; set; }
 
 		protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 		{
 			optionsBuilder.UseSqlite(ConnectionString);
 			base.OnConfiguring(optionsBuilder);
 		}
-
+		protected override void OnModelCreating(ModelBuilder modelBuilder)
+		{
+			modelBuilder.Entity<Club>().HasKey(c => c.Name);
+			modelBuilder.Entity<Duel>();
+		}
 		public string GetConnectionString(TournamentConnection tournamentConnection)
 		{
 			string result = "";
