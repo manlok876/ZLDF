@@ -89,7 +89,6 @@ namespace ZLDF.MainHost.ViewModels
 
 			_selectedTournament = null;
 
-			// TODO: change to create new db file
 			CreateTournamentCommand = new DelegateCommand<string>(CreateTournament, (name) => true);
 			
 			SelectTournamentCommand = new DelegateCommand<TournamentConnection>(SelectTournament, (tournament) => true);
