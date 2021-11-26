@@ -5,6 +5,7 @@
 		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 		xmlns:local="clr-namespace:ZLDF.MainHost.Views"
 		xmlns:classes="clr-namespace:ZLDF.Classes;assembly=ZLDF_Classes"
+		xmlns:data="clr-namespace:ZLDF.MainHost.Data"
 		mc:Ignorable="d"
 		Title="ZLDF" Height="450" Width="800">
 
@@ -15,7 +16,7 @@
 			TextWrapping="Wrap" Text="{Binding Tournaments.Count}"/>
 		<ListBox x:Name="TournamentsListBox" ItemsSource="{Binding Tournaments}" Margin="400,10,10,10">
 			<ItemsControl.Resources>
-				<DataTemplate DataType="{x:Type classes:Tournament}">
+				<DataTemplate DataType="{x:Type data:TournamentConnection}">
 					<ListBoxItem>
 						<TextBlock Text="{Binding Name}"/>
 					</ListBoxItem>
