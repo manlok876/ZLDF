@@ -56,7 +56,7 @@ namespace ZLDF.MainHost
 			TournamentConnection tournamentConnection = new TournamentConnection();
 			tournamentConnection.Name = "Test connection";
 			tournamentConnection.ConnectionType = TournamentConnectionType.SQLite;
-			tournamentConnection.URL = "testing.db";
+			tournamentConnection.URL = "Tournaments/testing.db";
 			return tournamentConnection;
 		}
 

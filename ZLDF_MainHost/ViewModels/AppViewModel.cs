@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
@@ -75,10 +76,17 @@ namespace ZLDF.MainHost.ViewModels
 
 		public AppViewModel()
 		{
-			// Find all tournament files in dedicated folder
-			// Create list of available connections
-
 			_tournaments = new List<TournamentConnection>();
+
+			// All SQLite tournaments
+			Directory.CreateDirectory("Tournaments");
+			IEnumerable<string> localTournamentFiles = Directory.EnumerateFiles("Tournaments", "*.db");
+			foreach (string file in localTournamentFiles)
+			{
+				Console.WriteLine(file);
+				_tournaments.Add(new TournamentConnection(file));
+			}
+
 			_selectedTournament = null;
 
 			// TODO: change to create new db file
