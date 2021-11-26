@@ -32,6 +32,10 @@ namespace ZLDF.Classes
 		public ImmutableArray<Fighter> Fighters
 		{
 			get { return _fighters.ToImmutableArray(); }
+			private set
+			{
+				SetProperty(ref _fighters, new List<Fighter>(value));
+			}
 		}
 		// TODO: check uniqueness
 		public void AddFighter(Fighter newFighter)
