@@ -10,44 +10,44 @@ namespace ZLDF.Classes
 		/// <summary>
 		/// First fighter in a duel. Immutable, if pairings changed - create new fights
 		/// </summary>
-		public Fighter FighterOne
+		public Fighter FirstFighter
 		{
-			get; private set;
+			get; set;
 		}
-		
+
 		/// <summary>
 		/// Second fighter in a duel. Immutable, if pairings changed - create new fights
 		/// </summary>
-		public Fighter FighterTwo
+		public Fighter SecondFighter
 		{
-			get; private set;
+			get; set;
 		}
 
 		public override ImmutableArray<Fighter> Fighters
 		{
 			get
 			{
-				return new ImmutableArray<Fighter> { FighterOne, FighterTwo };
+				return new ImmutableArray<Fighter> { FirstFighter, SecondFighter };
 			}
 		}
 
-		public float FighterOneScore
+		public float FirstFighterScore
 		{
-			get; private set;
+			get; set;
 		}
-		public float FighterTwoScore
+		public float SecondFighterScore
 		{
-			get; private set;
+			get; set;
 		}
 		public override float GetFighterScore(Fighter fighter)
 		{
-			if (fighter == FighterOne)
+			if (fighter == FirstFighter)
 			{
-				return FighterOneScore;
+				return FirstFighterScore;
 			}
-			else if (fighter == FighterTwo)
+			else if (fighter == SecondFighter)
 			{
-				return FighterTwoScore;
+				return SecondFighterScore;
 			}
 			else
 			{
@@ -55,10 +55,14 @@ namespace ZLDF.Classes
 			}
 		}
 
-		public Duel(Fighter FirstFighter, Fighter SecondFighter)
+		public Duel()
 		{
-			FighterOne = FirstFighter;
-			FighterTwo = SecondFighter;
+		}
+
+		public void Init(Fighter firstFighter, Fighter secondFighter)
+		{
+			FirstFighter = firstFighter;
+			SecondFighter = secondFighter;
 		}
 	}
 }

@@ -34,8 +34,8 @@ namespace ZLDF.MainHost.Matchmaking
 				{
 					return false;
 				}
-				return prevDuel.FighterOne == currFighter ||
-					prevDuel.FighterTwo == currFighter;
+				return prevDuel.FirstFighter == currFighter ||
+					prevDuel.SecondFighter == currFighter;
 			}
 
 			for (int step = 1; step <= fightersCount / 2; step++)
@@ -58,7 +58,8 @@ namespace ZLDF.MainHost.Matchmaking
 					Fighter firstFighter = fightersArray[firstFighterIdx];
 					Fighter secondFighter = fightersArray[secondFighterIdx];
 
-					Duel newDuel = new Duel(firstFighter, secondFighter);
+					Duel newDuel = new Duel();
+					newDuel.Init(firstFighter, secondFighter);
 					result.Add(newDuel);
 					prevDuel = newDuel;
 
