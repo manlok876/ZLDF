@@ -17,7 +17,7 @@ namespace ZLDF.Classes
 			}
 		}
 
-		private List<Nomination> _nominations;
+		private List<Nomination> _nominations = new List<Nomination>();
 		public List<Nomination> Nominations
 		{
 			get { return _nominations; }
@@ -86,7 +86,6 @@ namespace ZLDF.Classes
 		public Tournament()
 		{
 			_name = "Some Tournament";
-			_nominations = new List<Nomination>();
 		}
 	}
 }
