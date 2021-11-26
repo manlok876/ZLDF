@@ -9,19 +9,21 @@ using Prism.Mvvm;
 using Prism.Commands;
 using ZLDF.Classes;
 using ZLDF.MainHost.Views;
+using ZLDF.MainHost.Data;
+using ZLDF.MainHost.Data.EF;
 
 namespace ZLDF.MainHost.ViewModels
 {
 	internal class AppViewModel : BindableBase
 	{
-		private List<Tournament> _tournaments;
-		private TournamentViewModel? _selectedTournament;
+		private List<TournamentConnection> _tournaments;
+		private TournamentConnection? _selectedTournament;
 
-		public ImmutableArray<Tournament> Tournaments
+		public ImmutableArray<TournamentConnection> Tournaments
 		{
 			get { return _tournaments.ToImmutableArray(); }
 		}
-		public TournamentViewModel? SelectedTournament
+		public TournamentConnection? SelectedTournament
 		{
 			get { return _selectedTournament; }
 			private set
@@ -33,32 +35,36 @@ namespace ZLDF.MainHost.ViewModels
 		public ICommand CreateTournamentCommand { get; private set; }
 		private void CreateTournament(string name)
 		{
-			Tournament newTournament = TestData.GenerateTestTournament(7, 3);
+			TournamentConnection newTournament = TestData.GenerateTestConnection();
+			using (TournamentDbContext tournamentDbContext = new TournamentDbContext(newTournament))
+			{
+				tournamentDbContext.Database.EnsureCreated();
+			}
 			_tournaments.Add(newTournament);
 			RaisePropertyChanged("Tournaments");
 		}
 
 		public ICommand SelectTournamentCommand { get; private set; }
-		private void SelectTournament(Tournament tournament)
+		private void SelectTournament(TournamentConnection tournament)
 		{
-			if (tournament == null)
-			{
-				return;
-			}
-			SelectedTournament = new TournamentViewModel(tournament);
+			SelectedTournament = tournament;
 		}
 
 		public ICommand OpenSelectedTournamentCommand { get; private set; }
 		private bool CanOpenSelectedTournament() => _selectedTournament != null;
 		private void OpenSelectedTournament()
 		{
+			if (SelectedTournament == null)
+			{
+				return;
+			}
 			TournamentView tournamentView = new TournamentView();
-			tournamentView.DataContext = SelectedTournament;
+			tournamentView.DataContext = new TournamentViewModel(SelectedTournament);
 			tournamentView.Show();
 		}
 
 		public ICommand OpenTournamentCommand { get; private set; }
-		private void OpenTournament(Tournament tournament)
+		private void OpenTournament(TournamentConnection tournament)
 		{
 			SelectTournament(tournament);
 			if (CanOpenSelectedTournament())
@@ -72,18 +78,18 @@ namespace ZLDF.MainHost.ViewModels
 			// Find all tournament files in dedicated folder
 			// Create list of available connections
 
-			_tournaments = new List<Tournament>();
+			_tournaments = new List<TournamentConnection>();
 			_selectedTournament = null;
 
 			// TODO: change to create new db file
 			CreateTournamentCommand = new DelegateCommand<string>(CreateTournament, (name) => true);
 			
-			SelectTournamentCommand = new DelegateCommand<Tournament>(SelectTournament, (tournament) => true);
+			SelectTournamentCommand = new DelegateCommand<TournamentConnection>(SelectTournament, (tournament) => true);
 			OpenSelectedTournamentCommand = new DelegateCommand(OpenSelectedTournament, CanOpenSelectedTournament);
 
 			// TODO: change to add ability to load from different file
 			// OpenTournamentFileCommand
-			OpenTournamentCommand = new DelegateCommand<Tournament>(OpenTournament, (tournament) => true);
+			OpenTournamentCommand = new DelegateCommand<TournamentConnection>(OpenTournament, (tournament) => true);
 		}
 
 	}
