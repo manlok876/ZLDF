@@ -12,6 +12,7 @@ using ZLDF.Classes;
 using ZLDF.MainHost.Data;
 using ZLDF.MainHost.Data.EF;
 using ZLDF.MainHost.Matchmaking;
+using Microsoft.EntityFrameworkCore;
 
 namespace ZLDF.MainHost.ViewModels
 {
@@ -79,7 +80,9 @@ namespace ZLDF.MainHost.ViewModels
 		public TournamentViewModel(TournamentConnection tournamentConnection)
 		{
 			_dbContext = new TournamentDbContext(tournamentConnection);
-			Tournament? loadedTournament = _dbContext.Tournaments.FirstOrDefault();
+			Tournament? loadedTournament = _dbContext.Tournaments.
+				Include(t => t.Fighters).Include(t => t.Nominations).
+				FirstOrDefault();
 			if (loadedTournament != null)
 			{
 				_model = loadedTournament;
