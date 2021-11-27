@@ -21,9 +21,13 @@ namespace ZLDF.Classes
 		// Participants
 		private List<Fighter> _fighters = new List<Fighter>();
 
-		public ImmutableArray<Fighter> Fighters
+		public List<Fighter> Fighters
 		{
-			get { return _fighters.ToImmutableArray(); }
+			get { return _fighters; }
+			set
+			{
+				SetProperty(ref _fighters, value);
+			}
 		}
 		// TODO: check uniqueness
 		public void AddFighter(Fighter newFighter)
@@ -74,8 +78,6 @@ namespace ZLDF.Classes
 		// Fight rules
 
 		// Matchmaking
-
-		public ImmutableArray<Fight> Fights { get; }
 
 
 		// Judges?
