@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ZLDF.MainHost.Data.EF;
 
 namespace ZLDF.MainHost.Data
 {
@@ -28,9 +29,12 @@ namespace ZLDF.MainHost.Data
 
 		internal TournamentConnection(string url)
 		{
-			Name = "Some Tournament";
-			ConnectionType = TournamentConnectionType.SQLite;
 			URL = url;
+			using (TournamentDbContext tournamentDbContext = new TournamentDbContext(this))
+			{
+				Name = tournamentDbContext.Tournaments.FirstOrDefault()?.Name ?? "Some Tournament";
+			}
+			ConnectionType = TournamentConnectionType.SQLite;
 		}
 	}
 }
