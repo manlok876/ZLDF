@@ -29,7 +29,7 @@ namespace ZLDF.Classes
 		public void AddFighter(Fighter newFighter)
 		{
 			_fighters.Add(newFighter);
-			RaisePropertyChanged("Fighters");
+			RaisePropertyChanged(nameof(Fighters));
 		}
 		public void AddFighters(IEnumerable<Fighter> newFighters)
 		{
@@ -37,7 +37,7 @@ namespace ZLDF.Classes
 			{
 				_fighters.Add(fighter);
 			}
-			RaisePropertyChanged("Fighters");
+			RaisePropertyChanged(nameof(Fighters));
 		}
 
 		public void RemoveFighter(Fighter fighterToRemove)
@@ -45,7 +45,7 @@ namespace ZLDF.Classes
 			bool bSuccess = _fighters.Remove(fighterToRemove);
 			if (bSuccess)
 			{
-				RaisePropertyChanged("Fighters");
+				RaisePropertyChanged(nameof(Fighters));
 			}
 		}
 		public void RemoveFighters(IEnumerable<Fighter> fightersToRemove)
@@ -57,7 +57,7 @@ namespace ZLDF.Classes
 			}
 			if (bSuccess)
 			{
-				RaisePropertyChanged("Fighters");
+				RaisePropertyChanged(nameof(Fighters));
 			}
 		}
 
@@ -68,7 +68,7 @@ namespace ZLDF.Classes
 				return;
 			}
 			_fighters.Clear();
-			RaisePropertyChanged("Fighters");
+			RaisePropertyChanged(nameof(Fighters));
 		}
 
 		// Fight rules

@@ -46,7 +46,7 @@ namespace ZLDF.MainHost.ViewModels
 				tournamentDbContext.SaveChanges();
 			}
 			_tournaments.Add(newTournament);
-			RaisePropertyChanged("Tournaments");
+			RaisePropertyChanged(nameof(Tournaments));
 		}
 
 		public ICommand SelectTournamentCommand { get; private set; }
