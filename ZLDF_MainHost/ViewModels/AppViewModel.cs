@@ -40,7 +40,7 @@ namespace ZLDF.MainHost.ViewModels
 			using (TournamentDbContext tournamentDbContext = new TournamentDbContext(newTournament))
 			{
 				tournamentDbContext.Database.EnsureCreated();
-				Tournament tournament = new Tournament();
+				Tournament tournament = TestData.GenerateTestTournament(5, 2);
 				tournament.Name = "Placeholder";
 				tournamentDbContext.Add(tournament);
 				tournamentDbContext.SaveChanges();
