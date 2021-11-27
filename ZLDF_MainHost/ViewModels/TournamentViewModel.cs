@@ -64,6 +64,15 @@ namespace ZLDF.MainHost.ViewModels
 			}
 		}
 
+		public ICommand CreateNominationCommand { get; private set; }
+		public void CreateNomination()
+		{
+			Nomination newNomination = TestData.GenerateTestNomination(_model.Fighters);
+			_model.Nominations.Add(newNomination);
+			_dbContext.SaveChanges();
+			Nominations.Add(new NominationViewModel(newNomination));
+		}
+
 		// Our matchmaking
 		// Break into groups -> round-robin in each group -> get X best -> bracket between them
 

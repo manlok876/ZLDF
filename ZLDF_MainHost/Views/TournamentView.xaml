@@ -17,6 +17,7 @@
 	</Window.Resources>
 	<Grid>
 		<Button x:Name="button" Content="Gen Fights" HorizontalAlignment="Left" Margin="560,39,0,0" VerticalAlignment="Top" Height="40" Width="130" Command="{Binding GenFightsCommand}"/>
+		<Button x:Name="addNominationBtn" Content="New nomination" HorizontalAlignment="Left" Margin="360,39,0,0" VerticalAlignment="Top" Height="40" Width="130" Command="{Binding CreateNominationCommand}"/>
 		<TextBox x:Name="textBox" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="{Binding NumFighters}" VerticalAlignment="Top" Width="120" />
 		<TabControl x:Name="nominationTabs" Margin="10,99,10,10">
 			<TabControl.ItemsSource>
