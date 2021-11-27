@@ -17,8 +17,8 @@
 			<ItemsControl.Resources>
 				<DataTemplate DataType="{x:Type classes:Duel}">
 					<StackPanel Orientation="Horizontal">
-						<TextBlock Text="{Binding FighterOne.FirstName}"/>
-						<TextBlock Text="{Binding FighterTwo.FirstName}"/>
+						<TextBlock Text="{Binding FirstFighter.FirstName}"/>
+						<TextBlock Text="{Binding SecondFighter.FirstName}"/>
 					</StackPanel>
 				</DataTemplate>
 			</ItemsControl.Resources>
