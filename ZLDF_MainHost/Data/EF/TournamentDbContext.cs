@@ -30,8 +30,7 @@ namespace ZLDF.MainHost.Data.EF
 		}
 		public string GetConnectionString(TournamentConnection tournamentConnection)
 		{
-			string result = "";
-			result = $"Data Source={tournamentConnection.URL}";
+			string result = $"Data Source={tournamentConnection.URL}";
 			return result;
 		}
 

@@ -11,7 +11,7 @@ namespace ZLDF.Classes
 		private string _lastName;
 		private DateOnly _birthday;
 		private string _city;
-		private Club _club;
+		private Club? _club;
 		private string _email;
 		private string _phone;
 
@@ -86,15 +86,15 @@ namespace ZLDF.Classes
 		public Fighter()
 		{
 			Id = Guid.NewGuid().ToString();
-			FirstName = "Ivan";
-			LastName = "Ivanov";
-			Birthday = new DateOnly(2000, 1, 1);
+			_firstName = "Ivan";
+			_lastName = "Ivanov";
+			_birthday = new DateOnly(2000, 1, 1);
 
-			City = "City";
-			Club = null;
+			_city = "City";
+			_club = null;
 
-			Email = "e@mail.com";
-			Phone = "8 800 555 35 35";
+			_email = "e@mail.com";
+			_phone = "8 800 555 35 35";
 		}
 	}
 }

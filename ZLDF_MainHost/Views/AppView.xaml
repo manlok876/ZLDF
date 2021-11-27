@@ -17,9 +17,7 @@
 		<ListBox x:Name="TournamentsListBox" ItemsSource="{Binding Tournaments}" Margin="400,10,10,10">
 			<ItemsControl.Resources>
 				<DataTemplate DataType="{x:Type data:TournamentConnection}">
-					<ListBoxItem>
-						<TextBlock Text="{Binding Name}"/>
-					</ListBoxItem>
+					<TextBlock Text="{Binding Name}"/>
 				</DataTemplate>
 			</ItemsControl.Resources>
 		</ListBox>
