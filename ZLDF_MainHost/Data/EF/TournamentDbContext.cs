@@ -28,7 +28,7 @@ namespace ZLDF.MainHost.Data.EF
 			modelBuilder.Entity<Club>().HasKey(c => c.Name);
 			modelBuilder.Entity<Duel>();
 		}
-		public string GetConnectionString(TournamentConnection tournamentConnection)
+		public static string GetConnectionString(TournamentConnection tournamentConnection)
 		{
 			string result = $"Data Source={tournamentConnection.URL}";
 			return result;
