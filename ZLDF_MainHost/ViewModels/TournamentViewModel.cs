@@ -31,7 +31,7 @@ namespace ZLDF.MainHost.ViewModels
 			}
 		}
 
-		public ImmutableArray<NominationViewModel> Nominations
+		public ObservableCollection<NominationViewModel> Nominations
 		{
 			get;
 			private set;
@@ -83,16 +83,16 @@ namespace ZLDF.MainHost.ViewModels
 				_dbContext.SaveChanges();
 			}
 
-			List<NominationViewModel> nominationViewModels = new List<NominationViewModel>();
+			Nominations = new ObservableCollection<NominationViewModel>();
 			foreach (Nomination nominationModel in Model.Nominations)
 			{
-				nominationViewModels.Add(new NominationViewModel(nominationModel));
+				Nominations.Add(new NominationViewModel(nominationModel));
 			}
-			Nominations = nominationViewModels.ToImmutableArray();
 			
 			// NumFighters = 5;
 			// GenerateFights();
 			GenFightsCommand = new DelegateCommand(GenerateFights, () => true);
+			CreateNominationCommand = new DelegateCommand(CreateNomination, () => true);
 		}
 	}
 }
