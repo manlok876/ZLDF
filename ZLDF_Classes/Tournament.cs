@@ -29,12 +29,12 @@ namespace ZLDF.Classes
 
 		private List<Fighter> _fighters = new List<Fighter>();
 
-		public ImmutableArray<Fighter> Fighters
+		public List<Fighter> Fighters
 		{
-			get { return _fighters.ToImmutableArray(); }
+			get { return _fighters; }
 			private set
 			{
-				SetProperty(ref _fighters, new List<Fighter>(value));
+				SetProperty(ref _fighters, value);
 			}
 		}
 		// TODO: check uniqueness

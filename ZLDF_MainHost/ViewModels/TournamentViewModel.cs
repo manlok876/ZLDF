@@ -39,7 +39,7 @@ namespace ZLDF.MainHost.ViewModels
 
 		public int NumFighters
 		{
-			get { return Model.Fighters.Length; }
+			get { return Model.Fighters.Count; }
 			set
 			{
 				List<Fighter> genFighters = new List<Fighter>(TestData.GenerateTestFighters(value));
