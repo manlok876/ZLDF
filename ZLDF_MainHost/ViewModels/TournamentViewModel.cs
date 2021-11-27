@@ -79,6 +79,8 @@ namespace ZLDF.MainHost.ViewModels
 			{
 				Console.WriteLine("Loading tournament failed");
 				_model = new Tournament();
+				_dbContext.Add(_model);
+				_dbContext.SaveChanges();
 			}
 
 			List<NominationViewModel> nominationViewModels = new List<NominationViewModel>();
