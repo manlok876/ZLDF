@@ -83,6 +83,12 @@ namespace ZLDF.Classes
 			}
 		}
 
+		// These properties are used to support many-to-many relationship in EF
+		// because I am a lazy bastard who cannot be bothered to do it right
+		// and because damn EF Core 6.0 for not supporting unidirected many-to-many relationships
+		// TODO: remove when EF 7 comes out (hopefully)
+		private List<Nomination> _nominationsEf { get; set; } = new List<Nomination>();
+
 		public Fighter()
 		{
 			_firstName = "Ivan";
