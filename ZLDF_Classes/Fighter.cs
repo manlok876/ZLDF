@@ -87,7 +87,11 @@ namespace ZLDF.Classes
 		// because I am a lazy bastard who cannot be bothered to do it right
 		// and because damn EF Core 6.0 for not supporting unidirected many-to-many relationships
 		// TODO: remove when EF 7 comes out (hopefully)
+#pragma warning disable IDE1006 // Naming Styles
+#pragma warning disable IDE0051 // Remove unused private members
 		private List<Nomination> _nominationsEf { get; set; } = new List<Nomination>();
+#pragma warning restore IDE0051 // Remove unused private members
+#pragma warning restore IDE1006 // Naming Styles
 
 		public Fighter()
 		{
