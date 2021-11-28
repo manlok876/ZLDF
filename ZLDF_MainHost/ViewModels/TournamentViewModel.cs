@@ -80,8 +80,10 @@ namespace ZLDF.MainHost.ViewModels
 		public TournamentViewModel(TournamentConnection tournamentConnection)
 		{
 			_dbContext = new TournamentDbContext(tournamentConnection);
+			// Eagerly load everything
+			// Yes, give it to me, Secretary-sama~ <3
 			Tournament? loadedTournament = _dbContext.Tournaments.
-				Include(t => t.Fighters).Include(t => t.Nominations).
+				Include(t => t.Fighters).Include(t => t.Nominations).ThenInclude(n => n.Fighters).
 				FirstOrDefault();
 			if (loadedTournament != null)
 			{
