@@ -9,7 +9,20 @@ namespace ZLDF.MainHost.Matchmaking
 {
 	internal class Tour : Event
 	{
+		private EventState _tourState = EventState.Unknown;
 		private List<Fight> _fights = new List<Fight>();
+
+		public override EventState State
+		{
+			get
+			{
+				return _tourState;
+			}
+			set
+			{
+				SetProperty(ref _tourState, value);
+			}
+		}
 		public List<Fight> Fights
 		{
 			get { return _fights; }
