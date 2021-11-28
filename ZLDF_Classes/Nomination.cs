@@ -8,7 +8,17 @@ namespace ZLDF.Classes
 {
 	public class Nomination : Event
 	{
+		private EventState _nominationState = EventState.Unknown;
 		private string _name;
+
+		public override EventState State
+		{
+			get { return _nominationState; }
+			set
+			{
+				SetProperty(ref _nominationState, value);
+			}
+		}
 		public string Name
 		{
 			get { return _name; }
