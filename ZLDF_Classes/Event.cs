@@ -10,10 +10,11 @@ namespace ZLDF.Classes
 		Unknown,
 		NotStarted,
 		Scheduled,
+		Cancelled,
 		InProgress,
 		Paused,
-		Finished,
-		Cancelled
+		Aborted,
+		Finished
 	}
 
 	public abstract class Event : BindableBase
