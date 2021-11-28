@@ -15,7 +15,7 @@ namespace ZLDF.Classes
 		private string _email;
 		private string _phone;
 
-		public string Id { get; private set; }
+		public Guid Id { get; private set; }
 		public string FirstName
 		{
 			get { return _firstName; }
@@ -85,7 +85,7 @@ namespace ZLDF.Classes
 
 		public Fighter()
 		{
-			Id = Guid.NewGuid().ToString();
+			Id = Guid.NewGuid();
 			_firstName = "Ivan";
 			_lastName = "Ivanov";
 			_birthday = new DateOnly(2000, 1, 1);
