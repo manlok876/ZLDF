@@ -50,7 +50,6 @@ namespace ZLDF.Classes
 
 		protected Event()
 		{
-			_id = Guid.NewGuid();
 			_state = EventState.Unknown;
 		}
 	}

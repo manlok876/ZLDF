@@ -85,7 +85,6 @@ namespace ZLDF.Classes
 
 		public Fighter()
 		{
-			Id = Guid.NewGuid();
 			_firstName = "Ivan";
 			_lastName = "Ivanov";
 			_birthday = new DateOnly(2000, 1, 1);
