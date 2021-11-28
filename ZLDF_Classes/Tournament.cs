@@ -7,7 +7,17 @@ namespace ZLDF.Classes
 {
 	public class Tournament : Event
 	{
+		private EventState _tournamentState = EventState.Unknown;
 		private string _name;
+
+		public override EventState State
+		{
+			get { return _tournamentState; }
+			set
+			{
+				SetProperty(ref _tournamentState, value);
+			}
+		}
 		public string Name
 		{
 			get { return _name; }
