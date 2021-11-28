@@ -27,6 +27,9 @@ namespace ZLDF.MainHost.Data.EF
 		{
 			modelBuilder.Entity<Club>().HasKey(c => c.Name);
 			modelBuilder.Entity<Duel>();
+			modelBuilder.Entity<Nomination>().
+				HasMany(n => n.Fighters).
+				WithMany("_nominationsEf");
 		}
 		public static string GetConnectionString(TournamentConnection tournamentConnection)
 		{
