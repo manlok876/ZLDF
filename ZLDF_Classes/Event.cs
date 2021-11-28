@@ -26,10 +26,7 @@ namespace ZLDF.Classes
 		/// </summary>
 		public Guid Id
 		{
-			get
-			{
-				return _id;
-			}
+			get { return _id; }
 			private set
 			{
 				SetProperty(ref _id, value);
@@ -38,10 +35,7 @@ namespace ZLDF.Classes
 
 		public EventState State
 		{
-			get
-			{
-				return _state;
-			}
+			get { return _state; }
 			set
 			{
 				SetProperty(ref _state, value);
