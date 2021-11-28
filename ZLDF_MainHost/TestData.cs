@@ -51,10 +51,10 @@ namespace ZLDF.MainHost
 			return tournament;
 		}
 
-		internal static TournamentConnection GenerateTestConnection()
+		internal static TournamentConnection GenerateTestConnection(string tournamentName)
 		{
 			TournamentConnection tournamentConnection = new TournamentConnection();
-			tournamentConnection.Name = "Test connection";
+			tournamentConnection.Name = tournamentName;
 			tournamentConnection.ConnectionType = TournamentConnectionType.SQLite;
 			tournamentConnection.URL = "Tournaments/testing.db";
 			return tournamentConnection;

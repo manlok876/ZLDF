@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Diagnostics;
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
@@ -36,16 +37,15 @@ namespace ZLDF.MainHost.ViewModels
 		public ICommand CreateTournamentCommand { get; private set; }
 		private void CreateTournament(string name)
 		{
-			TournamentConnection newTournament = TestData.GenerateTestConnection();
-			using (TournamentDbContext tournamentDbContext = new TournamentDbContext(newTournament))
+			Tournament newTournament = TestData.GenerateTestTournament(5, 3);
+			TournamentConnection tournamentConnection = TestData.GenerateTestConnection(newTournament.Name);
+			using (TournamentDbContext tournamentDbContext = new TournamentDbContext(tournamentConnection))
 			{
 				tournamentDbContext.Database.EnsureCreated();
-				Tournament tournament = TestData.GenerateTestTournament(5, 2);
-				tournament.Name = "Placeholder";
-				tournamentDbContext.Add(tournament);
+				tournamentDbContext.Add(newTournament);
 				tournamentDbContext.SaveChanges();
 			}
-			_tournaments.Add(newTournament);
+			_tournaments.Add(tournamentConnection);
 			RaisePropertyChanged(nameof(Tournaments));
 		}
 
