@@ -78,7 +78,7 @@ namespace ZLDF.MainHost.Matchmaking
 			RaisePropertyChanged(nameof(Fights));
 		}
 
-		Tour()
+		public Tour()
 		{
 		}
 	}
