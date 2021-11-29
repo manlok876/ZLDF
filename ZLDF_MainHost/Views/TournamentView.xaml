@@ -22,7 +22,15 @@
 		<TabControl x:Name="nominationTabs" Margin="10,99,10,10">
 			<TabControl.ItemsSource>
 				<CompositeCollection>
-					<TabItem Header="Турнир"></TabItem>
+					<TabItem Header="Турнир">
+						<ListBox Width="200" Margin="0,0,0,80" HorizontalAlignment="Left" ItemsSource="{Binding Model.Fighters}">
+							<ListBox.Resources>
+								<DataTemplate DataType="{x:Type classes:Fighter}">
+									<TextBlock Text="{Binding FullName}"/>
+								</DataTemplate>
+							</ListBox.Resources>
+						</ListBox>
+					</TabItem>
 					<CollectionContainer Collection="{Binding Source={StaticResource Nominations}}"/>
 				</CompositeCollection>
 			</TabControl.ItemsSource>
