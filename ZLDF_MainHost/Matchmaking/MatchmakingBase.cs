@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Prism.Mvvm;
 using ZLDF.Classes;
 
 namespace ZLDF.MainHost.Matchmaking
 {
-	internal abstract class MatchmakingBase
+	internal abstract class MatchmakingBase : BindableBase
 	{
 		public MatchmakingBase()
 		{
