@@ -70,6 +70,11 @@ namespace ZLDF.Classes
 			}
 		}
 
+		public bool IsOverSuccessfully
+		{
+			get { return State == EventState.Finished; }
+		}
+
 		protected Event()
 		{
 		}
