@@ -5,9 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Prism.Mvvm;
-using ZLDF.Classes;
 
-namespace ZLDF.MainHost.Matchmaking
+namespace ZLDF.Classes.Matchmaking
 {
 	public class Group : BindableBase
 	{

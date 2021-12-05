@@ -3,11 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ZLDF.Classes;
 
-namespace ZLDF.MainHost.Matchmaking
+namespace ZLDF.Classes.Matchmaking
 {
-	internal class MatchmakingRoundRobin : MatchmakingBase
+	public class MatchmakingRoundRobin : MatchmakingBase
 	{
 		public static List<Fight> GetFightsFor(IEnumerable<Fighter> AllFighters)
 		{

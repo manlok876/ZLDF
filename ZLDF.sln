@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZLDF_MainHost", "ZLDF_MainHost\ZLDF_MainHost.csproj", "{83034AE1-F07E-4B46-A2FB-4354AA14DEE6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ZLDF_MainHost", "ZLDF_MainHost\ZLDF_MainHost.csproj", "{83034AE1-F07E-4B46-A2FB-4354AA14DEE6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZLDF_Classes", "ZLDF_Classes\ZLDF_Classes.csproj", "{E8CF0509-2114-4CDC-8963-EFB886A3FBD1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ZLDF_Classes", "ZLDF_Classes\ZLDF_Classes.csproj", "{E8CF0509-2114-4CDC-8963-EFB886A3FBD1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

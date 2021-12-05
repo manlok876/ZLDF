@@ -4,11 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Prism.Mvvm;
-using ZLDF.Classes;
 
-namespace ZLDF.MainHost.Matchmaking
+namespace ZLDF.Classes.Matchmaking
 {
-	internal abstract class MatchmakingBase : BindableBase
+	public abstract class MatchmakingBase : BindableBase
 	{
 		public MatchmakingBase()
 		{

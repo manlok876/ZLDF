@@ -3,11 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ZLDF.Classes;
 
-namespace ZLDF.MainHost.Matchmaking
+namespace ZLDF.Classes.Matchmaking
 {
-	internal class Tour : Event
+	public class Tour : Event
 	{
 		private EventState _tourState = EventState.Unknown;
 		private List<Fight> _fights = new List<Fight>();

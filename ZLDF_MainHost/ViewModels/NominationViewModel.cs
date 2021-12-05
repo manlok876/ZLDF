@@ -8,7 +8,7 @@ using System.Windows.Input;
 using Prism.Mvvm;
 using Prism.Commands;
 using ZLDF.Classes;
-using ZLDF.MainHost.Matchmaking;
+using ZLDF.Classes.Matchmaking;
 
 namespace ZLDF.MainHost.ViewModels
 {
