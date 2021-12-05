@@ -30,6 +30,12 @@ namespace ZLDF.MainHost.ViewModels
 			get { return _fights; }
 		}
 
+		private ObservableCollection<Fight> _tours = new ObservableCollection<Fight>();
+		public ObservableCollection<Fight> Tours
+		{
+			get { return _tours; }
+		}
+
 		public int NumFighters
 		{
 			get { return Model.Fighters.Count; }
@@ -51,13 +57,19 @@ namespace ZLDF.MainHost.ViewModels
 
 		// Our matchmaking
 		// Break into groups -> round-robin in each group -> get X best -> bracket between them
+		public ICommand StartMatchmakingCommand { get; private set; }
+		public void StartMatchmaking()
+		{
+			throw new NotImplementedException();
+		}
 
 		public NominationViewModel(Nomination nomination)
 		{
 			_model = nomination;
 			// NumFighters = 5;
-			GenerateFights();
+			// GenerateFights();
 			GenFightsCommand = new DelegateCommand(GenerateFights, () => true);
+			StartMatchmakingCommand = new DelegateCommand(StartMatchmaking, () => true);
 		}
 	}
 }
