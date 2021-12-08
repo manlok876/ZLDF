@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Collections.ObjectModel;
@@ -91,7 +92,7 @@ namespace ZLDF.MainHost.ViewModels
 			}
 			else
 			{
-				Console.WriteLine("Loading tournament failed");
+				Trace.WriteLine("Loading tournament failed");
 				_model = new Tournament();
 				_dbContext.Add(_model);
 				_dbContext.SaveChanges();
