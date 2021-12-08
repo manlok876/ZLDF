@@ -13,6 +13,7 @@ using ZLDF.Classes;
 using ZLDF.Classes.Matchmaking;
 using ZLDF.MainHost.Data;
 using ZLDF.MainHost.Data.EF;
+using ZLDF.MainHost.Views.Tournament;
 using Microsoft.EntityFrameworkCore;
 
 namespace ZLDF.MainHost.ViewModels
@@ -75,6 +76,22 @@ namespace ZLDF.MainHost.ViewModels
 			Nominations.Add(new NominationViewModel(newNomination));
 		}
 
+		public ICommand AddFighterCommand { get; private set; }
+		public void AddFighter()
+		{
+			Fighter fighter = new Fighter();
+			// Open blocking edit dialog
+			// Exit on fail
+			_model.AddFighter(fighter);
+			// Other related logic, e.g. adding to nominations
+		}
+
+		public ICommand EditFighterCommand { get; private set; }
+		public void EditFighter(Fighter fighter)
+		{
+			// Open blocking edit dialog
+		}
+
 		// Our matchmaking
 		// Break into groups -> round-robin in each group -> get X best -> bracket between them
 
@@ -108,6 +125,8 @@ namespace ZLDF.MainHost.ViewModels
 			// GenerateFights();
 			GenFightsCommand = new DelegateCommand(GenerateFights, () => true);
 			CreateNominationCommand = new DelegateCommand(CreateNomination, () => true);
+			AddFighterCommand = new DelegateCommand(AddFighter, () => true);
+			EditFighterCommand = new DelegateCommand<Fighter>(EditFighter, (f) => true);
 		}
 	}
 }
