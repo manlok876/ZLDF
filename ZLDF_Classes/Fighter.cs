@@ -22,6 +22,7 @@ namespace ZLDF.Classes
 			set
 			{
 				SetProperty(ref _firstName, value);
+				RaisePropertyChanged(nameof(FullName));
 			}
 		}
 		public string LastName
@@ -30,6 +31,7 @@ namespace ZLDF.Classes
 			set
 			{
 				SetProperty(ref _lastName, value);
+				RaisePropertyChanged(nameof(FullName));
 			}
 		}
 		public string FullName
