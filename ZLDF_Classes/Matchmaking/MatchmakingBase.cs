@@ -9,9 +9,11 @@ namespace ZLDF.Classes.Matchmaking
 {
 	public abstract class MatchmakingBase : BindableBase
 	{
+		public Guid Id { get; private set; }
+
 		public MatchmakingBase()
 		{
-
+			Id = Guid.NewGuid();
 		}
 	}
 }
