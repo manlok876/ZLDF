@@ -5,6 +5,8 @@
 		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 		xmlns:local="clr-namespace:ZLDF.MainHost.Views"
 		xmlns:vm="clr-namespace:ZLDF.MainHost.ViewModels"
+		xmlns:v="clr-namespace:ZLDF.MainHost.Views"
+		xmlns:tv="clr-namespace:ZLDF.MainHost.Views.Tournament"
 		xmlns:classes="clr-namespace:ZLDF.Classes;assembly=ZLDF_Classes"
 		mc:Ignorable="d"
 		Title="{Binding Model.Name}" Height="450" Width="800"
@@ -23,13 +25,7 @@
 			<TabControl.ItemsSource>
 				<CompositeCollection>
 					<TabItem Header="Турнир">
-						<ListBox Width="200" Margin="0,0,0,80" HorizontalAlignment="Left" ItemsSource="{Binding Model.Fighters}">
-							<ListBox.Resources>
-								<DataTemplate DataType="{x:Type classes:Fighter}">
-									<TextBlock Text="{Binding FullName}"/>
-								</DataTemplate>
-							</ListBox.Resources>
-						</ListBox>
+						<tv:TFightersListView DataContext="{Binding }"/>
 					</TabItem>
 					<CollectionContainer Collection="{Binding Source={StaticResource Nominations}}"/>
 				</CompositeCollection>
