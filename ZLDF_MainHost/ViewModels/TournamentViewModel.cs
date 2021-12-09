@@ -76,21 +76,30 @@ namespace ZLDF.MainHost.ViewModels
 			Nominations.Add(new NominationViewModel(newNomination));
 		}
 
+		#region FightersList
+		private Fighter? _selectedFighter;
+		public Fighter? SelectedFighter
+		{
+			get { return _selectedFighter; }
+			set
+			{
+				if (_selectedFighter != null && _selectedFighter != value)
+				{
+					_dbContext.SaveChanges();
+				}
+				SetProperty(ref _selectedFighter, value);
+			}
+		}
+
 		public ICommand AddFighterCommand { get; private set; }
 		public void AddFighter()
 		{
 			Fighter fighter = new Fighter();
-			// Open blocking edit dialog
-			// Exit on fail
-			_model.AddFighter(fighter);
+			Model.AddFighter(fighter);
+			SelectedFighter = fighter;
 			// Other related logic, e.g. adding to nominations
 		}
-
-		public ICommand EditFighterCommand { get; private set; }
-		public void EditFighter(Fighter fighter)
-		{
-			// Open blocking edit dialog
-		}
+		#endregion
 
 		// Our matchmaking
 		// Break into groups -> round-robin in each group -> get X best -> bracket between them
@@ -101,7 +110,8 @@ namespace ZLDF.MainHost.ViewModels
 			// Eagerly load everything
 			// Yes, give it to me, Secretary-sama~ <3
 			Tournament? loadedTournament = _dbContext.Tournaments.
-				Include(t => t.Fighters).Include(t => t.Nominations).ThenInclude(n => n.Fighters).
+				Include(t => t.Fighters).
+				Include(t => t.Nominations).ThenInclude(n => n.Fighters).
 				FirstOrDefault();
 			if (loadedTournament != null)
 			{
@@ -126,7 +136,6 @@ namespace ZLDF.MainHost.ViewModels
 			GenFightsCommand = new DelegateCommand(GenerateFights, () => true);
 			CreateNominationCommand = new DelegateCommand(CreateNomination, () => true);
 			AddFighterCommand = new DelegateCommand(AddFighter, () => true);
-			EditFighterCommand = new DelegateCommand<Fighter>(EditFighter, (f) => true);
-		}
+		} 
 	}
 }
