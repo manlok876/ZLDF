@@ -37,5 +37,6 @@
 			<TextBlock Grid.Column="0" Grid.Row="3" Text="Город" VerticalAlignment="Center"/>
 			<TextBox Grid.Column="1" Grid.Row="3" Text="{Binding SelectedFighter.City}" VerticalAlignment="Center"/>
 		</Grid>
+		<Button x:Name="button" Content="Добавить бойца" HorizontalAlignment="Left" Margin="568,391,0,0" VerticalAlignment="Top" Width="150" Height="49" Command="{Binding AddFighterCommand}"/>
 	</Grid>
 </UserControl>
