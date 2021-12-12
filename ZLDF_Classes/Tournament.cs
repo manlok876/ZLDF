@@ -41,7 +41,7 @@ namespace ZLDF.Classes
 
 		public List<Fighter> Fighters
 		{
-			get { return _fighters; }
+			get { return new List<Fighter>(_fighters); }
 			private set
 			{
 				SetProperty(ref _fighters, value);
