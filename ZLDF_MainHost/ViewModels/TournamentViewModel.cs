@@ -99,6 +99,18 @@ namespace ZLDF.MainHost.ViewModels
 			SelectedFighter = fighter;
 			// Other related logic, e.g. adding to nominations
 		}
+
+		public ICommand DeleteFighterCommand { get; private set; }
+		public void DeleteSelectedFighter()
+		{
+			if (SelectedFighter == null)
+			{
+				return;
+			}
+			Model.RemoveFighter(SelectedFighter);
+			SelectedFighter = null;
+			// Other related logic, e.g. removing from nominations
+		}
 		#endregion
 
 		// Our matchmaking
@@ -136,6 +148,7 @@ namespace ZLDF.MainHost.ViewModels
 			GenFightsCommand = new DelegateCommand(GenerateFights, () => true);
 			CreateNominationCommand = new DelegateCommand(CreateNomination, () => true);
 			AddFighterCommand = new DelegateCommand(AddFighter, () => true);
+			DeleteFighterCommand = new DelegateCommand(DeleteSelectedFighter, () => true);
 		} 
 	}
 }
