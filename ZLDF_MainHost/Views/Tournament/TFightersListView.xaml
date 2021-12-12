@@ -37,6 +37,7 @@
 			<TextBlock Grid.Column="0" Grid.Row="3" Text="Город" VerticalAlignment="Center"/>
 			<TextBox Grid.Column="1" Grid.Row="3" Text="{Binding SelectedFighter.City}" VerticalAlignment="Center"/>
 		</Grid>
-		<Button x:Name="button" Content="Добавить бойца" HorizontalAlignment="Left" Margin="568,391,0,0" VerticalAlignment="Top" Width="150" Height="49" Command="{Binding AddFighterCommand}"/>
+		<Button x:Name="CreateFighter" Content="Создать бойца" HorizontalAlignment="Left" Margin="495,391,0,0" VerticalAlignment="Top" Width="150" Height="50" Command="{Binding AddFighterCommand}"/>
+		<Button x:Name="DeleteFighter" Content="Удалить бойца" HorizontalAlignment="Right" Margin="0,391,10,0" VerticalAlignment="Top" Width="150" Height="50" Command="{Binding DeleteFighterCommand}"/>
 	</Grid>
 </UserControl>
