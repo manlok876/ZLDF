@@ -91,8 +91,8 @@ namespace ZLDF.MainHost.ViewModels
 			}
 		}
 
-		public ICommand AddFighterCommand { get; private set; }
-		public void AddFighter()
+		public ICommand CreateFighterCommand { get; private set; }
+		public void CreateFighter()
 		{
 			Fighter fighter = new Fighter();
 			Model.AddFighter(fighter);
@@ -147,7 +147,7 @@ namespace ZLDF.MainHost.ViewModels
 			// GenerateFights();
 			GenFightsCommand = new DelegateCommand(GenerateFights, () => true);
 			CreateNominationCommand = new DelegateCommand(CreateNomination, () => true);
-			AddFighterCommand = new DelegateCommand(AddFighter, () => true);
+			CreateFighterCommand = new DelegateCommand(CreateFighter, () => true);
 			DeleteFighterCommand = new DelegateCommand(DeleteSelectedFighter, () => true);
 		} 
 	}
