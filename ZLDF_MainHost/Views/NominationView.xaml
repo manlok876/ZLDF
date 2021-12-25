@@ -12,7 +12,8 @@
 			HorizontalAlignment="Left" VerticalAlignment="Top"
 			Margin="70,125,0,0" Width="120"
 			TextWrapping="Wrap" Text="{Binding Fights.Count}"/>
-		<Button x:Name="button" Content="Gen Fights" HorizontalAlignment="Left" Margin="165,355,0,0" VerticalAlignment="Top" Height="40" Width="130" Command="{Binding GenFightsCommand}"/>
+		<Button x:Name="addFightersBtn" Content="Добавить бойцов" HorizontalAlignment="Left" Margin="10,355,0,0" VerticalAlignment="Top" Height="40" Width="130" Command="{Binding GenFightsCommand}"/>
+		<Button x:Name="genFightsBtn" Content="Построить сетку" HorizontalAlignment="Left" Margin="165,355,0,0" VerticalAlignment="Top" Height="40" Width="130" Command="{Binding GenFightsCommand}"/>
 		<ItemsControl ItemsSource="{Binding Model.Fighters}" Margin="10,10,400,150">
 			<ItemsControl.Resources>
 				<DataTemplate DataType="{x:Type classes:Fighter}">
@@ -23,10 +24,7 @@
 		<ItemsControl ItemsSource="{Binding Fights}" Margin="400,10,10,10">
 			<ItemsControl.Resources>
 				<DataTemplate DataType="{x:Type classes:Duel}">
-					<StackPanel Orientation="Horizontal">
-						<TextBlock Text="{Binding FirstFighter.FirstName}"/>
-						<TextBlock Text="{Binding SecondFighter.FirstName}"/>
-					</StackPanel>
+					<local:FightControl/>
 				</DataTemplate>
 			</ItemsControl.Resources>
 		</ItemsControl>
