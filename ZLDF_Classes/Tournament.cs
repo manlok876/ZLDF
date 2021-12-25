@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Collections.Immutable;
 using System.Text;
 
@@ -27,8 +28,8 @@ namespace ZLDF.Classes
 			}
 		}
 
-		private List<Nomination> _nominations = new List<Nomination>();
-		public List<Nomination> Nominations
+		private ObservableCollection<Nomination> _nominations = new ObservableCollection<Nomination>();
+		public ObservableCollection<Nomination> Nominations
 		{
 			get { return _nominations; }
 			set
@@ -37,11 +38,11 @@ namespace ZLDF.Classes
 			}
 		}
 
-		private List<Fighter> _fighters = new List<Fighter>();
+		private ObservableCollection<Fighter> _fighters = new ObservableCollection<Fighter>();
 
-		public List<Fighter> Fighters
+		public ObservableCollection<Fighter> Fighters
 		{
-			get { return new List<Fighter>(_fighters); }
+			get { return _fighters; }
 			private set
 			{
 				SetProperty(ref _fighters, value);
