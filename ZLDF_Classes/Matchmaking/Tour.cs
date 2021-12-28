@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,7 +10,7 @@ namespace ZLDF.Classes.Matchmaking
 	public class Tour : Event
 	{
 		private EventState _tourState = EventState.Unknown;
-		private List<Fight> _fights = new List<Fight>();
+		private ObservableCollection<Fight> _fights = new ObservableCollection<Fight>();
 
 		public override EventState State
 		{
@@ -22,7 +23,7 @@ namespace ZLDF.Classes.Matchmaking
 				SetProperty(ref _tourState, value);
 			}
 		}
-		public List<Fight> Fights
+		public ObservableCollection<Fight> Fights
 		{
 			get { return _fights; }
 			private set
@@ -35,7 +36,6 @@ namespace ZLDF.Classes.Matchmaking
 		public void AddFight(Fight newFight)
 		{
 			_fights.Add(newFight);
-			RaisePropertyChanged(nameof(Fights));
 		}
 		public void AddFights(IEnumerable<Fight> newFights)
 		{
@@ -43,38 +43,23 @@ namespace ZLDF.Classes.Matchmaking
 			{
 				_fights.Add(fight);
 			}
-			RaisePropertyChanged(nameof(Fights));
 		}
 
 		public void RemoveFight(Fight fightToRemove)
 		{
-			bool bSuccess = _fights.Remove(fightToRemove);
-			if (bSuccess)
-			{
-				RaisePropertyChanged(nameof(Fights));
-			}
+			_fights.Remove(fightToRemove);
 		}
 		public void RemoveFights(IEnumerable<Fight> fightsToRemove)
 		{
-			bool bSuccess = false;
 			foreach (var fight in fightsToRemove)
 			{
-				bSuccess = bSuccess || _fights.Remove(fight);
-			}
-			if (bSuccess)
-			{
-				RaisePropertyChanged(nameof(Fights));
+				_fights.Remove(fight);
 			}
 		}
 
 		public void ClearFights()
 		{
-			if (_fights.Count < 1)
-			{
-				return;
-			}
 			_fights.Clear();
-			RaisePropertyChanged(nameof(Fights));
 		}
 
 		public Tour()
