@@ -60,6 +60,9 @@ namespace ZLDF.MainHost.ViewModels
 		public ICommand StartMatchmakingCommand { get; private set; }
 		public void StartMatchmaking()
 		{
+			// Generate groups
+			// Maybe edit groups
+			// Generate tours
 			throw new NotImplementedException();
 		}
 
