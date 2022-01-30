@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 using System.Windows;
 using ZLDF.MainHost.ViewModels;
 using ZLDF.MainHost.Views;
+using ZLDF.MainHost.Testing.ViewModels;
+using ZLDF.MainHost.Testing.Views;
 
 namespace ZLDF.MainHost
 {
@@ -19,10 +21,15 @@ namespace ZLDF.MainHost
 		{
 			base.OnStartup(e);
 
-			AppView app = new AppView();
-			AppViewModel context = new AppViewModel();
+			MainTestingView app = new MainTestingView();
+			MainTestingViewModel context = new MainTestingViewModel();
 			app.DataContext = context;
 			app.Show();
+
+			//AppView app = new AppView();
+			//AppViewModel context = new AppViewModel();
+			//app.DataContext = context;
+			//app.Show();
 		}
 	}
 }
