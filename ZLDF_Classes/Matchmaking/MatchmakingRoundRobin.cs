@@ -8,7 +8,7 @@ namespace ZLDF.Classes.Matchmaking
 {
 	public class MatchmakingRoundRobin : MatchmakingBase
 	{
-		public static List<Fight> GetFightsFor(IEnumerable<Fighter> AllFighters)
+		public static IEnumerable<Fight> GetFightsFor(IEnumerable<Fighter> AllFighters)
 		{
 			Fighter[] fightersArray = AllFighters.ToArray();
 

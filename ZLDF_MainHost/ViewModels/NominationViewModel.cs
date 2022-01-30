@@ -51,7 +51,7 @@ namespace ZLDF.MainHost.ViewModels
 		public void GenerateFights()
 		{
 			Fights.Clear();
-			List<Fight> newFights = MatchmakingRoundRobin.GetFightsFor(Model.Fighters);
+			List<Fight> newFights = new List<Fight>(MatchmakingRoundRobin.GetFightsFor(Model.Fighters));
 			Fights.AddRange(newFights);
 		}
 

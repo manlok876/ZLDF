@@ -62,7 +62,7 @@ namespace ZLDF.MainHost.ViewModels
 			foreach (NominationViewModel nomination in Nominations)
 			{
 				nomination.Fights.Clear();
-				List<Fight> newFights = MatchmakingRoundRobin.GetFightsFor(Model.Fighters.ToArray());
+				List<Fight> newFights = new List<Fight>(MatchmakingRoundRobin.GetFightsFor(Model.Fighters.ToArray()));
 				nomination.Fights.AddRange(newFights);
 			}
 		}
