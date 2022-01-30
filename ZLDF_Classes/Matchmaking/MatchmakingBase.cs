@@ -11,6 +11,31 @@ namespace ZLDF.Classes.Matchmaking
 	{
 		public Guid Id { get; private set; }
 
+		public virtual bool HasFinished
+		{
+			get;
+		}
+
+		public virtual bool ReadyToContinue
+		{
+			get;
+		}
+
+		public virtual bool IsWaitingForTours
+		{
+			get;
+		}
+
+		public virtual bool IsFinished
+		{
+			get;
+		}
+
+		public virtual Tour EndedTours
+		{
+			get;
+		}
+
 		public MatchmakingBase()
 		{
 			Id = Guid.NewGuid();
