@@ -12,5 +12,8 @@
 		<TabItem Header="Построить группы">
 			<local:GroupsTestView DataContext="{Binding GroupsTestVM}"/>
 		</TabItem>
+		<TabItem Header="Бои все-со-всеми">
+			<local:RoundRobinMMTestView DataContext="{Binding RoundRobinTestVM}"/>
+		</TabItem>
 	</TabControl>
 </Window>

@@ -17,10 +17,16 @@ namespace ZLDF.MainHost.Testing.ViewModels
 			get;
 			private set;
 		}
+		public RoundRobinMMTestViewModel RoundRobinTestVM
+		{
+			get;
+			private set;
+		}
 
 		public MainTestingViewModel()
 		{
 			GroupsTestVM = new GroupsTestViewModel();
+			RoundRobinTestVM = new RoundRobinMMTestViewModel();
 		}
 	}
 }
