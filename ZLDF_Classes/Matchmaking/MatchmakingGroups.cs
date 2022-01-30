@@ -29,6 +29,11 @@ namespace ZLDF.Classes.Matchmaking
 			}
 		}
 
+		public IEnumerable<Tour> Tours
+		{
+			get { return new List<Tour>(_tours); }
+		}
+
 		public IEnumerable<Tour> PendingTours
 		{
 			get { return _tours.Where(t => !t.IsOver && (t.State != EventState.Unknown)); }
@@ -37,6 +42,13 @@ namespace ZLDF.Classes.Matchmaking
 		public IEnumerable<Tour> OngoingTours
 		{
 			get { return _tours.Where(t => t.HasStarted && !t.IsOver); }
+		}
+
+		protected void UpdateTourProperties()
+		{
+			RaisePropertyChanged(nameof(Tours));
+			RaisePropertyChanged(nameof(PendingTours));
+			RaisePropertyChanged(nameof(OngoingTours));
 		}
 
 		public List<Group> Groups
@@ -172,6 +184,21 @@ namespace ZLDF.Classes.Matchmaking
 			}
 
 			return groups;
+		}
+
+		public Dictionary<Fighter, float> GetFightersRating()
+		{
+			// if not finished return empty
+			// else
+			// calc ratings in groups
+			// then sort
+			Dictionary<Fighter,float> result = new Dictionary<Fighter,float>();
+			if (!Tours.Any())
+			{
+				return result;
+			}
+
+			return result;
 		}
 
 		public MatchmakingGroups()
