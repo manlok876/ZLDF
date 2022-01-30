@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Text;
 using Prism.Mvvm;
+using ZLDF.Classes.Matchmaking;
 
 namespace ZLDF.Classes
 {
@@ -85,16 +86,27 @@ namespace ZLDF.Classes
 			RaisePropertyChanged(nameof(Fighters));
 		}
 
+		public MatchmakingBase Matchmaking
+		{
+			get;
+			private set;
+		}
+
+		public void SetMatchmaking(MatchmakingBase matchmaker)
+		{
+			if (Matchmaking != null)
+			{
+				return;
+			}
+			Matchmaking = matchmaker;
+			RaisePropertyChanged(nameof(Matchmaking));
+		}
+
 		// Fight rules
 
-		// Matchmaking
-
-
-		// Judges?
 		public Nomination()
 		{
 			_name = "Some Nomination";
 		}
-
 	}
 }
