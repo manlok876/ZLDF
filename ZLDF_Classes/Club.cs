@@ -8,7 +8,7 @@ namespace ZLDF.Classes
 	{
 		public string Name { get; set; }
 
-		Club()
+		public Club()
 		{
 			Name = "-???-";
 		}
