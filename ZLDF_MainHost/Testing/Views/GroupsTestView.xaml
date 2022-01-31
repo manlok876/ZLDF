@@ -17,7 +17,7 @@
 			<ColumnDefinition Width="*"/>
 		</Grid.ColumnDefinitions>
 		<DockPanel HorizontalAlignment="Stretch" Margin="5,5,5,5">
-			<TextBlock Text="Бойцы" HorizontalAlignment="Stretch" Margin="5,5,5,5" VerticalAlignment="Top" DockPanel.Dock="Top"/>
+			<TextBlock Text="Бойцы (Фамилия Имя Клуб)" HorizontalAlignment="Stretch" Margin="5,5,5,5" VerticalAlignment="Top" DockPanel.Dock="Top"/>
 			<TextBox x:Name="fightersTextBox" Text="{Binding FightersListString}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="5,5,5,5" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch" VerticalScrollBarVisibility="Visible" AcceptsTab="True" AcceptsReturn="True" DockPanel.Dock="Top"/>
 		</DockPanel>
 		<StackPanel Grid.Column="1" Margin="0,50,0,0">
@@ -28,7 +28,7 @@
 			<Button x:Name="genGroupsButton" Margin="5,5,5,5" Content="Составить группы" Command="{Binding MakeGroupsCommand}"/>
 		</StackPanel>
 		<DockPanel Grid.Column="2">
-			<TextBlock Text="Группы" HorizontalAlignment="Stretch" Margin="5,5,5,5" VerticalAlignment="Top" DockPanel.Dock="Top"/>
+			<TextBlock Text="Группы (Фамилия Имя Клуб)" HorizontalAlignment="Stretch" Margin="5,5,5,5" VerticalAlignment="Top" DockPanel.Dock="Top"/>
 			<TextBox x:Name="groupsTextBlock" Text="{Binding GroupsListString}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="5,5,5,5" DockPanel.Dock="Top"/>
 
 		</DockPanel>
