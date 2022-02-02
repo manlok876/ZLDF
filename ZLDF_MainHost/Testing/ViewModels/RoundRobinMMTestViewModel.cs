@@ -18,6 +18,27 @@ namespace ZLDF.MainHost.Testing.ViewModels
 {
 	internal class RoundRobinMMTestViewModel : BindableBase
 	{
+		private Dictionary<string, Club> _clubMap = new Dictionary<string, Club>();
+		private void AddClub(Club club)
+		{
+			_clubMap.Add(club.Name, club);
+		}
+		private Club? GetClubByName(string clubName)
+		{
+			if (_clubMap.ContainsKey(clubName))
+			{
+				return _clubMap[clubName];
+			}
+			return null;
+		}
+		public IEnumerable<Club> Clubs
+		{
+			get
+			{
+				return _clubMap.Values;
+			}
+		}
+
 		public string FightersListString
 		{
 			get;
@@ -66,17 +87,17 @@ namespace ZLDF.MainHost.Testing.ViewModels
 						{
 							continue;
 						}
-						strWriter.Write($"{duel.FirstFighter.LastName} {duel.FirstFighter.FirstName}");
+						strWriter.Write($"{duel.FirstFighter.LastName}\t{duel.FirstFighter.FirstName}");
 						strWriter.Write('\t');
-						//strWriter.Write(duel.FirstFighter.Club?.Name ?? "");
-						//strWriter.Write('\t');
+						strWriter.Write(duel.FirstFighter.Club?.Name ?? "-");
+						strWriter.Write('\t');
 						strWriter.Write("0");
 						strWriter.WriteLine();
 
-						strWriter.Write($"{duel.SecondFighter.LastName} {duel.SecondFighter.FirstName}");
+						strWriter.Write($"{duel.SecondFighter.LastName}\t{duel.SecondFighter.FirstName}");
 						strWriter.Write('\t');
-						//strWriter.Write(duel.SecondFighter.Club?.Name ?? "");
-						//strWriter.Write('\t');
+						strWriter.Write(duel.SecondFighter.Club?.Name ?? "-");
+						strWriter.Write('\t');
 						strWriter.Write("0");
 						strWriter.WriteLine();
 
@@ -137,17 +158,20 @@ namespace ZLDF.MainHost.Testing.ViewModels
 		{
 			// LastName 	FirstName	Club ("-" if no club)
 			string[] fighterData = fighterString.Split('\t');
-			if (fighterData.Length < 2)
+			if (fighterData.Length < 3)
 			{
 				return null;
 			}
-			string fighterName = fighterData[0];
-			string fighterLastName = fighterData[1];
+			string fighterLastName = fighterData[0];
+			string fighterName = fighterData[1];
+			string clubName = fighterData[2];
 
 			// Create Fighter object with given data and return
 			Fighter fighter = new Fighter();
 			fighter.FirstName = fighterName;
 			fighter.LastName = fighterLastName;
+			fighter.Club = new Club();
+			fighter.Club.Name = clubName;
 
 			return fighter;
 		}
