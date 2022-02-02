@@ -17,14 +17,14 @@
 			<ColumnDefinition Width="*"/>
 		</Grid.ColumnDefinitions>
 		<DockPanel HorizontalAlignment="Stretch" Margin="5,5,5,5">
-			<TextBlock Text="Бойцы (Фамилия Имя)" HorizontalAlignment="Stretch" Margin="5,5,5,5" VerticalAlignment="Top" DockPanel.Dock="Top"/>
+			<TextBlock Text="Бойцы (Фамилия Имя Клуб)" HorizontalAlignment="Stretch" Margin="5,5,5,5" VerticalAlignment="Top" DockPanel.Dock="Top"/>
 			<TextBox x:Name="fightersTextBox" Text="{Binding FightersListString}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="5,5,5,5" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch" VerticalScrollBarVisibility="Visible" AcceptsTab="True" AcceptsReturn="True" DockPanel.Dock="Top"/>
 		</DockPanel>
 		<StackPanel Grid.Column="1" Margin="0,50,0,0">
 			<Button x:Name="genFightsButton" Margin="5,5,5,5" Content="Получить бои" Command="{Binding RunMatchmakingCommand}"/>
 		</StackPanel>
 		<DockPanel Grid.Column="2">
-			<TextBlock Text="Бои (Боец Счёт)" HorizontalAlignment="Stretch" Margin="5,5,5,5" VerticalAlignment="Top" DockPanel.Dock="Top"/>
+			<TextBlock Text="Бои (Фамилия Имя Клуб Счёт)" HorizontalAlignment="Stretch" Margin="5,5,5,5" VerticalAlignment="Top" DockPanel.Dock="Top"/>
 			<TextBox x:Name="groupsTextBlock" Text="{Binding FightsListString}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="5,5,5,5" DockPanel.Dock="Top"/>
 
 		</DockPanel>
