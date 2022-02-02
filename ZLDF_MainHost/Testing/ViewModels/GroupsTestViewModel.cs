@@ -84,12 +84,12 @@ namespace ZLDF.MainHost.Testing.ViewModels
 					foreach (Group group in _groups)
 					{
 						groupIdx++;
-						strWriter.WriteLine("Group " + groupIdx.ToString());
+						strWriter.WriteLine($"Группа {groupIdx}");
 						foreach (Fighter fighter in group.Fighters)
 						{
-							strWriter.Write($"{fighter.LastName} {fighter.FirstName}");
+							strWriter.Write($"{fighter.LastName}\t{fighter.FirstName}");
 							strWriter.Write('\t');
-							strWriter.Write(fighter.Club?.Name ?? "");
+							strWriter.Write(fighter.Club?.Name ?? "-");
 							strWriter.WriteLine();
 						}
 						strWriter.WriteLine();
@@ -149,8 +149,8 @@ namespace ZLDF.MainHost.Testing.ViewModels
 			{
 				return null;
 			}
-			string fighterName = fighterData[0];
-			string fighterLastName = fighterData[1];
+			string fighterLastName = fighterData[0];
+			string fighterName = fighterData[1];
 			string clubName = fighterData[2];
 
 			// Try finding club in previous
