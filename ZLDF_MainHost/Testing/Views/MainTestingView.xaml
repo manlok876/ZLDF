@@ -15,5 +15,8 @@
 		<TabItem Header="Бои все-со-всеми">
 			<local:RoundRobinMMTestView DataContext="{Binding RoundRobinTestVM}"/>
 		</TabItem>
+		<TabItem Header="Рейтинг">
+			<local:RatingTestView DataContext="{Binding RatingTestVM}"/>
+		</TabItem>
 	</TabControl>
 </Window>

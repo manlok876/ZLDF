@@ -22,11 +22,17 @@ namespace ZLDF.MainHost.Testing.ViewModels
 			get;
 			private set;
 		}
+		public RatingTestViewModel RatingTestVM
+		{
+			get;
+			private set;
+		}
 
 		public MainTestingViewModel()
 		{
 			GroupsTestVM = new GroupsTestViewModel();
 			RoundRobinTestVM = new RoundRobinMMTestViewModel();
+			RatingTestVM = new RatingTestViewModel();
 		}
 	}
 }
