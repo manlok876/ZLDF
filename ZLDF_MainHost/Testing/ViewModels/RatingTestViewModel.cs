@@ -28,11 +28,91 @@ namespace ZLDF.MainHost.Testing.ViewModels
 			public float TotalScore { get; set; } = 0;
 			public float TotalOpponentsScore { get; set; } = 0;
 
+			public int TotalFights
+			{
+				get
+				{
+					return WinCount + DrawCount + LossCount;
+				}
+			}
+			public float TotalScoreDifference
+			{
+				get
+				{
+					return TotalScore - TotalOpponentsScore;
+				}
+			}
+			public float WinPercentage
+			{
+				get
+				{
+					return (float)WinCount / (float)TotalFights;
+				}
+			}
+			public float DrawPercentage
+			{
+				get
+				{
+					return (float)DrawCount / (float)TotalFights;
+				}
+			}
+			public float LossPercentage
+			{
+				get
+				{
+					return (float)LossCount / (float)TotalFights;
+				}
+			}
+			public float AverageScore
+			{
+				get
+				{
+					return TotalScore / (float)TotalFights;
+				}
+			}
+			public float AverageOpponentScore
+			{
+				get
+				{
+					return TotalOpponentsScore / (float)TotalFights;
+				}
+			}
+			public float AverageScoreDifference
+			{
+				get
+				{
+					return TotalScoreDifference / (float)TotalFights;
+				}
+			}
+
 
 			public FighterStats(Fighter fighter)
 			{
 				Fighter = fighter;
 			}
+		}
+
+		int CompareRatings(FighterStats rating1, FighterStats rating2)
+		{
+			if (rating1 == rating2)
+			{
+				return 0;
+			}
+
+			if (rating1.WinPercentage != rating2.WinPercentage)
+			{
+				return (rating1.WinPercentage > rating2.WinPercentage ? 1 : -1);
+			}
+			else if (rating1.DrawPercentage != rating2.DrawPercentage)
+			{
+				return (rating1.DrawPercentage > rating2.DrawPercentage ? 1 : -1);
+			}
+			else if (rating1.AverageScoreDifference != rating2.AverageScoreDifference)
+			{
+				return (rating1.AverageScoreDifference > rating2.AverageScoreDifference ? 1 : -1);
+			}
+
+			return 0;
 		}
 
 		private Dictionary<string, Club> _clubMap = new Dictionary<string, Club>();
@@ -160,6 +240,9 @@ namespace ZLDF.MainHost.Testing.ViewModels
 				secondFighterRating.TotalOpponentsScore += duel.FirstFighterScore;
 			}
 			List<FighterStats> result = new List<FighterStats>(ratingByFighter.Values);
+
+			result.Sort(CompareRatings);
+
 			return result;
 		}
 
