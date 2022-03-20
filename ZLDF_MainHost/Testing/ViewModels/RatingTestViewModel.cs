@@ -101,15 +101,15 @@ namespace ZLDF.MainHost.Testing.ViewModels
 
 			if (rating1.WinPercentage != rating2.WinPercentage)
 			{
-				return (rating1.WinPercentage > rating2.WinPercentage ? 1 : -1);
+				return (rating1.WinPercentage > rating2.WinPercentage ? -1 : 1);
 			}
 			else if (rating1.DrawPercentage != rating2.DrawPercentage)
 			{
-				return (rating1.DrawPercentage > rating2.DrawPercentage ? 1 : -1);
+				return (rating1.DrawPercentage > rating2.DrawPercentage ? -1 : 1);
 			}
 			else if (rating1.AverageScoreDifference != rating2.AverageScoreDifference)
 			{
-				return (rating1.AverageScoreDifference > rating2.AverageScoreDifference ? 1 : -1);
+				return (rating1.AverageScoreDifference > rating2.AverageScoreDifference ? -1 : 1);
 			}
 
 			return 0;
