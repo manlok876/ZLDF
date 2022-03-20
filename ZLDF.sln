@@ -8,6 +8,9 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ZLDF_Classes", "ZLDF_Classes\ZLDF_Classes.csproj", "{E8CF0509-2114-4CDC-8963-EFB886A3FBD1}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZLDF_Scoreboard", "ZLDF_Scoreboard\ZLDF_Scoreboard.csproj", "{70E065F6-D925-4528-AE02-9CE07F479EC8}"
+	ProjectSection(ProjectDependencies) = postProject
+		{E8CF0509-2114-4CDC-8963-EFB886A3FBD1} = {E8CF0509-2114-4CDC-8963-EFB886A3FBD1}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
