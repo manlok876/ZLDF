@@ -13,6 +13,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\ZLDF_Classes\ZLDF_Classes.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Update="logo.ico">
       <PackagePath>\</PackagePath>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
