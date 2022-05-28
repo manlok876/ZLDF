@@ -58,6 +58,18 @@ namespace ZLDF.Scoreboard.ViewModels
 			}
 		}
 
+		internal void ScoreChangedListener(object? sender, PropertyChangedEventArgs e)
+		{
+			if (e.PropertyName == nameof(CurrentFight.FirstFighterScore))
+			{
+				RaisePropertyChanged(nameof(FirstFighterScore));
+			}
+			else if (e.PropertyName == nameof(CurrentFight.SecondFighterScore))
+			{
+				RaisePropertyChanged(nameof(SecondFighterScore));
+			}
+		}
+
 		private Color _firstFighterColor;
 		public Color FirstFighterColor
 		{
@@ -176,6 +188,7 @@ namespace ZLDF.Scoreboard.ViewModels
 		public FightOperatorViewModel()
 		{
 			_currentFight = CreateEmptyDuel();
+			_currentFight.PropertyChanged += ScoreChangedListener;
 
 		}
 	}
