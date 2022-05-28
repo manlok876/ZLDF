@@ -7,12 +7,22 @@ namespace ZLDF.Classes
 {
 	public class Duel : Fight
 	{
+		private Fighter _firstFighter;
+		private Fighter _secondFighter;
+
 		/// <summary>
 		/// First fighter in a duel. Immutable, if pairings changed - create new fights
 		/// </summary>
 		public Fighter FirstFighter
 		{
-			get; set;
+			get
+			{
+				return _firstFighter;
+			}
+			private set
+			{
+				SetProperty(ref _firstFighter, value);
+			}
 		}
 
 		/// <summary>
@@ -20,7 +30,14 @@ namespace ZLDF.Classes
 		/// </summary>
 		public Fighter SecondFighter
 		{
-			get; set;
+			get
+			{
+				return _secondFighter;
+			}
+			private set
+			{
+				SetProperty(ref _secondFighter, value);
+			}
 		}
 
 		public override IEnumerable<Fighter> Fighters
@@ -31,13 +48,30 @@ namespace ZLDF.Classes
 			}
 		}
 
+		private float _firstFighterScore;
+		private float _secondFighterScore;
+
 		public float FirstFighterScore
 		{
-			get; set;
+			get
+			{
+				return _firstFighterScore;
+			}
+			set
+			{
+				SetProperty(ref _firstFighterScore, value);
+			}
 		}
 		public float SecondFighterScore
 		{
-			get; set;
+			get
+			{
+				return _secondFighterScore;
+			}
+			set
+			{
+				SetProperty(ref _secondFighterScore, value);
+			}
 		}
 		public override float GetFighterScore(Fighter? fighter)
 		{
@@ -68,6 +102,8 @@ namespace ZLDF.Classes
 		{
 			FirstFighter = firstFighter;
 			SecondFighter = secondFighter;
+			FirstFighterScore = 0;
+			SecondFighterScore = 0;
 		}
 	}
 }
