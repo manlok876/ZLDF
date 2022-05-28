@@ -200,6 +200,9 @@ namespace ZLDF.Scoreboard.ViewModels
 
 		public FightOperatorViewModel()
 		{
+			FirstFighterColor = Colors.Red;
+			SecondFighterColor = Colors.Blue;
+
 			_currentFight = CreateEmptyDuel();
 			_currentFight.PropertyChanged += ScoreChangedListener;
 
