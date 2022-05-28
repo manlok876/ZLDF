@@ -208,6 +208,8 @@ namespace ZLDF.Scoreboard.ViewModels
 
 			OpenScoreboardCommand = new DelegateCommand(OpenScoreboard);
 			MaximizeScoreboardCommand = new DelegateCommand(MaximizeScoreboard);
+
+			FinishFightCommand = new DelegateCommand(FinishFight);
 		}
 	}
 }
