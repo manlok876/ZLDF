@@ -94,6 +94,23 @@ namespace ZLDF.Classes
 			}
 		}
 
+		public override void AddFighterScore(Fighter? fighter, float deltaScore)
+		{
+			if (fighter == null)
+			{
+				return;
+			}
+
+			if (fighter == FirstFighter)
+			{
+				FirstFighterScore += deltaScore;
+			}
+			else if (fighter == SecondFighter)
+			{
+				SecondFighterScore += deltaScore;
+			}
+		}
+
 		public Duel()
 		{
 		}
