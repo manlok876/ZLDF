@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.ComponentModel;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Diagnostics;
 using Prism.Mvvm;
 using Prism.Commands;
 using ZLDF.Scoreboard.Views;
@@ -196,6 +198,17 @@ namespace ZLDF.Scoreboard.ViewModels
 			//w.Close();
 		}
 
+		public ICommand AddPointsCommand { get; private set; }
+		public void AddPoints()
+		{
+			if (CurrentFight == null)
+			{
+				return;
+			}
+			CurrentFight.FirstFighterScore += 1;
+			Trace.WriteLine(CurrentFight.FirstFighterScore.ToString());
+		}
+
 		#endregion // Commands
 
 		public FightOperatorViewModel()
@@ -210,6 +223,7 @@ namespace ZLDF.Scoreboard.ViewModels
 			MaximizeScoreboardCommand = new DelegateCommand(MaximizeScoreboard);
 
 			FinishFightCommand = new DelegateCommand(FinishFight);
+			AddPointsCommand = new DelegateCommand(AddPoints);
 		}
 	}
 }
