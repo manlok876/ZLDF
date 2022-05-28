@@ -15,8 +15,8 @@ namespace ZLDF.Scoreboard.ViewModels
 {
 	internal class FightOperatorViewModel : BindableBase
 	{
-		private ScoreboardViewModel _scoreboardVM;
-		private ScoreboardView _scoreboardWindow;
+		private ScoreboardViewModel? _scoreboardVM;
+		private ScoreboardView? _scoreboardWindow;
 
 		private Duel _currentFight;
 		public Duel CurrentFight
@@ -101,19 +101,29 @@ namespace ZLDF.Scoreboard.ViewModels
 		public ICommand OpenScoreboardCommand { get; private set; }
 		public void OpenScoreboard()
 		{
-			// If already open close it
-			// If VM not created - create
-			// Create view using that VM
-			throw new NotImplementedException();
+			if (_scoreboardWindow != null)
+			{
+				_scoreboardWindow.Close();
+				_scoreboardWindow = null;
+			}
+
+			if (_scoreboardVM == null)
+			{
+				_scoreboardVM = new ScoreboardViewModel(this);
+			}
+
+			_scoreboardWindow = new ScoreboardView();
+			_scoreboardWindow.DataContext = _scoreboardVM;
+			_scoreboardWindow.Show();
 		}
 
 		public ICommand MaximizeScoreboardCommand { get; private set; }
 		public void MaximizeScoreboard()
 		{
-			//if (showWindow != null)
-			//{
-			//	showWindow.WindowState = System.Windows.WindowState.Maximized;
-			//}
+			if (_scoreboardWindow != null)
+			{
+				_scoreboardWindow.WindowState = System.Windows.WindowState.Maximized;
+			}
 		}
 
 		public Duel CreateEmptyDuel()
@@ -179,17 +189,22 @@ namespace ZLDF.Scoreboard.ViewModels
 		public ICommand ExitAppCommand { get; private set; }
 		public void ExitApp()
 		{
-			//if (w.showWindow != null) w.showWindow.Close();
+			if (_scoreboardWindow != null)
+			{
+				_scoreboardWindow.Close();
+			}
 			//w.Close();
 		}
 
-		#endregion
+		#endregion // Commands
 
 		public FightOperatorViewModel()
 		{
 			_currentFight = CreateEmptyDuel();
 			_currentFight.PropertyChanged += ScoreChangedListener;
 
+			OpenScoreboardCommand = new DelegateCommand(OpenScoreboard);
+			MaximizeScoreboardCommand = new DelegateCommand(MaximizeScoreboard);
 		}
 	}
 }
