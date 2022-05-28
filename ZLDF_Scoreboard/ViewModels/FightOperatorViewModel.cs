@@ -18,7 +18,20 @@ namespace ZLDF.Scoreboard.ViewModels
 		private ScoreboardViewModel _scoreboardVM;
 		private ScoreboardView _scoreboardWindow;
 
-		public Fight CurrentFight { get; private set; }
+		private Duel _currentFight;
+		public Duel CurrentFight
+		{
+			get
+			{
+				return _currentFight;
+			}
+			private set
+			{
+				_currentFight.PropertyChanged -= ScoreChangedListener;
+				SetProperty(ref _currentFight, value);
+				_currentFight.PropertyChanged += ScoreChangedListener;
+			}
+		}
 
 		public List<Fight> _fights;
 		public IEnumerable<Fight> AllFights
@@ -49,6 +62,13 @@ namespace ZLDF.Scoreboard.ViewModels
 			//}
 		}
 
+		public Duel CreateEmptyDuel()
+		{
+			Duel dummyDuel = new Duel();
+			dummyDuel.Init(new Fighter(), new Fighter());
+			return dummyDuel;
+		}
+
 		public ICommand MoveToNextFightCommand { get; private set; }
 		public void MoveToNextFight()
 		{
@@ -58,13 +78,12 @@ namespace ZLDF.Scoreboard.ViewModels
 		}
 
 		public ICommand MoveToFightCommand { get; private set; }
-		public void MoveToFight(Fight targetFight)
+		public void MoveToFight(Duel targetFight)
 		{
 			// Return if targetFight not in AllFights?
 			// Pause? current fight
 			// Log accordingly
-			// CurrentFight = targetFight
-			throw new NotImplementedException();
+			CurrentFight = targetFight;
 		}
 		public ICommand RestartFightCommand { get; private set; }
 		public void RestartFight()
@@ -79,6 +98,13 @@ namespace ZLDF.Scoreboard.ViewModels
 			//w.UpdateDoubleHits();
 
 			// Reset time to max and score to zero
+		}
+		public ICommand FinishFightCommand { get; private set; }
+		public void FinishFight()
+		{
+			// Set state to finished
+			// Move to next fight
+			MoveToFight(CreateEmptyDuel());
 		}
 		private void ResetScore()
 		{
@@ -107,6 +133,7 @@ namespace ZLDF.Scoreboard.ViewModels
 
 		public FightOperatorViewModel()
 		{
+			_currentFight = CreateEmptyDuel();
 
 		}
 	}
