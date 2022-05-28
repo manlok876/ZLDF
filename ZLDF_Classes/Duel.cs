@@ -23,7 +23,7 @@ namespace ZLDF.Classes
 			get; set;
 		}
 
-		public override ImmutableArray<Fighter> Fighters
+		public override IEnumerable<Fighter> Fighters
 		{
 			get
 			{
@@ -39,8 +39,13 @@ namespace ZLDF.Classes
 		{
 			get; set;
 		}
-		public override float GetFighterScore(Fighter fighter)
+		public override float GetFighterScore(Fighter? fighter)
 		{
+			if (fighter == null)
+			{
+				return 0.0f;
+			}
+
 			if (fighter == FirstFighter)
 			{
 				return FirstFighterScore;

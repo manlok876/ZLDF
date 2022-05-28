@@ -18,8 +18,8 @@ namespace ZLDF.Classes
 				SetProperty(ref _fightState, value);
 			}
 		}
-		public abstract ImmutableArray<Fighter> Fighters { get; }
-		public abstract float GetFighterScore(Fighter fighter);
+		public abstract IEnumerable<Fighter> Fighters { get; }
+		public abstract float GetFighterScore(Fighter? fighter);
 
 		protected Fight()
 		{
