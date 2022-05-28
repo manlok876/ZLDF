@@ -33,12 +33,54 @@ namespace ZLDF.Scoreboard.ViewModels
 			}
 		}
 
-		public List<Fight> _fights;
-		public IEnumerable<Fight> AllFights
+		public List<Duel> _fights = new List<Duel>();
+
+		public IEnumerable<Duel> AllFights
 		{
 			get
 			{
-				return new List<Fight>(_fights);
+				return new List<Duel>(_fights);
+			}
+		}
+
+		public float FirstFighterScore
+		{
+			get
+			{
+				return CurrentFight.FirstFighterScore;
+			}
+		}
+		public float SecondFighterScore
+		{
+			get
+			{
+				return CurrentFight.SecondFighterScore;
+			}
+		}
+
+		private Color _firstFighterColor;
+		public Color FirstFighterColor
+		{
+			get
+			{
+				return _firstFighterColor;
+			}
+			set
+			{
+				SetProperty(ref _firstFighterColor, value);
+			}
+		}
+
+		private Color _secondFighterColor;
+		public Color SecondFighterColor
+		{
+			get
+			{
+				return _secondFighterColor;
+			}
+			set
+			{
+				SetProperty(ref _secondFighterColor, value);
 			}
 		}
 
