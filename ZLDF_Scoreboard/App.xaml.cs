@@ -19,9 +19,10 @@ namespace ZLDF.Scoreboard
 		{
 			base.OnStartup(e);
 
-			AppView app = new AppView();
-			AppViewModel context = new AppViewModel();
-			app.DataContext = context;
+			FightOperatorView app = new();
+			FightOperatorViewModel context = new();
+			//app.DataContext = context;
+			app.SetViewModel(context);
 			app.Show();
 		}
 	}
