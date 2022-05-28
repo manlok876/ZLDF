@@ -5,8 +5,8 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
-using ZLDF.Scoreboard.ViewModels;
-using ZLDF.Scoreboard.Views;
+using ZLDF.Scoreboard.FightOperator.ViewModels;
+using ZLDF.Scoreboard.FightOperator.Views;
 
 namespace ZLDF.Scoreboard
 {

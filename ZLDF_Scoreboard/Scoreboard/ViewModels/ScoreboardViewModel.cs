@@ -9,8 +9,9 @@ using System.Windows.Media;
 using Prism.Mvvm;
 using Prism.Commands;
 using ZLDF.Classes;
+using ZLDF.Scoreboard.FightOperator.ViewModels;
 
-namespace ZLDF.Scoreboard.ViewModels
+namespace ZLDF.Scoreboard.Scoreboard.ViewModels
 {
 	internal class ScoreboardViewModel : BindableBase
 	{

@@ -2,7 +2,7 @@
 using System.Globalization;
 using System.Windows.Data;
 
-namespace ZLDF.Scoreboard.Views
+namespace ZLDF.Scoreboard.Converters
 {
 	internal class LeftDataSelector : IMultiValueConverter
 	{

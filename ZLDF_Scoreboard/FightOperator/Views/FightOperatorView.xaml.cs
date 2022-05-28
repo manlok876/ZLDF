@@ -17,9 +17,9 @@ using System.Windows.Shapes;
 using Prism.Mvvm;
 using Prism.Commands;
 using ZLDF.Classes;
-using ZLDF.Scoreboard.ViewModels;
+using ZLDF.Scoreboard.FightOperator.ViewModels;
 
-namespace ZLDF.Scoreboard.Views
+namespace ZLDF.Scoreboard.FightOperator.Views
 {
 	/// <summary>
 	/// Interaction logic for FightOperator.xaml

@@ -1,9 +1,10 @@
-﻿<Window x:Class="ZLDF.Scoreboard.Views.FightOperatorView"
+﻿<Window x:Class="ZLDF.Scoreboard.FightOperator.Views.FightOperatorView"
 		xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 		xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-		xmlns:local="clr-namespace:ZLDF.Scoreboard.Views"
+		xmlns:con="clr-namespace:ZLDF.Scoreboard.Converters"
+		xmlns:local="clr-namespace:ZLDF.Scoreboard.FightOperator.Views"
 		mc:Ignorable="d"
 		Title="Оператор табло"
 		x:Name="ThisView"
@@ -11,8 +12,8 @@
 		>
 
 	<Window.Resources>
-		<local:LeftDataSelector x:Key="LeftSelector"/>
-		<local:RightDataSelector x:Key="RightSelector"/>
+		<con:LeftDataSelector x:Key="LeftSelector"/>
+		<con:RightDataSelector x:Key="RightSelector"/>
 	</Window.Resources>
 
 	<DockPanel LastChildFill="True">

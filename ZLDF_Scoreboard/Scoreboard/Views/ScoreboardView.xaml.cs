@@ -12,7 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace ZLDF.Scoreboard.Views
+namespace ZLDF.Scoreboard.Scoreboard.Views
 {
 	/// <summary>
 	/// Interaction logic for ScoreboardView.xaml
