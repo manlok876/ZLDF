@@ -8,24 +8,19 @@ namespace ZLDF.Scoreboard.Converters
 	{
 		public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
 		{
-			if (values.Length < 1)
-			{
-				return "";
-			}
+			object? result = null;
 
-			if (values.Length <= 2)
+			if (values.Length >= 1)
 			{
-				return values[0].ToString();
+				result = values[0];
 			}
 
 			if (values.Length > 2 && (bool) values[2])
 			{
-				return values[1].ToString();
+				result = values[1];
 			}
-			else
-			{
-				return values[0].ToString();
-			}
+
+			return System.Convert.ChangeType(result, targetType);
 		}
 
 		public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
