@@ -15,12 +15,21 @@ namespace ZLDF.Scoreboard.Converters
 				result = values[0];
 			}
 
-			if (values.Length > 2 && (bool) values[2])
+			if (values.Length > 2 && values[2] is bool)
 			{
-				result = values[1];
+				bool bIsFlipped = (bool) values[2];
+				if (bIsFlipped)
+				{
+					result = values[1];
+				}
 			}
 
-			return System.Convert.ChangeType(result, targetType);
+			if (result is IConvertible)
+			{
+				return System.Convert.ChangeType(result, targetType);
+			}
+
+			return result;
 		}
 
 		public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
