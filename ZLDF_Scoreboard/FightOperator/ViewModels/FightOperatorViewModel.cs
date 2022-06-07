@@ -46,6 +46,21 @@ namespace ZLDF.Scoreboard.FightOperator.ViewModels
 			}
 		}
 
+		public Fighter FirstFighter
+		{
+			get
+			{
+				return CurrentFight.FirstFighter;
+			}
+		}
+		public Fighter SecondFighter
+		{
+			get
+			{
+				return CurrentFight.SecondFighter;
+			}
+		}
+		
 		public float FirstFighterScore
 		{
 			get
@@ -73,6 +88,8 @@ namespace ZLDF.Scoreboard.FightOperator.ViewModels
 			}
 		}
 
+		#region Colors
+
 		private Color _firstFighterColor;
 		public Color FirstFighterColor
 		{
@@ -98,6 +115,24 @@ namespace ZLDF.Scoreboard.FightOperator.ViewModels
 				SetProperty(ref _secondFighterColor, value);
 			}
 		}
+
+		public Color GetColorForFighter(Fighter? fighter)
+		{
+			if (fighter == FirstFighter)
+			{
+				return FirstFighterColor;
+			}
+			else if (fighter == SecondFighter)
+			{
+				return SecondFighterColor;
+			}
+			else
+			{
+				return Colors.White;
+			}
+		}
+
+		#endregion Colors
 
 		#region Commands
 
