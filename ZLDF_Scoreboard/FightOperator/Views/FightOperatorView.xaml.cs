@@ -124,28 +124,10 @@ namespace ZLDF.Scoreboard.FightOperator.Views
 			}
 		}
 
-		public Brush LeftColor
-		{
-			get
-			{
-				return new SolidColorBrush(IsFlipped ? Colors.Blue : Colors.Red);
-			}
-		}
-		public Brush RightColor
-		{
-			get
-			{
-				return new SolidColorBrush(IsFlipped ? Colors.Red : Colors.Blue);
-			}
-		}
-
 		public ICommand SwapFightersCommand { get; private set; }
 		void SwapFighters()
 		{
 			IsFlipped = !IsFlipped;
-
-			RaisePropertyChanged(nameof(LeftFighter));
-			RaisePropertyChanged(nameof(RightFighter));
 		}
 
 		private void VMChangesListener(object? sender, PropertyChangedEventArgs e)
@@ -154,38 +136,17 @@ namespace ZLDF.Scoreboard.FightOperator.Views
 			{
 				RaisePropertyChanged(nameof(CurrentFight));
 			}
-			else if (e.PropertyName == nameof(ViewModel.FirstFighterScore) ||
-				e.PropertyName == nameof(ViewModel.SecondFighterScore))
-			{
-				//RaisePropertyChanged(nameof(LeftScore));
-				//RaisePropertyChanged(nameof(RightScore));
-			}
 			Trace.WriteLine("VM " + e.PropertyName + " changed");
 		}
 
 		private void HandlePropertyUpdated(object? sender, PropertyChangedEventArgs e)
 		{
-			if (e.PropertyName == nameof(CurrentFight))
-			{
-				RaisePropertyChanged(nameof(LeftFighter));
-				RaisePropertyChanged(nameof(RightFighter));
-			}
-			else if (e.PropertyName == nameof(IsFlipped))
-			{
-				RaisePropertyChanged(nameof(LeftFighter));
-				RaisePropertyChanged(nameof(RightFighter));
-			}
-			else if (e.PropertyName == nameof(LeftFighter))
-			{
-				//RaisePropertyChanged(nameof(LeftScore));
-				RaisePropertyChanged(nameof(LeftColor));
-			}
-			else if (e.PropertyName == nameof(RightFighter))
-			{
-				//RaisePropertyChanged(nameof(RightScore));
-				RaisePropertyChanged(nameof(RightColor));
-			}
-			Trace.WriteLine(e.PropertyName + " changed");
+			//if (e.PropertyName == nameof(CurrentFight))
+			//{
+			//	RaisePropertyChanged(nameof(LeftFighter));
+			//	RaisePropertyChanged(nameof(RightFighter));
+			//}
+			//Trace.WriteLine(e.PropertyName + " changed");
 		}
 
 		public FightOperatorView()
