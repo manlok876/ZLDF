@@ -234,15 +234,16 @@ namespace ZLDF.Scoreboard.FightOperator.ViewModels
 			//w.Close();
 		}
 
-		public ICommand AddPointsCommand { get; private set; }
-		public void AddPoints()
+		public ICommand IncreaseFighterScoreCommand { get; private set; }
+		public void IncreaseFighterScore(Fighter fighter)
 		{
-			if (CurrentFight == null)
-			{
-				return;
-			}
-			CurrentFight.FirstFighterScore += 1;
-			Trace.WriteLine(CurrentFight.FirstFighterScore.ToString());
+			CurrentFight.AddFighterScore(fighter, 1);
+		}
+
+		public ICommand DecreaseFighterScoreCommand { get; private set; }
+		public void DecreaseFighterScore(Fighter fighter)
+		{
+			CurrentFight.AddFighterScore(fighter, -1);
 		}
 
 		#endregion // Commands
@@ -259,7 +260,8 @@ namespace ZLDF.Scoreboard.FightOperator.ViewModels
 			MaximizeScoreboardCommand = new DelegateCommand(MaximizeScoreboard);
 
 			FinishFightCommand = new DelegateCommand(FinishFight);
-			AddPointsCommand = new DelegateCommand(AddPoints);
+			IncreaseFighterScoreCommand = new DelegateCommand<Fighter>(IncreaseFighterScore);
+			DecreaseFighterScoreCommand = new DelegateCommand<Fighter>(DecreaseFighterScore);
 		}
 	}
 }

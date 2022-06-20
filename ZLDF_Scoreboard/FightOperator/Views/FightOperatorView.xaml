@@ -39,8 +39,24 @@
 				<Grid Grid.Row="0" Background="White">
 					<TextBlock HorizontalAlignment="Left" Margin="217,35,0,0" TextWrapping="Wrap" Text="Ристалище 1" d:Text="Ристалище 1" VerticalAlignment="Top"/>
 
-					<Button Content="+1 балл" HorizontalAlignment="Left" Margin="25,61,0,0" VerticalAlignment="Top" Height="44" Width="53" Command="{Binding AddPointsCommand}"/>
-					<Button Content="-1 балл" HorizontalAlignment="Left" Margin="25,105,0,0" VerticalAlignment="Top" Height="44" Width="53"/>
+					<Button Content="+1 балл" HorizontalAlignment="Left" Margin="25,61,0,0" VerticalAlignment="Top" Height="44" Width="53" Command="{Binding IncreaseFighterScoreCommand}">
+						<Button.CommandParameter>
+							<MultiBinding Converter="{StaticResource LeftSelector}">
+								<Binding Path="CurrentFight.FirstFighter"/>
+								<Binding Path="CurrentFight.SecondFighter"/>
+								<Binding ElementName="ThisView" Path="IsFlipped"/>
+							</MultiBinding>
+						</Button.CommandParameter>
+					</Button>
+					<Button Content="-1 балл" HorizontalAlignment="Left" Margin="25,105,0,0" VerticalAlignment="Top" Height="44" Width="53" Command="{Binding DecreaseFighterScoreCommand}">
+						<Button.CommandParameter>
+							<MultiBinding Converter="{StaticResource LeftSelector}">
+								<Binding Path="CurrentFight.FirstFighter"/>
+								<Binding Path="CurrentFight.SecondFighter"/>
+								<Binding ElementName="ThisView" Path="IsFlipped"/>
+							</MultiBinding>
+						</Button.CommandParameter>
+					</Button>
 					<TextBlock HorizontalAlignment="Left" Margin="121,0,0,0" TextWrapping="Wrap" d:Text="15" VerticalAlignment="Center" FontSize="44">
 						<TextBlock.Text>
 							<MultiBinding Converter="{StaticResource LeftSelector}">
@@ -58,8 +74,24 @@
 						</TextBlock.Background>
 					</TextBlock>
 
-					<Button Content="+1 балл" HorizontalAlignment="Left" Margin="447,61,0,0" VerticalAlignment="Top" Height="44" Width="53"/>
-					<Button Content="-1 балл" HorizontalAlignment="Left" Margin="447,105,0,0" VerticalAlignment="Top" Height="44" Width="53"/>
+					<Button Content="+1 балл" HorizontalAlignment="Left" Margin="447,61,0,0" VerticalAlignment="Top" Height="44" Width="53" Command="{Binding IncreaseFighterScoreCommand}">
+						<Button.CommandParameter>
+							<MultiBinding Converter="{StaticResource RightSelector}">
+								<Binding Path="CurrentFight.FirstFighter"/>
+								<Binding Path="CurrentFight.SecondFighter"/>
+								<Binding ElementName="ThisView" Path="IsFlipped"/>
+							</MultiBinding>
+						</Button.CommandParameter>
+					</Button>
+					<Button Content="-1 балл" HorizontalAlignment="Left" Margin="447,105,0,0" VerticalAlignment="Top" Height="44" Width="53" Command="{Binding DecreaseFighterScoreCommand}">
+						<Button.CommandParameter>
+							<MultiBinding Converter="{StaticResource RightSelector}">
+								<Binding Path="CurrentFight.FirstFighter"/>
+								<Binding Path="CurrentFight.SecondFighter"/>
+								<Binding ElementName="ThisView" Path="IsFlipped"/>
+							</MultiBinding>
+						</Button.CommandParameter>
+					</Button>
 					<TextBlock x:Name="LeftScoreText" HorizontalAlignment="Left" Margin="381,0,0,0" TextWrapping="Wrap" d:Text="1" VerticalAlignment="Center" FontSize="44">
 						<TextBlock.Text>
 							<MultiBinding Converter="{StaticResource RightSelector}">
