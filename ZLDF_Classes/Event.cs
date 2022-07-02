@@ -5,18 +5,6 @@ using Prism.Mvvm;
 
 namespace ZLDF.Classes
 {
-	public enum EventState
-	{
-		Unknown,
-		NotStarted,
-		Scheduled,
-		Cancelled,
-		InProgress,
-		Paused,
-		Aborted,
-		Finished
-	}
-
 	public abstract class Event : BindableBase
 	{
 		private Guid _id;
