@@ -42,8 +42,8 @@
 					<Button Content="+1 балл" HorizontalAlignment="Left" Margin="25,61,0,0" VerticalAlignment="Top" Height="44" Width="53" Command="{Binding IncreaseFighterScoreCommand}">
 						<Button.CommandParameter>
 							<MultiBinding Converter="{StaticResource LeftSelector}">
-								<Binding Path="CurrentFight.FirstFighter"/>
-								<Binding Path="CurrentFight.SecondFighter"/>
+								<Binding Path="CurrentDuel.FirstFighter"/>
+								<Binding Path="CurrentDuel.SecondFighter"/>
 								<Binding ElementName="ThisView" Path="IsFlipped"/>
 							</MultiBinding>
 						</Button.CommandParameter>
@@ -51,8 +51,8 @@
 					<Button Content="-1 балл" HorizontalAlignment="Left" Margin="25,105,0,0" VerticalAlignment="Top" Height="44" Width="53" Command="{Binding DecreaseFighterScoreCommand}">
 						<Button.CommandParameter>
 							<MultiBinding Converter="{StaticResource LeftSelector}">
-								<Binding Path="CurrentFight.FirstFighter"/>
-								<Binding Path="CurrentFight.SecondFighter"/>
+								<Binding Path="CurrentDuel.FirstFighter"/>
+								<Binding Path="CurrentDuel.SecondFighter"/>
 								<Binding ElementName="ThisView" Path="IsFlipped"/>
 							</MultiBinding>
 						</Button.CommandParameter>
@@ -60,8 +60,8 @@
 					<TextBlock HorizontalAlignment="Left" Margin="121,0,0,0" TextWrapping="Wrap" d:Text="15" VerticalAlignment="Center" FontSize="44">
 						<TextBlock.Text>
 							<MultiBinding Converter="{StaticResource LeftSelector}">
-								<Binding Path="CurrentFight.FirstFighterScore"/>
-								<Binding Path="CurrentFight.SecondFighterScore"/>
+								<Binding Path="CurrentDuel.FirstFighterScore"/>
+								<Binding Path="CurrentDuel.SecondFighterScore"/>
 								<Binding ElementName="ThisView" Path="IsFlipped"/>
 							</MultiBinding>
 						</TextBlock.Text>
@@ -77,8 +77,8 @@
 					<Button Content="+1 балл" HorizontalAlignment="Left" Margin="447,61,0,0" VerticalAlignment="Top" Height="44" Width="53" Command="{Binding IncreaseFighterScoreCommand}">
 						<Button.CommandParameter>
 							<MultiBinding Converter="{StaticResource RightSelector}">
-								<Binding Path="CurrentFight.FirstFighter"/>
-								<Binding Path="CurrentFight.SecondFighter"/>
+								<Binding Path="CurrentDuel.FirstFighter"/>
+								<Binding Path="CurrentDuel.SecondFighter"/>
 								<Binding ElementName="ThisView" Path="IsFlipped"/>
 							</MultiBinding>
 						</Button.CommandParameter>
@@ -86,8 +86,8 @@
 					<Button Content="-1 балл" HorizontalAlignment="Left" Margin="447,105,0,0" VerticalAlignment="Top" Height="44" Width="53" Command="{Binding DecreaseFighterScoreCommand}">
 						<Button.CommandParameter>
 							<MultiBinding Converter="{StaticResource RightSelector}">
-								<Binding Path="CurrentFight.FirstFighter"/>
-								<Binding Path="CurrentFight.SecondFighter"/>
+								<Binding Path="CurrentDuel.FirstFighter"/>
+								<Binding Path="CurrentDuel.SecondFighter"/>
 								<Binding ElementName="ThisView" Path="IsFlipped"/>
 							</MultiBinding>
 						</Button.CommandParameter>
@@ -95,8 +95,8 @@
 					<TextBlock x:Name="LeftScoreText" HorizontalAlignment="Left" Margin="381,0,0,0" TextWrapping="Wrap" d:Text="1" VerticalAlignment="Center" FontSize="44">
 						<TextBlock.Text>
 							<MultiBinding Converter="{StaticResource RightSelector}">
-								<Binding Path="CurrentFight.FirstFighterScore"/>
-								<Binding Path="CurrentFight.SecondFighterScore"/>
+								<Binding Path="CurrentDuel.FirstFighterScore"/>
+								<Binding Path="CurrentDuel.SecondFighterScore"/>
 								<Binding ElementName="ThisView" Path="IsFlipped"/>
 							</MultiBinding>
 						</TextBlock.Text>

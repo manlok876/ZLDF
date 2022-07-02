@@ -25,7 +25,7 @@ namespace ZLDF.Scoreboard.Scoreboard.ViewModels
 		{
 			get
 			{
-				Duel? currentDuel = _operatorViewModel.CurrentFight as Duel;
+				Duel? currentDuel = _operatorViewModel.CurrentDuel as Duel;
 				return currentDuel ?? new Duel();
 			}
 		}

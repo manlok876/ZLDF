@@ -21,28 +21,28 @@ namespace ZLDF.Scoreboard.FightOperator.ViewModels
 		private ScoreboardViewModel? _scoreboardVM;
 		private ScoreboardView? _scoreboardWindow;
 
-		private Duel _currentFight;
-		public Duel CurrentFight
+		private Duel _currentDuel;
+		public Duel CurrentDuel
 		{
 			get
 			{
-				return _currentFight;
+				return _currentDuel;
 			}
 			private set
 			{
-				_currentFight.PropertyChanged -= ScoreChangedListener;
-				SetProperty(ref _currentFight, value);
-				_currentFight.PropertyChanged += ScoreChangedListener;
+				_currentDuel.PropertyChanged -= ScoreChangedListener;
+				SetProperty(ref _currentDuel, value);
+				_currentDuel.PropertyChanged += ScoreChangedListener;
 			}
 		}
 
-		public List<Duel> _fights = new List<Duel>();
+		public List<Duel> _duels = new List<Duel>();
 
-		public IEnumerable<Duel> AllFights
+		public IEnumerable<Duel> AllDuels
 		{
 			get
 			{
-				return new List<Duel>(_fights);
+				return new List<Duel>(_duels);
 			}
 		}
 
@@ -50,14 +50,14 @@ namespace ZLDF.Scoreboard.FightOperator.ViewModels
 		{
 			get
 			{
-				return CurrentFight.FirstFighter;
+				return CurrentDuel.FirstFighter;
 			}
 		}
 		public Fighter SecondFighter
 		{
 			get
 			{
-				return CurrentFight.SecondFighter;
+				return CurrentDuel.SecondFighter;
 			}
 		}
 		
@@ -65,24 +65,24 @@ namespace ZLDF.Scoreboard.FightOperator.ViewModels
 		{
 			get
 			{
-				return CurrentFight.FirstFighterScore;
+				return CurrentDuel.FirstFighterScore;
 			}
 		}
 		public float SecondFighterScore
 		{
 			get
 			{
-				return CurrentFight.SecondFighterScore;
+				return CurrentDuel.SecondFighterScore;
 			}
 		}
 
 		internal void ScoreChangedListener(object? sender, PropertyChangedEventArgs e)
 		{
-			if (e.PropertyName == nameof(CurrentFight.FirstFighterScore))
+			if (e.PropertyName == nameof(CurrentDuel.FirstFighterScore))
 			{
 				RaisePropertyChanged(nameof(FirstFighterScore));
 			}
-			else if (e.PropertyName == nameof(CurrentFight.SecondFighterScore))
+			else if (e.PropertyName == nameof(CurrentDuel.SecondFighterScore))
 			{
 				RaisePropertyChanged(nameof(SecondFighterScore));
 			}
@@ -185,7 +185,7 @@ namespace ZLDF.Scoreboard.FightOperator.ViewModels
 			// Return if targetFight not in AllFights?
 			// Pause? current fight
 			// Log accordingly
-			CurrentFight = targetFight;
+			CurrentDuel = targetFight;
 		}
 		public ICommand RestartFightCommand { get; private set; }
 		public void RestartFight()
@@ -237,13 +237,13 @@ namespace ZLDF.Scoreboard.FightOperator.ViewModels
 		public ICommand IncreaseFighterScoreCommand { get; private set; }
 		public void IncreaseFighterScore(Fighter fighter)
 		{
-			CurrentFight.AddFighterScore(fighter, 1);
+			CurrentDuel.AddFighterScore(fighter, 1);
 		}
 
 		public ICommand DecreaseFighterScoreCommand { get; private set; }
 		public void DecreaseFighterScore(Fighter fighter)
 		{
-			CurrentFight.AddFighterScore(fighter, -1);
+			CurrentDuel.AddFighterScore(fighter, -1);
 		}
 
 		#endregion // Commands
@@ -253,8 +253,8 @@ namespace ZLDF.Scoreboard.FightOperator.ViewModels
 			FirstFighterColor = Colors.Red;
 			SecondFighterColor = Colors.Blue;
 
-			_currentFight = CreateEmptyDuel();
-			_currentFight.PropertyChanged += ScoreChangedListener;
+			_currentDuel = CreateEmptyDuel();
+			_currentDuel.PropertyChanged += ScoreChangedListener;
 
 			OpenScoreboardCommand = new DelegateCommand(OpenScoreboard);
 			MaximizeScoreboardCommand = new DelegateCommand(MaximizeScoreboard);

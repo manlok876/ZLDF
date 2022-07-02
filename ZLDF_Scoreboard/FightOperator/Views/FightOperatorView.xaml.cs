@@ -62,7 +62,7 @@ namespace ZLDF.Scoreboard.FightOperator.Views
 		{
 			get
 			{
-				return ViewModel?.CurrentFight;
+				return ViewModel?.CurrentDuel;
 			}
 		}
 
@@ -132,7 +132,7 @@ namespace ZLDF.Scoreboard.FightOperator.Views
 
 		private void VMChangesListener(object? sender, PropertyChangedEventArgs e)
 		{
-			if (e.PropertyName == nameof(ViewModel.CurrentFight))
+			if (e.PropertyName == nameof(ViewModel.CurrentDuel))
 			{
 				RaisePropertyChanged(nameof(CurrentFight));
 			}
