@@ -48,6 +48,8 @@ namespace ZLDF.Classes
 			}
 		}
 
+		#region Scores
+
 		private float _firstFighterScore;
 		private float _secondFighterScore;
 
@@ -110,6 +112,39 @@ namespace ZLDF.Classes
 				SecondFighterScore += deltaScore;
 			}
 		}
+
+		#endregion // Scores
+
+		#region Time
+
+		public TimeSpan _totalTime;
+		public TimeSpan _remainingTime;
+
+		public TimeSpan TotalTime
+		{
+			get
+			{
+				return _totalTime;
+			}
+			set
+			{
+				SetProperty(ref _totalTime, value);
+			}
+		}
+
+		public TimeSpan RemainingTime
+		{
+			get
+			{
+				return _remainingTime;
+			}
+			set
+			{
+				SetProperty(ref _remainingTime, value);
+			}
+		}
+
+		#endregion // Time
 
 		public Duel()
 		{
