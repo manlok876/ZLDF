@@ -25,7 +25,46 @@ namespace ZLDF.Classes
 
 		public virtual EventState State
 		{
-			get { return EventState.Unknown; }
+			get
+			{
+				return EventState.Unknown;
+			}
+		}
+
+		public bool HasStarted
+		{
+			get
+			{
+				return State == EventState.InProgress ||
+					State == EventState.Paused ||
+					State == EventState.Aborted ||
+					State == EventState.Finished;
+			}
+		}
+
+		public bool WaitingToStart
+		{
+			get
+			{
+				return State == EventState.NotStarted ||
+					State == EventState.Scheduled ||
+					State == EventState.Paused;
+			}
+		}
+
+		public bool IsOver
+		{
+			get
+			{
+				return State == EventState.Cancelled ||
+					State == EventState.Aborted ||
+					State == EventState.Finished;
+			}
+		}
+
+		public bool IsOverSuccessfully
+		{
+			get { return State == EventState.Finished; }
 		}
 
 		protected BaseEvent()
