@@ -18,9 +18,6 @@ namespace ZLDF.Scoreboard.FightOperator.ViewModels
 {
 	internal class FightOperatorViewModel : BindableBase
 	{
-		private ScoreboardViewModel? _scoreboardVM;
-		private ScoreboardView? _scoreboardWindow;
-
 		private Duel _currentDuel;
 		public Duel CurrentDuel
 		{
@@ -60,7 +57,93 @@ namespace ZLDF.Scoreboard.FightOperator.ViewModels
 				return CurrentDuel.SecondFighter;
 			}
 		}
-		
+
+		#region Fights
+
+		public Duel CreateEmptyDuel()
+		{
+			Duel dummyDuel = new Duel();
+			dummyDuel.Init(new Fighter(), new Fighter());
+			return dummyDuel;
+		}
+
+		public ICommand MoveToNextFightCommand { get; private set; }
+		public void MoveToNextFight()
+		{
+			// Find nextFight
+			// MoveToFight(nextFight)
+			throw new NotImplementedException();
+		}
+
+		public ICommand MoveToFightCommand { get; private set; }
+		public void MoveToFight(Duel targetFight)
+		{
+			// Return if targetFight not in AllFights?
+			// Pause? current fight
+			// Log accordingly
+			CurrentDuel = targetFight;
+		}
+		public ICommand RestartFightCommand { get; private set; }
+		public void RestartFight()
+		{
+			//w.leftScore = w.rightScore = w.doubleHits = 0;
+			//w.timeLeft = w.currentGamemode.TotalTime;
+			//w.timer.Stop();
+			//w.TimerTextBlock.Background = Brushes.Transparent;
+			//w.matchInProgress = true;
+			//w.UpdateScore();
+			//w.UpdateTimer();
+			//w.UpdateDoubleHits();
+
+			// Reset time to max and score to zero
+		}
+		public ICommand FinishFightCommand { get; private set; }
+		public void FinishFight()
+		{
+			// Set state to finished
+			// Move to next fight
+			MoveToFight(CreateEmptyDuel());
+		}
+
+		#endregion // Fights
+
+		#region Scoreboard
+
+		private ScoreboardViewModel? _scoreboardVM;
+		private ScoreboardView? _scoreboardWindow;
+
+		public ICommand OpenScoreboardCommand { get; private set; }
+		public void OpenScoreboard()
+		{
+			if (_scoreboardWindow != null)
+			{
+				_scoreboardWindow.Close();
+				_scoreboardWindow = null;
+			}
+
+			if (_scoreboardVM == null)
+			{
+				_scoreboardVM = new ScoreboardViewModel(this);
+			}
+
+			_scoreboardWindow = new ScoreboardView();
+			_scoreboardWindow.DataContext = _scoreboardVM;
+			_scoreboardWindow.Show();
+		}
+
+		public ICommand MaximizeScoreboardCommand { get; private set; }
+		public void MaximizeScoreboard()
+		{
+			if (_scoreboardWindow != null)
+			{
+				_scoreboardWindow.WindowState = System.Windows.WindowState.Maximized;
+			}
+		}
+
+		#endregion // Scoreboard
+
+		#region Scores
+
 		public float FirstFighterScore
 		{
 			get
@@ -87,6 +170,33 @@ namespace ZLDF.Scoreboard.FightOperator.ViewModels
 				RaisePropertyChanged(nameof(SecondFighterScore));
 			}
 		}
+
+		public ICommand IncreaseFighterScoreCommand { get; private set; }
+		public void IncreaseFighterScore(Fighter fighter)
+		{
+			CurrentDuel.AddFighterScore(fighter, 1);
+		}
+
+		public ICommand DecreaseFighterScoreCommand { get; private set; }
+		public void DecreaseFighterScore(Fighter fighter)
+		{
+			CurrentDuel.AddFighterScore(fighter, -1);
+		}
+		private void ResetScore()
+		{
+			// Reset score to zero
+		}
+
+		#endregion // Scores
+
+		#region Time
+
+		private void ResetTime()
+		{
+			// Reset time to max
+		}
+
+		#endregion // Time
 
 		#region Colors
 
@@ -134,88 +244,7 @@ namespace ZLDF.Scoreboard.FightOperator.ViewModels
 
 		#endregion Colors
 
-		#region Commands
-
-		public ICommand OpenScoreboardCommand { get; private set; }
-		public void OpenScoreboard()
-		{
-			if (_scoreboardWindow != null)
-			{
-				_scoreboardWindow.Close();
-				_scoreboardWindow = null;
-			}
-
-			if (_scoreboardVM == null)
-			{
-				_scoreboardVM = new ScoreboardViewModel(this);
-			}
-
-			_scoreboardWindow = new ScoreboardView();
-			_scoreboardWindow.DataContext = _scoreboardVM;
-			_scoreboardWindow.Show();
-		}
-
-		public ICommand MaximizeScoreboardCommand { get; private set; }
-		public void MaximizeScoreboard()
-		{
-			if (_scoreboardWindow != null)
-			{
-				_scoreboardWindow.WindowState = System.Windows.WindowState.Maximized;
-			}
-		}
-
-		public Duel CreateEmptyDuel()
-		{
-			Duel dummyDuel = new Duel();
-			dummyDuel.Init(new Fighter(), new Fighter());
-			return dummyDuel;
-		}
-
-		public ICommand MoveToNextFightCommand { get; private set; }
-		public void MoveToNextFight()
-		{
-			// Find nextFight
-			// MoveToFight(nextFight)
-			throw new NotImplementedException();
-		}
-
-		public ICommand MoveToFightCommand { get; private set; }
-		public void MoveToFight(Duel targetFight)
-		{
-			// Return if targetFight not in AllFights?
-			// Pause? current fight
-			// Log accordingly
-			CurrentDuel = targetFight;
-		}
-		public ICommand RestartFightCommand { get; private set; }
-		public void RestartFight()
-		{
-			//w.leftScore = w.rightScore = w.doubleHits = 0;
-			//w.timeLeft = w.currentGamemode.TotalTime;
-			//w.timer.Stop();
-			//w.TimerTextBlock.Background = Brushes.Transparent;
-			//w.matchInProgress = true;
-			//w.UpdateScore();
-			//w.UpdateTimer();
-			//w.UpdateDoubleHits();
-
-			// Reset time to max and score to zero
-		}
-		public ICommand FinishFightCommand { get; private set; }
-		public void FinishFight()
-		{
-			// Set state to finished
-			// Move to next fight
-			MoveToFight(CreateEmptyDuel());
-		}
-		private void ResetScore()
-		{
-			// Reset score to zero
-		}
-		private void ResetTime()
-		{
-			// Reset time to max
-		}
+		#region Sound
 
 		public ICommand SetFightEndSoundCommand { get; private set; }
 		public void SetFightEndSound(string filePath)
@@ -223,6 +252,8 @@ namespace ZLDF.Scoreboard.FightOperator.ViewModels
 			//w.sound = new SoundPlayer((String)filePath);
 			//w.sound.Load();
 		}
+
+		#endregion // Sound
 
 		public ICommand ExitAppCommand { get; private set; }
 		public void ExitApp()
@@ -233,20 +264,6 @@ namespace ZLDF.Scoreboard.FightOperator.ViewModels
 			}
 			//w.Close();
 		}
-
-		public ICommand IncreaseFighterScoreCommand { get; private set; }
-		public void IncreaseFighterScore(Fighter fighter)
-		{
-			CurrentDuel.AddFighterScore(fighter, 1);
-		}
-
-		public ICommand DecreaseFighterScoreCommand { get; private set; }
-		public void DecreaseFighterScore(Fighter fighter)
-		{
-			CurrentDuel.AddFighterScore(fighter, -1);
-		}
-
-		#endregion // Commands
 
 		public FightOperatorViewModel()
 		{
