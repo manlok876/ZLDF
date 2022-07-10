@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Threading;
 using System.Diagnostics;
 using Prism.Mvvm;
 using Prism.Commands;
@@ -28,7 +29,11 @@ namespace ZLDF.Scoreboard.FightOperator.ViewModels
 			private set
 			{
 				_currentDuel.PropertyChanged -= ScoreChangedListener;
+
+				InitTimerFromDuel(value);
+
 				SetProperty(ref _currentDuel, value);
+
 				_currentDuel.PropertyChanged += ScoreChangedListener;
 			}
 		}
@@ -191,9 +196,51 @@ namespace ZLDF.Scoreboard.FightOperator.ViewModels
 
 		#region Time
 
+		private CountdownTimer _fightTimer;
+		public CountdownTimer FightTimer
+		{
+			get { return _fightTimer; }
+			private set
+			{
+				SetProperty(ref _fightTimer, value);
+			}
+		}
+
+		private void FightTick(object? sender, EventArgs e)
+		{
+			// ???
+		}
+
+		protected void InitTimerFromDuel(Duel duel)
+		{
+			StopFightTimer();
+			_fightTimer.TotalTime = duel.TotalTime;
+			_fightTimer.Reset();
+		}
+		
+		public void StartFightTimer()
+		{
+			if (_fightTimer.IsEnabled)
+			{
+				return;
+			}
+			// TODO: check if we can continue fight
+			_fightTimer.Start();
+		}
+
+		public void StopFightTimer()
+		{
+			if (!_fightTimer.IsEnabled)
+			{
+				return;
+			}
+			_fightTimer.Stop();
+		}
+
 		private void ResetTime()
 		{
-			// Reset time to max
+			_fightTimer.Stop();
+			_fightTimer.Reset();
 		}
 
 		#endregion // Time
