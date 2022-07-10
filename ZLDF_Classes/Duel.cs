@@ -117,9 +117,7 @@ namespace ZLDF.Classes
 
 		#region Time
 
-		public TimeSpan _totalTime;
-		public TimeSpan _remainingTime;
-
+		private TimeSpan _totalTime;
 		public TimeSpan TotalTime
 		{
 			get
@@ -132,6 +130,7 @@ namespace ZLDF.Classes
 			}
 		}
 
+		private TimeSpan _remainingTime;
 		public TimeSpan RemainingTime
 		{
 			get
@@ -156,6 +155,8 @@ namespace ZLDF.Classes
 			SecondFighter = secondFighter;
 			FirstFighterScore = 0;
 			SecondFighterScore = 0;
+			TotalTime = new TimeSpan(0, 1, 0);
+			RemainingTime = TotalTime;
 		}
 	}
 }
