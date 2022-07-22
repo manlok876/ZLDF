@@ -11,7 +11,7 @@ namespace ZLDF.Scoreboard.Converters
 		{
 			if (value == null)
 			{
-				return null;
+				return new SolidColorBrush(Colors.Transparent);
 			}
 
 			if (value is Color)
@@ -20,7 +20,7 @@ namespace ZLDF.Scoreboard.Converters
 				return new SolidColorBrush(color);
 			}
 
-			return null;
+			return new SolidColorBrush(Colors.Transparent);
 		}
 
 		public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
