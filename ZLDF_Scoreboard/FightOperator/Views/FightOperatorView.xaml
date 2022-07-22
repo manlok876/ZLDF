@@ -109,7 +109,7 @@
 						</TextBlock.Background>
 					</TextBlock>
 					
-					<TextBlock HorizontalAlignment="Left" Margin="222,127,0,0" TextWrapping="Wrap" Text="0:00,00" VerticalAlignment="Top"/>
+					<TextBlock HorizontalAlignment="Left" Margin="222,127,0,0" TextWrapping="Wrap" d:Text="0:00,00" Text="{Binding FightTimer.RemainingTime, StringFormat=m\\:ss\\\,ff}" VerticalAlignment="Top"/>
 					<!--
 					- current fight info
 					-->
