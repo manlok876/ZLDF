@@ -35,7 +35,7 @@ namespace ZLDF.Classes
 		public void Reset()
 		{
 			RemainingTime = TotalTime;
-			_lastTickTime = DateTime.Now;
+			LastTickTime = DateTime.Now;
 		}
 
 		private void HandleInternalTimerTick(object? sender, EventArgs e)
@@ -76,7 +76,7 @@ namespace ZLDF.Classes
 			}
 
 			RemainingTime -= now - LastTickTime;
-			_lastTickTime = now;
+			LastTickTime = now;
 
 			Tick?.Invoke(this, new EventArgs());
 		}
