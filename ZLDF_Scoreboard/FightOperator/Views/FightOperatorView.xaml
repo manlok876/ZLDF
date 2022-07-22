@@ -117,7 +117,7 @@
 
 				<Grid Grid.Row="2" Background="LightGray">
 					<Button Content="Завершить бой" HorizontalAlignment="Left" Margin="447,125,0,0" VerticalAlignment="Top" Command="{Binding FinishFightCommand}"/>
-					<Button Content="Пауза" HorizontalAlignment="Center" VerticalAlignment="Center" Height="43" Width="78"/>
+					<Button Content="Пауза" HorizontalAlignment="Center" VerticalAlignment="Center" Height="43" Width="78" Command="{Binding StartStopCommand}"/>
 					<Button Content="Отложить бой" HorizontalAlignment="Left" Margin="0,125,0,0" VerticalAlignment="Top"/>
 					<Button Content="Поменять местами" HorizontalAlignment="Left" Margin="87,42,0,0" VerticalAlignment="Top" Command="{Binding SwapFightersCommand}" DataContext="{Binding ElementName=ThisView, Mode=OneWay}"/>
 					<!--
