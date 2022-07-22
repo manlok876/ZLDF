@@ -317,6 +317,8 @@ namespace ZLDF.Scoreboard.FightOperator.ViewModels
 			FirstFighterColor = Colors.Red;
 			SecondFighterColor = Colors.Blue;
 
+			_fightTimer = new CountdownTimer();
+
 			_currentDuel = CreateEmptyDuel();
 			_currentDuel.PropertyChanged += ScoreChangedListener;
 
