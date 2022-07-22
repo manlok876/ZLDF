@@ -81,7 +81,7 @@ namespace ZLDF.Classes
 			Tick?.Invoke(this, new EventArgs());
 		}
 
-		public event EventHandler Tick;
+		public event EventHandler? Tick;
 
 		public void Start()
 		{
