@@ -42,11 +42,17 @@ namespace ZLDF.Classes
 		{
 			if (!IsEnabled)
 			{
+				// TODO: this shouldn't happen, like, ever
 				_internalTimer.Stop();
 				return;
 			}
 
 			PerformTick();
+
+			if (!HasTimeRemaining)
+			{
+				_internalTimer.Stop();
+			}
 		}
 
 		private DateTime _lastTickTime;
@@ -61,6 +67,7 @@ namespace ZLDF.Classes
 				_lastTickTime = value;
 			}
 		}
+
 		private void PerformTick()
 		{
 			if (!IsEnabled)
@@ -74,8 +81,18 @@ namespace ZLDF.Classes
 				// TODO: handle error
 				return;
 			}
+			if (!HasTimeRemaining)
+			{
+				LastTickTime = now;
+				return;
+			}
 
-			RemainingTime -= now - LastTickTime;
+			TimeSpan newRemainingTime = RemainingTime - (now - LastTickTime);
+			if (newRemainingTime <= TimeSpan.Zero)
+			{
+				newRemainingTime = TimeSpan.Zero;
+			}
+			RemainingTime = newRemainingTime;
 			LastTickTime = now;
 
 			Tick?.Invoke(this, new EventArgs());
