@@ -214,33 +214,33 @@ namespace ZLDF.Scoreboard.FightOperator.ViewModels
 		protected void InitTimerFromDuel(Duel duel)
 		{
 			StopFightTimer();
-			_fightTimer.TotalTime = duel.TotalTime;
-			_fightTimer.Reset();
+			FightTimer.TotalTime = duel.TotalTime;
+			ResetTime();
 		}
 		
 		public void StartFightTimer()
 		{
-			if (_fightTimer.IsEnabled)
+			if (FightTimer.IsEnabled)
 			{
 				return;
 			}
 			// TODO: check if we can continue fight
-			_fightTimer.Start();
+			FightTimer.Start();
 		}
 
 		public void StopFightTimer()
 		{
-			if (!_fightTimer.IsEnabled)
+			if (!FightTimer.IsEnabled)
 			{
 				return;
 			}
-			_fightTimer.Stop();
+			FightTimer.Stop();
 		}
 
 		private void ResetTime()
 		{
-			_fightTimer.Stop();
-			_fightTimer.Reset();
+			FightTimer.Stop();
+			FightTimer.Reset();
 		}
 
 		#endregion // Time
