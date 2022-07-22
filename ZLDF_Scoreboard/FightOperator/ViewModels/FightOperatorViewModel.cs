@@ -217,7 +217,20 @@ namespace ZLDF.Scoreboard.FightOperator.ViewModels
 			FightTimer.TotalTime = duel.TotalTime;
 			ResetTime();
 		}
-		
+
+		public ICommand StartStopCommand { get; private set; }
+		public void StartStop()
+		{
+			if (FightTimer.IsEnabled)
+			{
+				StopFightTimer();
+			}
+			else
+			{
+				StartFightTimer();
+			}
+		}
+
 		public void StartFightTimer()
 		{
 			if (FightTimer.IsEnabled)
@@ -325,9 +338,11 @@ namespace ZLDF.Scoreboard.FightOperator.ViewModels
 			OpenScoreboardCommand = new DelegateCommand(OpenScoreboard);
 			MaximizeScoreboardCommand = new DelegateCommand(MaximizeScoreboard);
 
-			FinishFightCommand = new DelegateCommand(FinishFight);
 			IncreaseFighterScoreCommand = new DelegateCommand<Fighter>(IncreaseFighterScore);
 			DecreaseFighterScoreCommand = new DelegateCommand<Fighter>(DecreaseFighterScore);
+
+			StartStopCommand = new DelegateCommand(StartStop);
+			FinishFightCommand = new DelegateCommand(FinishFight);
 		}
 	}
 }
