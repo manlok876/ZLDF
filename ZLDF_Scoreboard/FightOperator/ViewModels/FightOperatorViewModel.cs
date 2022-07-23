@@ -19,6 +19,8 @@ namespace ZLDF.Scoreboard.FightOperator.ViewModels
 {
 	internal class FightOperatorViewModel : BindableBase
 	{
+		#region Fights
+
 		private Duel _currentDuel;
 		public Duel CurrentDuel
 		{
@@ -28,7 +30,10 @@ namespace ZLDF.Scoreboard.FightOperator.ViewModels
 			}
 			private set
 			{
-				_currentDuel.PropertyChanged -= ScoreChangedListener;
+				if (_currentDuel is not null)
+				{
+					_currentDuel.PropertyChanged -= ScoreChangedListener;
+				}
 
 				InitTimerFromDuel(value);
 
@@ -39,7 +44,6 @@ namespace ZLDF.Scoreboard.FightOperator.ViewModels
 		}
 
 		public List<Duel> _duels = new List<Duel>();
-
 		public IEnumerable<Duel> AllDuels
 		{
 			get
@@ -48,36 +52,50 @@ namespace ZLDF.Scoreboard.FightOperator.ViewModels
 			}
 		}
 
-		public Fighter FirstFighter
-		{
-			get
-			{
-				return CurrentDuel.FirstFighter;
-			}
-		}
-		public Fighter SecondFighter
-		{
-			get
-			{
-				return CurrentDuel.SecondFighter;
-			}
-		}
-
-		#region Fights
-
-		public Duel CreateEmptyDuel()
+		static public Duel CreateEmptyDuel()
 		{
 			Duel dummyDuel = new Duel();
 			dummyDuel.Init(new Fighter(), new Fighter());
 			return dummyDuel;
 		}
 
+		protected void AddDuelToList(Duel newDuel)
+		{
+			if (_duels.Contains(newDuel))
+			{
+				return;
+			}
+			_duels.Add(newDuel);
+			RaisePropertyChanged(nameof(AllDuels));
+		}
+
+		protected void ClearFightsList()
+		{
+			_duels.Clear();
+			RaisePropertyChanged(nameof(AllDuels));
+		}
+
 		public ICommand MoveToNextFightCommand { get; private set; }
 		public void MoveToNextFight()
 		{
-			// Find nextFight
-			// MoveToFight(nextFight)
-			throw new NotImplementedException();
+			if (_duels.Count < 1)
+			{
+				AddDuelToList(CreateEmptyDuel());
+			}
+
+			if (CurrentDuel is null)
+			{
+				MoveToFight(_duels[0]);
+				return;
+			}
+
+			int nextFightIdx = _duels.IndexOf(CurrentDuel) + 1;
+			if (nextFightIdx == -1 || nextFightIdx >= _duels.Count)
+			{
+				nextFightIdx = 0;
+			}
+
+			MoveToFight(_duels[nextFightIdx]);
 		}
 
 		public ICommand MoveToFightCommand { get; private set; }
@@ -107,10 +125,27 @@ namespace ZLDF.Scoreboard.FightOperator.ViewModels
 		{
 			// Set state to finished
 			// Move to next fight
-			MoveToFight(CreateEmptyDuel());
+
+			AddDuelToList(CreateEmptyDuel());
+			MoveToNextFight();
 		}
 
 		#endregion // Fights
+
+		public Fighter FirstFighter
+		{
+			get
+			{
+				return CurrentDuel.FirstFighter;
+			}
+		}
+		public Fighter SecondFighter
+		{
+			get
+			{
+				return CurrentDuel.SecondFighter;
+			}
+		}
 
 		#region Scoreboard
 
@@ -334,8 +369,8 @@ namespace ZLDF.Scoreboard.FightOperator.ViewModels
 			_fightTimer = new CountdownTimer();
 			_fightTimer.TickRate = 0.01;
 
-			_currentDuel = CreateEmptyDuel();
-			_currentDuel.PropertyChanged += ScoreChangedListener;
+			AddDuelToList(CreateEmptyDuel());
+			MoveToNextFight();
 
 			OpenScoreboardCommand = new DelegateCommand(OpenScoreboard);
 			MaximizeScoreboardCommand = new DelegateCommand(MaximizeScoreboard);
