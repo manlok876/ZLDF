@@ -250,6 +250,7 @@ namespace ZLDF.Scoreboard.FightOperator.ViewModels
 			FightTimer.Stop();
 		}
 
+		public ICommand ResetTimeCommand { get; private set; }
 		private void ResetTime()
 		{
 			FightTimer.Stop();
@@ -343,6 +344,7 @@ namespace ZLDF.Scoreboard.FightOperator.ViewModels
 			DecreaseFighterScoreCommand = new DelegateCommand<Fighter>(DecreaseFighterScore);
 
 			StartStopCommand = new DelegateCommand(StartStop);
+			ResetTimeCommand = new DelegateCommand(ResetTime);
 			FinishFightCommand = new DelegateCommand(FinishFight);
 		}
 	}
