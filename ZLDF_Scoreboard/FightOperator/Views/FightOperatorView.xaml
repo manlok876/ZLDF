@@ -137,7 +137,7 @@
 					</Grid>
 				</Border>
 				<TextBlock DockPanel.Dock="Top" Text="Очередь боёв"/>
-				<ListView d:ItemsSource="{d:SampleData ItemCount=5}" Background="SeaShell">
+				<ListView d:ItemsSource="{d:SampleData ItemCount=5}" ItemsSource="{Binding AllDuels}" Background="SeaShell">
 					<ListView.View>
 						<GridView AllowsColumnReorder="False">
 							<GridView.ColumnHeaderContainerStyle>
@@ -145,7 +145,8 @@
 									<Setter Property="Visibility" Value="Collapsed"/>
 								</Style>
 							</GridView.ColumnHeaderContainerStyle>
-							<GridViewColumn/>
+							<GridViewColumn DisplayMemberBinding="{Binding FirstFighter.LastName}"/>
+							<GridViewColumn DisplayMemberBinding="{Binding SecondFighter.LastName}"/>
 						</GridView>
 					</ListView.View>
 					<!--
