@@ -331,6 +331,7 @@ namespace ZLDF.Scoreboard.FightOperator.ViewModels
 			SecondFighterColor = Colors.Blue;
 
 			_fightTimer = new CountdownTimer();
+			_fightTimer.TickRate = 0.01;
 
 			_currentDuel = CreateEmptyDuel();
 			_currentDuel.PropertyChanged += ScoreChangedListener;

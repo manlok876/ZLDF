@@ -32,6 +32,17 @@ namespace ZLDF.Classes
 			}
 		}
 
+		private double _tickRate;
+		public double TickRate
+		{
+			get { return _tickRate; }
+			set
+			{
+				_internalTimer.Interval = TimeSpan.FromSeconds(value);
+				SetProperty(ref _tickRate, value);
+			}
+		}
+
 		public void Reset()
 		{
 			RemainingTime = TotalTime;
@@ -148,7 +159,7 @@ namespace ZLDF.Classes
 			_internalTimer = new DispatcherTimer();
 			_internalTimer.Tick += HandleInternalTimerTick;
 
-			_internalTimer.Interval = TimeSpan.FromSeconds(tickRate);
+			TickRate = tickRate;
 
 			TotalTime = totalTime;
 			Reset();
