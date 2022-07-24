@@ -66,6 +66,7 @@ namespace ZLDF.Scoreboard.FightOperator.ViewModels
 				return;
 			}
 			_duels.Add(newDuel);
+			newDuel.State = EventState.Scheduled;
 			RaisePropertyChanged(nameof(AllDuels));
 		}
 
@@ -123,9 +124,8 @@ namespace ZLDF.Scoreboard.FightOperator.ViewModels
 		public ICommand FinishFightCommand { get; private set; }
 		public void FinishFight()
 		{
-			// Set state to finished
-			// Move to next fight
-
+			StopFightTimer();
+			CurrentDuel.State = EventState.Finished;
 			AddDuelToList(CreateEmptyDuel());
 			MoveToNextFight();
 		}
@@ -271,6 +271,11 @@ namespace ZLDF.Scoreboard.FightOperator.ViewModels
 			if (FightTimer.IsEnabled)
 			{
 				return;
+			}
+
+			if (!CurrentDuel.HasStarted)
+			{
+				CurrentDuel.State = EventState.InProgress;
 			}
 			// TODO: check if we can continue fight
 			FightTimer.Start();
