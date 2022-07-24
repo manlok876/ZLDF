@@ -35,7 +35,7 @@
 					<RowDefinition Height="10" />
 					<RowDefinition Height="*" />
 				</Grid.RowDefinitions>
-				
+
 				<Grid Grid.Row="0" Background="White">
 					<TextBlock HorizontalAlignment="Left" Margin="217,35,0,0" TextWrapping="Wrap" Text="Ристалище 1" d:Text="Ристалище 1" VerticalAlignment="Top"/>
 
@@ -108,7 +108,7 @@
 							</MultiBinding>
 						</TextBlock.Background>
 					</TextBlock>
-					
+
 					<TextBlock HorizontalAlignment="Left" Margin="222,127,0,0" TextWrapping="Wrap" d:Text="0:00,00" Text="{Binding FightTimer.RemainingTime, StringFormat=m\\:ss\\\,ff}" VerticalAlignment="Top"/>
 					<!--
 					- current fight info
@@ -116,10 +116,11 @@
 				</Grid>
 
 				<Grid Grid.Row="2" Background="LightGray">
-					<Button Content="Завершить бой" HorizontalAlignment="Left" Margin="447,125,0,0" VerticalAlignment="Top" Command="{Binding FinishFightCommand}"/>
+					<Button Content="Завершить бой" HorizontalAlignment="Left" Margin="0,162,0,0" VerticalAlignment="Top" Command="{Binding FinishFightCommand}"/>
 					<Button Content="Пауза" HorizontalAlignment="Center" VerticalAlignment="Center" Height="43" Width="78" Command="{Binding StartStopCommand}"/>
 					<Button Content="Отложить бой" HorizontalAlignment="Left" Margin="0,125,0,0" VerticalAlignment="Top"/>
-					<Button Content="Поменять местами" HorizontalAlignment="Left" Margin="87,42,0,0" VerticalAlignment="Top" Command="{Binding SwapFightersCommand}" DataContext="{Binding ElementName=ThisView, Mode=OneWay}"/>
+					<Button Content="Поменять местами" HorizontalAlignment="Left" Margin="0,27,0,0" VerticalAlignment="Top" Command="{Binding SwapFightersCommand}" DataContext="{Binding ElementName=ThisView, Mode=OneWay}"/>
+					<TextBlock HorizontalAlignment="Left" Margin="0,62,0,0" TextWrapping="Wrap" Text="{Binding CurrentDuel.State}" VerticalAlignment="Top" Width="132"/>
 					<!--
 					- fight controls
 						- increase/decrease time manually
