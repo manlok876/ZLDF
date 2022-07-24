@@ -23,11 +23,13 @@ namespace ZLDF.Classes
 			}
 		}
 
-		public virtual EventState State
+		private EventState _state = EventState.Unknown;
+		public EventState State
 		{
-			get
+			get { return _state; }
+			set
 			{
-				return EventState.Unknown;
+				SetProperty(ref _state, value);
 			}
 		}
 
