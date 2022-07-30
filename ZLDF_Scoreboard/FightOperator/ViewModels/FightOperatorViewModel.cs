@@ -391,6 +391,10 @@ namespace ZLDF.Scoreboard.FightOperator.ViewModels
 
 			StartStopCommand = new DelegateCommand(StartStop);
 			ResetTimeCommand = new DelegateCommand(ResetTime);
+
+			MoveToNextFightCommand = new DelegateCommand(MoveToNextFight);
+			MoveToFightCommand = new DelegateCommand<Duel>(MoveToFight);
+			RestartFightCommand = new DelegateCommand(RestartFight);
 			FinishFightCommand = new DelegateCommand(FinishFight);
 		}
 	}
