@@ -117,16 +117,8 @@ namespace ZLDF.Scoreboard.FightOperator.ViewModels
 		public ICommand RestartFightCommand { get; private set; }
 		public void RestartFight()
 		{
-			//w.leftScore = w.rightScore = w.doubleHits = 0;
-			//w.timeLeft = w.currentGamemode.TotalTime;
-			//w.timer.Stop();
-			//w.TimerTextBlock.Background = Brushes.Transparent;
-			//w.matchInProgress = true;
-			//w.UpdateScore();
-			//w.UpdateTimer();
-			//w.UpdateDoubleHits();
-
-			// Reset time to max and score to zero
+			ResetScore();
+			ResetTime();
 		}
 		public ICommand FinishFightCommand { get; private set; }
 		public void FinishFight()
