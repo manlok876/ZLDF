@@ -37,9 +37,9 @@ namespace ZLDF.Scoreboard.FightOperator.ViewModels
 
 				InitTimerFromDuel(value);
 
-				SetProperty(ref _currentDuel, value);
+				SetProperty(ref _currentDuel!, value);
 
-				_currentDuel.PropertyChanged += ScoreChangedListener;
+				_currentDuel!.PropertyChanged += ScoreChangedListener;
 			}
 		}
 
