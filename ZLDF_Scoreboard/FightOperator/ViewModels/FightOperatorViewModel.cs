@@ -102,9 +102,16 @@ namespace ZLDF.Scoreboard.FightOperator.ViewModels
 		public ICommand MoveToFightCommand { get; private set; }
 		public void MoveToFight(Duel targetFight)
 		{
-			// Return if targetFight not in AllFights?
-			// Pause? current fight
-			// Log accordingly
+			if (!_duels.Contains(targetFight))
+			{
+				// TODO: log warning?
+				return;
+			}
+			if (!CurrentDuel?.IsOver ?? false)
+			{
+				CurrentDuel!.State = EventState.Paused;
+			}
+			// TODO: log fight changed event
 			CurrentDuel = targetFight;
 		}
 		public ICommand RestartFightCommand { get; private set; }
