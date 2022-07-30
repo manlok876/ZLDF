@@ -120,6 +120,16 @@ namespace ZLDF.Scoreboard.FightOperator.ViewModels
 			ResetScore();
 			ResetTime();
 		}
+		public ICommand PostponeFightCommand { get; private set; }
+		public void PostponeFight()
+		{
+			StopFightTimer();
+			if (CurrentDuel.State == EventState.InProgress)
+			{
+				CurrentDuel.State = EventState.Paused;
+			}
+			MoveToNextFight();
+		}
 		public ICommand FinishFightCommand { get; private set; }
 		public void FinishFight()
 		{
@@ -395,6 +405,7 @@ namespace ZLDF.Scoreboard.FightOperator.ViewModels
 			MoveToNextFightCommand = new DelegateCommand(MoveToNextFight);
 			MoveToFightCommand = new DelegateCommand<Duel>(MoveToFight);
 			RestartFightCommand = new DelegateCommand(RestartFight);
+			PostponeFightCommand = new DelegateCommand(PostponeFight);
 			FinishFightCommand = new DelegateCommand(FinishFight);
 		}
 	}
