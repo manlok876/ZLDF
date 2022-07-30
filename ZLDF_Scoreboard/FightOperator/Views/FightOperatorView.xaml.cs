@@ -47,23 +47,8 @@ namespace ZLDF.Scoreboard.FightOperator.Views
 		}
 		internal void SetViewModel(FightOperatorViewModel NewVM)
 		{
-			if (ViewModel != null)
-			{
-				ViewModel.PropertyChanged -= VMChangesListener;
-			}
-
 			DataContext = NewVM;
 			RaisePropertyChanged(nameof(ViewModel));
-
-			NewVM.PropertyChanged += VMChangesListener;
-		}
-
-		public Duel? CurrentFight
-		{
-			get
-			{
-				return ViewModel?.CurrentDuel;
-			}
 		}
 
 		private bool bIsFlipped = false;
@@ -80,82 +65,27 @@ namespace ZLDF.Scoreboard.FightOperator.Views
 			}
 		}
 
-		public Fighter? LeftFighter
-		{
-			get
-			{
-				if (IsFlipped)
-				{
-					return CurrentFight?.FirstFighter;
-				}
-				else
-				{
-					return CurrentFight?.SecondFighter;
-				}
-			}
-		}
-		public Fighter? RightFighter
-		{
-			get
-			{
-				if (IsFlipped)
-				{
-					return CurrentFight?.SecondFighter;
-				}
-				else
-				{
-					return CurrentFight?.FirstFighter;
-				}
-			}
-		}
-
-		public int LeftScore
-		{
-			get
-			{
-				return (int) (CurrentFight?.GetFighterScore(LeftFighter) ?? -1);
-			}
-		}
-		public int RightScore
-		{
-			get
-			{
-				return (int) (CurrentFight?.GetFighterScore(RightFighter) ?? -1);
-			}
-		}
-
 		public ICommand SwapFightersCommand { get; private set; }
 		void SwapFighters()
 		{
 			IsFlipped = !IsFlipped;
 		}
 
-		private void VMChangesListener(object? sender, PropertyChangedEventArgs e)
-		{
-			if (e.PropertyName == nameof(ViewModel.CurrentDuel))
-			{
-				RaisePropertyChanged(nameof(CurrentFight));
-			}
-			Trace.WriteLine("VM " + e.PropertyName + " changed");
-		}
-
-		private void HandlePropertyUpdated(object? sender, PropertyChangedEventArgs e)
-		{
-			//if (e.PropertyName == nameof(CurrentFight))
-			//{
-			//	RaisePropertyChanged(nameof(LeftFighter));
-			//	RaisePropertyChanged(nameof(RightFighter));
-			//}
-			//Trace.WriteLine(e.PropertyName + " changed");
-		}
-
 		public FightOperatorView()
 		{
 			InitializeComponent();
 
-			PropertyChanged += HandlePropertyUpdated;
-
 			SwapFightersCommand = new DelegateCommand(SwapFighters);
+		}
+
+		private void FightsList_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+		{
+			ListView? lv = sender as ListView;
+			Duel? d = lv?.SelectedItem as Duel;
+			if (d != null)
+			{
+				ViewModel?.MoveToFight(d);
+			}
 		}
 	}
 }

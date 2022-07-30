@@ -139,7 +139,7 @@
 					</Grid>
 				</Border>
 				<TextBlock DockPanel.Dock="Top" Text="Очередь боёв"/>
-				<ListView d:ItemsSource="{d:SampleData ItemCount=5}" ItemsSource="{Binding AllDuels}" Background="SeaShell">
+				<ListView Name="FightsList" d:ItemsSource="{d:SampleData ItemCount=5}" ItemsSource="{Binding AllDuels}" Background="SeaShell" SelectedItem="{Binding CurrentDuel, Mode=OneWay}" MouseDoubleClick="FightsList_MouseDoubleClick">
 					<ListView.View>
 						<GridView AllowsColumnReorder="False">
 							<GridView.ColumnHeaderContainerStyle>
