@@ -38,9 +38,9 @@
 				</Grid.RowDefinitions>
 
 				<Grid Grid.Row="0" Background="White">
-					<TextBlock HorizontalAlignment="Left" Margin="217,35,0,0" TextWrapping="Wrap" Text="Ристалище 1" d:Text="Ристалище 1" VerticalAlignment="Top"/>
+					<TextBlock Text="Ристалище 1" d:Text="Ристалище 1" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,30,0,0"/>
 
-					<Button Content="+1 балл" HorizontalAlignment="Left" Margin="25,61,0,0" VerticalAlignment="Top" Height="44" Width="53" Command="{Binding IncreaseFighterScoreCommand}">
+					<Button Content="+1 балл" Command="{Binding IncreaseFighterScoreCommand}"  Height="45" Width="50" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="20,0,0,50">
 						<Button.CommandParameter>
 							<MultiBinding Converter="{StaticResource LeftSelector}">
 								<Binding Path="CurrentDuel.FirstFighter"/>
@@ -49,7 +49,7 @@
 							</MultiBinding>
 						</Button.CommandParameter>
 					</Button>
-					<Button Content="-1 балл" HorizontalAlignment="Left" Margin="25,105,0,0" VerticalAlignment="Top" Height="44" Width="53" Command="{Binding DecreaseFighterScoreCommand}">
+					<Button Content="-1 балл" Command="{Binding DecreaseFighterScoreCommand}" Height="45" Width="50" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="20,50,0,0">
 						<Button.CommandParameter>
 							<MultiBinding Converter="{StaticResource LeftSelector}">
 								<Binding Path="CurrentDuel.FirstFighter"/>
@@ -58,7 +58,7 @@
 							</MultiBinding>
 						</Button.CommandParameter>
 					</Button>
-					<TextBlock HorizontalAlignment="Left" Margin="121,0,0,0" TextWrapping="Wrap" d:Text="15" VerticalAlignment="Center" FontSize="44">
+					<TextBlock x:Name="RightScoreText" d:Text="15" FontSize="44" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="120,0,0,0">
 						<TextBlock.Text>
 							<MultiBinding Converter="{StaticResource LeftSelector}">
 								<Binding Path="CurrentDuel.FirstFighterScore"/>
@@ -75,7 +75,7 @@
 						</TextBlock.Background>
 					</TextBlock>
 
-					<Button Content="+1 балл" HorizontalAlignment="Left" Margin="447,61,0,0" VerticalAlignment="Top" Height="44" Width="53" Command="{Binding IncreaseFighterScoreCommand}">
+					<Button Content="+1 балл" Command="{Binding IncreaseFighterScoreCommand}" Height="45" Width="50" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,20,50">
 						<Button.CommandParameter>
 							<MultiBinding Converter="{StaticResource RightSelector}">
 								<Binding Path="CurrentDuel.FirstFighter"/>
@@ -84,7 +84,7 @@
 							</MultiBinding>
 						</Button.CommandParameter>
 					</Button>
-					<Button Content="-1 балл" HorizontalAlignment="Left" Margin="447,105,0,0" VerticalAlignment="Top" Height="44" Width="53" Command="{Binding DecreaseFighterScoreCommand}">
+					<Button Content="-1 балл" Command="{Binding DecreaseFighterScoreCommand}" Height="45" Width="50" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,50,20,0">
 						<Button.CommandParameter>
 							<MultiBinding Converter="{StaticResource RightSelector}">
 								<Binding Path="CurrentDuel.FirstFighter"/>
@@ -93,7 +93,7 @@
 							</MultiBinding>
 						</Button.CommandParameter>
 					</Button>
-					<TextBlock x:Name="LeftScoreText" HorizontalAlignment="Left" Margin="381,0,0,0" TextWrapping="Wrap" d:Text="1" VerticalAlignment="Center" FontSize="44">
+					<TextBlock x:Name="LeftScoreText" d:Text="1" FontSize="44" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,120,0">
 						<TextBlock.Text>
 							<MultiBinding Converter="{StaticResource RightSelector}">
 								<Binding Path="CurrentDuel.FirstFighterScore"/>
@@ -110,18 +110,22 @@
 						</TextBlock.Background>
 					</TextBlock>
 
-					<TextBlock HorizontalAlignment="Left" Margin="222,127,0,0" TextWrapping="Wrap" d:Text="0:00,00" Text="{Binding CurrentDuel.RemainingTime, StringFormat=m\\:ss\\\,ff}" VerticalAlignment="Top"/>
+					<TextBlock d:Text="0:00,00" Text="{Binding CurrentDuel.RemainingTime, StringFormat=m\\:ss\\\,ff}" TextWrapping="Wrap" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,50"/>
+					<StatusBar Height="20" VerticalAlignment="Bottom">
+						<TextBlock Text="{Binding CurrentDuel.State}" d:Text="InProgress" TextWrapping="Wrap"/>
+					</StatusBar>
 					<!--
 					- current fight info
 					-->
 				</Grid>
 
 				<Grid Grid.Row="2" Background="LightGray">
-					<Button Content="Завершить бой" HorizontalAlignment="Left" Margin="0,162,0,0" VerticalAlignment="Top" Command="{Binding FinishFightCommand}"/>
-					<Button Content="Пауза" HorizontalAlignment="Center" VerticalAlignment="Center" Height="43" Width="78" Command="{Binding StartStopCommand}"/>
-					<Button Content="Отложить бой" HorizontalAlignment="Left" Margin="0,125,0,0" VerticalAlignment="Top"/>
-					<Button Content="Поменять местами" HorizontalAlignment="Left" Margin="0,27,0,0" VerticalAlignment="Top" Command="{Binding SwapFightersCommand}" DataContext="{Binding ElementName=ThisView, Mode=OneWay}"/>
-					<TextBlock HorizontalAlignment="Left" Margin="0,62,0,0" TextWrapping="Wrap" Text="{Binding CurrentDuel.State}" VerticalAlignment="Top" Width="132"/>
+					<Button Content="Пауза" Command="{Binding StartStopCommand}" Height="50" Width="180" HorizontalAlignment="Center" VerticalAlignment="Center" />
+					<StackPanel Orientation="Horizontal" Height="20" VerticalAlignment="Bottom">
+						<Button Content="Поменять местами" Command="{Binding SwapFightersCommand}" DataContext="{Binding ElementName=ThisView, Mode=OneWay}" Margin="5,0,5,0"/>
+						<Button Content="Отложить бой" Command="{Binding PostponeFightCommand}" Margin="5,0,5,0"/>
+						<Button Content="Завершить бой" Command="{Binding FinishFightCommand}" Margin="5,0,5,0"/>
+					</StackPanel>
 					<!--
 					- fight controls
 						- increase/decrease time manually
@@ -138,6 +142,12 @@
 						<TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Ристалище:" VerticalAlignment="Center" Height="18" Width="102" Margin="10,0,0,0"/>
 					</Grid>
 				</Border>
+				<TextBlock DockPanel.Dock="Top" Text="Табло"/>
+				<StackPanel Background="White" Orientation="Horizontal" DockPanel.Dock="Top">
+					<Button Content="Закрыть" Margin="5,0,5,0"/>
+					<Button Content="Показать" Margin="5,0,5,0"/>
+					<Button Content="Развернуть" Margin="5,0,5,0"/>
+				</StackPanel>
 				<TextBlock DockPanel.Dock="Top" Text="Очередь боёв"/>
 				<ListView Name="FightsList" d:ItemsSource="{d:SampleData ItemCount=5}" ItemsSource="{Binding AllDuels}" Background="SeaShell" SelectedItem="{Binding CurrentDuel, Mode=OneWay}" MouseDoubleClick="FightsList_MouseDoubleClick">
 					<ListView.View>
