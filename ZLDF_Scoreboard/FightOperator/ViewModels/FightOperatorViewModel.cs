@@ -251,7 +251,11 @@ namespace ZLDF.Scoreboard.FightOperator.ViewModels
 
 		private void FightTick(object? sender, EventArgs e)
 		{
-			// ???
+			if (CurrentDuel is null)
+			{
+				return;
+			}
+			CurrentDuel.RemainingTime = FightTimer.RemainingTime;
 		}
 
 		protected void InitTimerFromDuel(Duel duel)
@@ -299,10 +303,11 @@ namespace ZLDF.Scoreboard.FightOperator.ViewModels
 		}
 
 		public ICommand ResetTimeCommand { get; private set; }
-		private void ResetTime()
+		protected void ResetTime()
 		{
 			FightTimer.Stop();
 			FightTimer.Reset();
+			FightTick(this, new EventArgs());
 		}
 
 		#endregion // Time
@@ -381,6 +386,7 @@ namespace ZLDF.Scoreboard.FightOperator.ViewModels
 
 			_fightTimer = new CountdownTimer();
 			_fightTimer.TickRate = 0.01;
+			_fightTimer.Tick += FightTick;
 
 			AddDuelToList(CreateEmptyDuel());
 			MoveToNextFight();
