@@ -15,6 +15,7 @@
 		<con:LeftDataSelector x:Key="LeftSelector"/>
 		<con:RightDataSelector x:Key="RightSelector"/>
 		<con:ColorToBrushConverter x:Key="ColorConverter"/>
+		<con:EventStateToBrushConverter x:Key="FightStateBrush"/>
 	</Window.Resources>
 
 	<DockPanel LastChildFill="True">
@@ -148,6 +149,13 @@
 							</GridView.ColumnHeaderContainerStyle>
 							<GridViewColumn DisplayMemberBinding="{Binding FirstFighter.LastName}"/>
 							<GridViewColumn DisplayMemberBinding="{Binding SecondFighter.LastName}"/>
+							<GridViewColumn>
+								<GridViewColumn.CellTemplate>
+									<DataTemplate>
+										<TextBlock Text="{Binding State}" Background="{Binding State, Converter={StaticResource FightStateBrush}}"/>
+									</DataTemplate>
+								</GridViewColumn.CellTemplate>
+							</GridViewColumn>
 						</GridView>
 					</ListView.View>
 					<!--
