@@ -254,7 +254,7 @@ namespace ZLDF.Scoreboard.FightOperator.ViewModels
 		{
 			StopFightTimer();
 			FightTimer.TotalTime = duel.TotalTime;
-			ResetTime();
+			FightTimer.RemainingTime = duel.RemainingTime;
 		}
 
 		public ICommand StartStopCommand { get; private set; }
@@ -277,7 +277,7 @@ namespace ZLDF.Scoreboard.FightOperator.ViewModels
 				return;
 			}
 
-			if (!CurrentDuel.HasStarted)
+			if (!CurrentDuel.IsOver)
 			{
 				CurrentDuel.State = EventState.InProgress;
 			}
