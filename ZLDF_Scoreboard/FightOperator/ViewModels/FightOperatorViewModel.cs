@@ -229,9 +229,10 @@ namespace ZLDF.Scoreboard.FightOperator.ViewModels
 		{
 			CurrentDuel.AddFighterScore(fighter, -1);
 		}
-		private void ResetScore()
+		protected void ResetScore()
 		{
-			// Reset score to zero
+			CurrentDuel.FirstFighterScore = 0;
+			CurrentDuel.SecondFighterScore = 0;
 		}
 
 		#endregion // Scores
