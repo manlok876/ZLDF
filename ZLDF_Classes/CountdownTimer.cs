@@ -32,6 +32,16 @@ namespace ZLDF.Classes
 			}
 		}
 
+		public TimeSpan GetPreciseRemainingTime()
+		{
+			if (!IsEnabled)
+			{
+				return RemainingTime;
+			}
+
+			return RemainingTime - (DateTime.Now - LastTickTime);
+		}
+
 		private double _tickRate;
 		public double TickRate
 		{
