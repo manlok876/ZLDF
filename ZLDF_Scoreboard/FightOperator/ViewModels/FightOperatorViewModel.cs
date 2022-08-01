@@ -161,6 +161,21 @@ namespace ZLDF.Scoreboard.FightOperator.ViewModels
 		private ScoreboardViewModel? _scoreboardVM;
 		private ScoreboardView? _scoreboardWindow;
 
+		public bool IsScoreboardOpened()
+		{
+			return _scoreboardWindow != null;
+		}
+
+		public ICommand CloseScoreboardCommand { get; private set; }
+		public void CloseScoreboard()
+		{
+			if (_scoreboardWindow != null)
+			{
+				_scoreboardWindow.Close();
+				_scoreboardWindow = null;
+			}
+		}
+
 		public ICommand OpenScoreboardCommand { get; private set; }
 		public void OpenScoreboard()
 		{
@@ -393,6 +408,7 @@ namespace ZLDF.Scoreboard.FightOperator.ViewModels
 			AddDuelToList(CreateEmptyDuel());
 			MoveToNextFight();
 
+			CloseScoreboardCommand = new DelegateCommand(CloseScoreboard);
 			OpenScoreboardCommand = new DelegateCommand(OpenScoreboard);
 			MaximizeScoreboardCommand = new DelegateCommand(MaximizeScoreboard);
 
