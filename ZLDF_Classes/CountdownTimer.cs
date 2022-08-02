@@ -164,9 +164,9 @@ namespace ZLDF.Classes
 			}
 		}
 
-		public CountdownTimer(TimeSpan totalTime, double tickRate)
+		public CountdownTimer(DispatcherPriority priority, TimeSpan totalTime, double tickRate)
 		{
-			_internalTimer = new DispatcherTimer();
+			_internalTimer = new DispatcherTimer(priority);
 			_internalTimer.Tick += HandleInternalTimerTick;
 
 			TickRate = tickRate;
@@ -175,7 +175,11 @@ namespace ZLDF.Classes
 			Reset();
 		}
 
-		public CountdownTimer() : this(new TimeSpan(0, 1, 0), 0.1)
+		public CountdownTimer(DispatcherPriority priority) : this(priority, new TimeSpan(0, 1, 0), 0.1)
+		{
+		}
+
+		public CountdownTimer() : this(DispatcherPriority.Normal, new TimeSpan(0, 1, 0), 0.1)
 		{
 		}
 	}
