@@ -24,7 +24,8 @@
 			<RowDefinition Height="*"/>
 		</Grid.RowDefinitions>
 		<Viewbox>
-			<TextBlock Name="ArenaTextBlock" Text="{Binding ArenaNumber, StringFormat='Ристалище {0}'}" d:Text="Ристалище 1" FontSize="60" TextAlignment="Center" Grid.Row="0" Margin="10,0,10,-20"/>
+			<!--<TextBlock Name="ArenaTextBlock" Text="{Binding ArenaNumber, StringFormat='Ристалище {0}'}" d:Text="Ристалище 1" FontSize="60" TextAlignment="Center" Grid.Row="0" Margin="10,0,10,-20"/>-->
+			<TextBlock Name="ArenaTextBlock" d:Text="Ристалище 1" FontSize="60" TextAlignment="Center" Grid.Row="0" Margin="10,0,10,-20"/>
 		</Viewbox>
 		<Grid Grid.Row="1">
 			<Grid.ColumnDefinitions>
