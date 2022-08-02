@@ -16,64 +16,34 @@ namespace ZLDF.Scoreboard.Scoreboard.ViewModels
 	internal class ScoreboardViewModel : BindableBase
 	{
 		private readonly FightOperatorViewModel _operatorViewModel;
-
-		public bool AreFightersSwapped { get; set; }
-
-		public int ArenaNumber { get; }
-
-		public Duel CurrentFight
+		public FightOperatorViewModel FightOperatorVM
 		{
-			get
+			get { return _operatorViewModel; }
+		}
+
+		private bool _bIsMirrored = true;
+		public bool IsMirrored
+		{
+			get { return _bIsMirrored; }
+			set
 			{
-				Duel? currentDuel = _operatorViewModel.CurrentDuel as Duel;
-				return currentDuel ?? new Duel();
+				SetProperty(ref _bIsMirrored, value);
+				UpdateFlipState();
 			}
 		}
 
-		public Fighter LeftFighter
+		public bool IsFlipped
 		{
 			get
 			{
-				if (AreFightersSwapped)
-				{
-					return CurrentFight.SecondFighter;
-				}
-				else
-				{
-					return CurrentFight.FirstFighter;
-				}
-			}
-		}
-		
-		public Fighter RightFighter
-		{
-			get
-			{
-				if (AreFightersSwapped)
-				{
-					return CurrentFight.FirstFighter;
-				}
-				else
-				{
-					return CurrentFight.SecondFighter;
-				}
+				// TODO: route proper logic
+				return IsMirrored;
 			}
 		}
 
-		public int LeftScore
+		internal void UpdateFlipState()
 		{
-			get
-			{
-				return (int)CurrentFight.GetFighterScore(LeftFighter);
-			}
-		}
-
-		public int RightScore
-		{
-			get
-			{
-				return (int)CurrentFight.GetFighterScore(RightFighter);
-			}
+			RaisePropertyChanged(nameof(IsFlipped));
 		}
 
 		public ScoreboardViewModel(FightOperatorViewModel operatorViewModel)
