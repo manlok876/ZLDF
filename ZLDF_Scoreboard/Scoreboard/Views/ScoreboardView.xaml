@@ -3,6 +3,7 @@
 		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 		xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		xmlns:con="clr-namespace:ZLDF.Scoreboard.Converters"
 		xmlns:local="clr-namespace:ZLDF.Scoreboard.Scoreboard.Views"
 		xmlns:viewmodels="clr-namespace:ZLDF.Scoreboard.Scoreboard.ViewModels"
 		d:DataContext="{d:DesignInstance Type=viewmodels:ScoreboardViewModel}"
@@ -10,13 +11,20 @@
 		Title="Табло"
 		Height="450" Width="800" 
 		WindowStartupLocation="CenterScreen">
+
+	<Window.Resources>
+		<con:LeftDataSelector x:Key="LeftSelector"/>
+		<con:RightDataSelector x:Key="RightSelector"/>
+		<con:ColorToBrushConverter x:Key="ColorConverter"/>
+	</Window.Resources>
+
 	<Grid Name="BGG" >
 		<Grid.RowDefinitions>
 			<RowDefinition Height="70"/>
 			<RowDefinition Height="*"/>
 		</Grid.RowDefinitions>
 		<Viewbox>
-			<TextBlock Name="ArenaTextBlock" Grid.Row="0" Margin="10,0,10,-20" Text="{Binding ArenaNumber, StringFormat='Ристалище {0}'}" d:Text="Ристалище 1" FontSize="60" TextAlignment="Center"/>
+			<TextBlock Name="ArenaTextBlock" Text="{Binding ArenaNumber, StringFormat='Ристалище {0}'}" d:Text="Ристалище 1" FontSize="60" TextAlignment="Center" Grid.Row="0" Margin="10,0,10,-20"/>
 		</Viewbox>
 		<Grid Grid.Row="1">
 			<Grid.ColumnDefinitions>
@@ -28,7 +36,22 @@
 			</Grid.ColumnDefinitions>
 			<Border Name="LeftBG" Grid.Column="0">
 				<Viewbox Margin="10,20,10,20" >
-					<TextBlock Name="ScoreLeftTextBlock" Text="{Binding LeftScore}" d:Text="1" TextAlignment="Center" Foreground="#FFF10000" VerticalAlignment="Center"/>
+					<TextBlock Name="LeftScoreTextBlock" d:Text="1" TextAlignment="Center" VerticalAlignment="Center">
+						<TextBlock.Text>
+							<MultiBinding Converter="{StaticResource LeftSelector}">
+								<Binding Path="FightOperatorVM.CurrentDuel.FirstFighterScore"/>
+								<Binding Path="FightOperatorVM.CurrentDuel.SecondFighterScore"/>
+								<Binding Path="IsFlipped"/>
+							</MultiBinding>
+						</TextBlock.Text>
+						<TextBlock.Foreground>
+							<MultiBinding Converter="{StaticResource LeftSelector}">
+								<Binding Path="FightOperatorVM.FirstFighterColor" Converter="{StaticResource ColorConverter}"/>
+								<Binding Path="FightOperatorVM.SecondFighterColor" Converter="{StaticResource ColorConverter}"/>
+								<Binding Path="IsFlipped"/>
+							</MultiBinding>
+						</TextBlock.Foreground>
+					</TextBlock>
 				</Viewbox>
 			</Border>
 			<Viewbox Grid.Column="2">
@@ -38,14 +61,29 @@
 						<RowDefinition Height="*" />
 						<RowDefinition Height="*" />
 					</Grid.RowDefinitions>
-					<TextBlock Name="TimerTextBlock" Grid.Row="0" Margin="10,10,10,20" Text="0:00" FontSize="150" TextAlignment="Center"/>
+					<TextBlock Name="TimerTextBlock" d:Text="0:00,00" Text="{Binding FightOperatorVM.CurrentDuel.RemainingTime, StringFormat=m\\:ss\\\,ff}" FontSize="150" TextAlignment="Center" Grid.Row="0" Margin="10,10,10,20"/>
 					<TextBlock Name="DoubleHitsTextBlock" Grid.Row="1" Margin="10,10,10,20" Text="Обоюдки: 0" FontSize="80" TextAlignment="Center"/>
 					<Image x:Name="Logo" Grid.Row="2" Source="/Images/logo.jpg" Height="478"/>
 				</Grid>
 			</Viewbox>
 			<Border Name="RightBG" Grid.Column="4">
 				<Viewbox Margin="10,20,10,20">
-					<TextBlock Name="ScoreRightTextBlock" Text="{Binding RightScore}" d:Text="45" TextAlignment="Center" VerticalAlignment="Center" Foreground="#FF0017FF"/>
+					<TextBlock Name="RightScoreTextBlock" d:Text="45" TextAlignment="Center" VerticalAlignment="Center">
+						<TextBlock.Text>
+							<MultiBinding Converter="{StaticResource RightSelector}">
+								<Binding Path="FightOperatorVM.CurrentDuel.FirstFighterScore"/>
+								<Binding Path="FightOperatorVM.CurrentDuel.SecondFighterScore"/>
+								<Binding Path="IsFlipped"/>
+							</MultiBinding>
+						</TextBlock.Text>
+						<TextBlock.Foreground>
+							<MultiBinding Converter="{StaticResource RightSelector}">
+								<Binding Path="FightOperatorVM.FirstFighterColor" Converter="{StaticResource ColorConverter}"/>
+								<Binding Path="FightOperatorVM.SecondFighterColor" Converter="{StaticResource ColorConverter}"/>
+								<Binding Path="IsFlipped"/>
+							</MultiBinding>
+						</TextBlock.Foreground>
+				</TextBlock>
 				</Viewbox>
 			</Border>
 		</Grid>
