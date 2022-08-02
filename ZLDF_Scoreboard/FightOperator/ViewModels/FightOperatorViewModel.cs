@@ -401,7 +401,7 @@ namespace ZLDF.Scoreboard.FightOperator.ViewModels
 			FirstFighterColor = Colors.Red;
 			SecondFighterColor = Colors.Blue;
 
-			_fightTimer = new CountdownTimer();
+			_fightTimer = new CountdownTimer(DispatcherPriority.Send);
 			_fightTimer.TickRate = 0.01;
 			_fightTimer.Tick += FightTick;
 
