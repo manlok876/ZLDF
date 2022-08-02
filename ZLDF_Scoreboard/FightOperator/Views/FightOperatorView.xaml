@@ -121,10 +121,10 @@
 
 				<Grid Grid.Row="2" Background="LightGray">
 					<Button Content="Пауза" Command="{Binding StartStopCommand}" Height="50" Width="180" HorizontalAlignment="Center" VerticalAlignment="Center" />
-					<StackPanel Orientation="Horizontal" Height="20" VerticalAlignment="Bottom">
-						<Button Content="Поменять местами" Command="{Binding SwapFightersCommand}" DataContext="{Binding ElementName=ThisView, Mode=OneWay}" Margin="5,0,5,0"/>
-						<Button Content="Отложить бой" Command="{Binding PostponeFightCommand}" Margin="5,0,5,0"/>
-						<Button Content="Завершить бой" Command="{Binding FinishFightCommand}" Margin="5,0,5,0"/>
+					<StackPanel Orientation="Horizontal" Height="40" VerticalAlignment="Bottom">
+						<Button Content="Поменять местами" Command="{Binding SwapFightersCommand}" Padding="5" DataContext="{Binding ElementName=ThisView, Mode=OneWay}" Margin="5"/>
+						<Button Content="Отложить бой" Command="{Binding PostponeFightCommand}" Padding="5" Margin="5"/>
+						<Button Content="Завершить бой" Command="{Binding FinishFightCommand}" Padding="5" Margin="5"/>
 					</StackPanel>
 					<!--
 					- fight controls
@@ -142,13 +142,19 @@
 						<TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Ристалище:" VerticalAlignment="Center" Height="18" Width="102" Margin="10,0,0,0"/>
 					</Grid>
 				</Border>
-				<TextBlock DockPanel.Dock="Top" Text="Табло"/>
-				<StackPanel Background="White" Orientation="Horizontal" DockPanel.Dock="Top">
-					<Button Content="Закрыть" Margin="5,0,5,0"/>
-					<Button Content="Показать" Margin="5,0,5,0"/>
-					<Button Content="Развернуть" Margin="5,0,5,0"/>
+				<TextBlock Text="Табло" DockPanel.Dock="Top"/>
+				<StackPanel Orientation="Vertical" Background="SeaShell" DockPanel.Dock="Top">
+					<StackPanel Orientation="Horizontal" Margin="5">
+						<CheckBox Name="ScoreboardMirrorCheckBox"  d:IsChecked="True"/>
+						<TextBlock Text="Зеркальное отображение"/>
+					</StackPanel>
+					<UniformGrid Rows="1" DockPanel.Dock="Top">
+						<Button Command="{Binding CloseScoreboardCommand}" Content="Закрыть" Margin="5"/>
+						<Button Command="{Binding OpenScoreboardCommand}" Content="Показать" Margin="5"/>
+						<Button Command="{Binding MaximizeScoreboardCommand}" Content="Развернуть" Margin="5"/>
+					</UniformGrid>
 				</StackPanel>
-				<TextBlock DockPanel.Dock="Top" Text="Очередь боёв"/>
+				<TextBlock Text="Очередь боёв" DockPanel.Dock="Top"/>
 				<ListView Name="FightsList" d:ItemsSource="{d:SampleData ItemCount=5}" ItemsSource="{Binding AllDuels}" Background="SeaShell" SelectedItem="{Binding CurrentDuel, Mode=OneWay}" MouseDoubleClick="FightsList_MouseDoubleClick">
 					<ListView.View>
 						<GridView AllowsColumnReorder="False">
