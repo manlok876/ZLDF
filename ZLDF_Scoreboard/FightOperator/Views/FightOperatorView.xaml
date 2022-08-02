@@ -145,7 +145,7 @@
 				<TextBlock Text="Табло" DockPanel.Dock="Top"/>
 				<StackPanel Orientation="Vertical" Background="SeaShell" DockPanel.Dock="Top">
 					<StackPanel Orientation="Horizontal" Margin="5">
-						<CheckBox Name="ScoreboardMirrorCheckBox"  d:IsChecked="True"/>
+						<CheckBox Name="ScoreboardMirrorCheckBox" IsChecked="{Binding ScoreboardVM.IsMirrored}" d:IsChecked="True"/>
 						<TextBlock Text="Зеркальное отображение"/>
 					</StackPanel>
 					<UniformGrid Rows="1" DockPanel.Dock="Top">

@@ -159,6 +159,14 @@ namespace ZLDF.Scoreboard.FightOperator.ViewModels
 		#region Scoreboard
 
 		private ScoreboardViewModel? _scoreboardVM;
+		public ScoreboardViewModel? ScoreboardVM
+		{
+			get { return _scoreboardVM; }
+			private set
+			{
+				SetProperty(ref _scoreboardVM, value);
+			}
+		}
 		private ScoreboardView? _scoreboardWindow;
 
 		public bool IsScoreboardOpened()
@@ -185,13 +193,13 @@ namespace ZLDF.Scoreboard.FightOperator.ViewModels
 				_scoreboardWindow = null;
 			}
 
-			if (_scoreboardVM == null)
+			if (ScoreboardVM == null)
 			{
-				_scoreboardVM = new ScoreboardViewModel(this);
+				ScoreboardVM = new ScoreboardViewModel(this);
 			}
 
 			_scoreboardWindow = new ScoreboardView();
-			_scoreboardWindow.DataContext = _scoreboardVM;
+			_scoreboardWindow.DataContext = ScoreboardVM;
 			_scoreboardWindow.Show();
 		}
 
