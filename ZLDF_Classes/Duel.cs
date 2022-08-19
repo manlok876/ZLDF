@@ -19,7 +19,7 @@ namespace ZLDF.Classes
 			{
 				return _firstFighter;
 			}
-			private set
+			set
 			{
 				SetProperty(ref _firstFighter, value);
 			}
@@ -34,7 +34,7 @@ namespace ZLDF.Classes
 			{
 				return _secondFighter;
 			}
-			private set
+			set
 			{
 				SetProperty(ref _secondFighter, value);
 			}
