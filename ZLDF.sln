@@ -7,10 +7,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ZLDF_MainHost", "ZLDF_MainH
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ZLDF_Classes", "ZLDF_Classes\ZLDF_Classes.csproj", "{E8CF0509-2114-4CDC-8963-EFB886A3FBD1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZLDF_Scoreboard", "ZLDF_Scoreboard\ZLDF_Scoreboard.csproj", "{70E065F6-D925-4528-AE02-9CE07F479EC8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ZLDF_Scoreboard", "ZLDF_Scoreboard\ZLDF_Scoreboard.csproj", "{70E065F6-D925-4528-AE02-9CE07F479EC8}"
 	ProjectSection(ProjectDependencies) = postProject
 		{E8CF0509-2114-4CDC-8963-EFB886A3FBD1} = {E8CF0509-2114-4CDC-8963-EFB886A3FBD1}
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZLDF_Launcher", "ZLDF_Launcher\ZLDF_Launcher.csproj", "{C3989574-0958-4F68-BBF6-C87AC19F1A7B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -30,6 +32,10 @@ Global
 		{70E065F6-D925-4528-AE02-9CE07F479EC8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{70E065F6-D925-4528-AE02-9CE07F479EC8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{70E065F6-D925-4528-AE02-9CE07F479EC8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C3989574-0958-4F68-BBF6-C87AC19F1A7B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C3989574-0958-4F68-BBF6-C87AC19F1A7B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C3989574-0958-4F68-BBF6-C87AC19F1A7B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C3989574-0958-4F68-BBF6-C87AC19F1A7B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

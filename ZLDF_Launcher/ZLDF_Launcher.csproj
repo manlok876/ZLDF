@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+    <RootNamespace>$(MSBuildProjectName.Replace("_", "."))</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ZLDF_Classes\ZLDF_Classes.csproj" />
+    <ProjectReference Include="..\ZLDF_MainHost\ZLDF_MainHost.csproj" />
+    <ProjectReference Include="..\ZLDF_Scoreboard\ZLDF_Scoreboard.csproj" />
+  </ItemGroup>
+
+</Project>
