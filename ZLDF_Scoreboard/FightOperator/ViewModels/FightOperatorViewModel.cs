@@ -397,11 +397,7 @@ namespace ZLDF.Scoreboard.FightOperator.ViewModels
 		public ICommand ExitAppCommand { get; private set; }
 		public void ExitApp()
 		{
-			if (_scoreboardWindow != null)
-			{
-				_scoreboardWindow.Close();
-			}
-			//w.Close();
+			CloseScoreboard();
 		}
 
 		public FightOperatorViewModel()
