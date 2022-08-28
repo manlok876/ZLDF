@@ -132,30 +132,26 @@ namespace ZLDF.Scoreboard.FightOperator.Views
 			{
 				ViewModel?.IncreaseFighterScore(GetLeftFighter());
 			}
-			else if (e.Key == Key.W || e.Key == Key.F2)
-			{
-				//leftScore += 2;
-				//UpdateScore();
-			}
-			else if (e.Key == Key.E || e.Key == Key.F3)
-			{
-				//leftScore += 3;
-				//UpdateScore();
-			}
+			//else if (e.Key == Key.W || e.Key == Key.F2)
+			//{
+			//	//leftScore += 2;
+			//}
+			//else if (e.Key == Key.E || e.Key == Key.F3)
+			//{
+			//	//leftScore += 3;
+			//}
 			else if (e.Key == Key.Z || e.Key == Key.F4)
 			{
 				ViewModel?.DecreaseFighterScore(GetLeftFighter());
 			}
-			else if (e.Key == Key.I || e.Key == Key.System)
-			{
-				//rightScore += 3;
-				//UpdateScore();
-			}
-			else if (e.Key == Key.O || e.Key == Key.F11)
-			{
-				//rightScore += 2;
-				//UpdateScore();
-			}
+			//else if (e.Key == Key.I || e.Key == Key.System)
+			//{
+			//	//rightScore += 3;
+			//}
+			//else if (e.Key == Key.O || e.Key == Key.F11)
+			//{
+			//	//rightScore += 2;
+			//}
 			else if (e.Key == Key.P || e.Key == Key.F12)
 			{
 				ViewModel?.IncreaseFighterScore(GetRightFighter());
@@ -170,46 +166,40 @@ namespace ZLDF.Scoreboard.FightOperator.Views
 			}
 			else if (e.Key == Key.F)
 			{
-				//timeLeft += new TimeSpan(0, 0, 1);
-				//matchInProgress = true;
-				//UpdateTimer();
+				ViewModel?.IncreaseRemainingTime(new TimeSpan(0, 0, 1));
 			}
 			else if (e.Key == Key.G)
 			{
-				//timeLeft -= new TimeSpan(0, 0, 1);
-				//matchInProgress = true;
-				//UpdateTimer();
+				ViewModel?.DecreaseRemainingTime(new TimeSpan(0, 0, 1));
 			}
 			else if (e.Key == Key.J)
 			{
-				//timeLeft += new TimeSpan(0, 1, 0);
-				//matchInProgress = true;
-				//UpdateTimer();
+				ViewModel?.IncreaseRemainingTime(new TimeSpan(0, 1, 0));
 			}
 			else if (e.Key == Key.F8)
 			{
 				ViewModel?.RestartFight();
 			}
-			else if (e.Key == Key.F5)
-			{
-				//doubleHits++;
-				//UpdateDoubleHits();
-			}
-			else if (e.Key == Key.F6)
-			{
-				//if (doubleHits > 0)
-				//{
-				//	doubleHits--;
-				//	UpdateDoubleHits();
-				//}
-			}
-			else if (e.Key == Key.Y || e.Key == Key.F7)
-			{
-				//timeLeft = currentGamemode.FinalRoundTime;
-				//TimerTextBlock.Background = Brushes.LightGreen;
-				//matchInProgress = true;
-				//UpdateTimer();
-			}
+			//else if (e.Key == Key.F5)
+			//{
+			//	//doubleHits++;
+			//	//UpdateDoubleHits();
+			//}
+			//else if (e.Key == Key.F6)
+			//{
+			//	//if (doubleHits > 0)
+			//	//{
+			//	//	doubleHits--;
+			//	//	UpdateDoubleHits();
+			//	//}
+			//}
+			//else if (e.Key == Key.Y || e.Key == Key.F7)
+			//{
+			//	//timeLeft = currentGamemode.FinalRoundTime;
+			//	//TimerTextBlock.Background = Brushes.LightGreen;
+			//	//matchInProgress = true;
+			//	//UpdateTimer();
+			//}
 		}
 
 		#endregion // Input
