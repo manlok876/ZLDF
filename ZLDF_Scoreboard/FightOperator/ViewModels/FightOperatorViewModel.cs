@@ -327,6 +327,18 @@ namespace ZLDF.Scoreboard.FightOperator.ViewModels
 			FightTimer.Stop();
 		}
 
+		public void IncreaseRemainingTime(TimeSpan timeSpan)
+		{
+			FightTimer.RemainingTime += timeSpan;
+			FightTick(this, new EventArgs());
+		}
+		
+		public void DecreaseRemainingTime(TimeSpan timeSpan)
+		{
+			FightTimer.RemainingTime -= timeSpan;
+			FightTick(this, new EventArgs());
+		}
+
 		public ICommand ResetTimeCommand { get; private set; }
 		protected void ResetTime()
 		{
