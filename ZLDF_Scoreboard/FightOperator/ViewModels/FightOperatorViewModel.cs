@@ -276,6 +276,11 @@ namespace ZLDF.Scoreboard.FightOperator.ViewModels
 
 		private void FightTick(object? sender, EventArgs e)
 		{
+			UpdateFightRemainingTime();
+		}
+
+		protected void UpdateFightRemainingTime()
+		{
 			if (CurrentDuel is null)
 			{
 				return;
@@ -330,13 +335,13 @@ namespace ZLDF.Scoreboard.FightOperator.ViewModels
 		public void IncreaseRemainingTime(TimeSpan timeSpan)
 		{
 			FightTimer.RemainingTime += timeSpan;
-			FightTick(this, new EventArgs());
+			UpdateFightRemainingTime();
 		}
 		
 		public void DecreaseRemainingTime(TimeSpan timeSpan)
 		{
 			FightTimer.RemainingTime -= timeSpan;
-			FightTick(this, new EventArgs());
+			UpdateFightRemainingTime();
 		}
 
 		public ICommand ResetTimeCommand { get; private set; }
@@ -344,7 +349,7 @@ namespace ZLDF.Scoreboard.FightOperator.ViewModels
 		{
 			FightTimer.Stop();
 			FightTimer.Reset();
-			FightTick(this, new EventArgs());
+			UpdateFightRemainingTime();
 		}
 
 		#endregion // Time
