@@ -156,6 +156,19 @@ namespace ZLDF.Scoreboard.FightOperator.ViewModels
 			}
 		}
 
+		private bool _bIsFlipped = false;
+		public bool IsFlipped
+		{
+			get { return _bIsFlipped; }
+			set
+			{
+				SetProperty(ref _bIsFlipped, value);
+			}
+		}
+
+		public ICommand SwapSidesCommand { get; private set; }
+		public void SwapSides() => IsFlipped = !IsFlipped;
+
 		#region Scoreboard
 
 		private ScoreboardViewModel? _scoreboardVM;
@@ -445,6 +458,8 @@ namespace ZLDF.Scoreboard.FightOperator.ViewModels
 
 			AddDuelToList(CreateEmptyDuel());
 			MoveToNextFight();
+
+			SwapSidesCommand = new DelegateCommand(SwapSides);
 
 			CloseScoreboardCommand = new DelegateCommand(CloseScoreboard);
 			OpenScoreboardCommand = new DelegateCommand(OpenScoreboard);
