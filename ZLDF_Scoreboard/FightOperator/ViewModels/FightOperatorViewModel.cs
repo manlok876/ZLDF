@@ -337,11 +337,28 @@ namespace ZLDF.Scoreboard.FightOperator.ViewModels
 			FightTimer.RemainingTime += timeSpan;
 			UpdateFightRemainingTime();
 		}
-		
+
 		public void DecreaseRemainingTime(TimeSpan timeSpan)
 		{
 			FightTimer.RemainingTime -= timeSpan;
 			UpdateFightRemainingTime();
+		}
+
+		public ICommand AddSecondsCommand { get; private set; }
+		public void AddSeconds(float? seconds)
+		{
+			if (!seconds.HasValue)
+			{
+				return;
+			}
+			else if (seconds < 0)
+			{
+				DecreaseRemainingTime(TimeSpan.FromSeconds(-seconds.Value));
+			}
+			else if (seconds > 0)
+			{
+				IncreaseRemainingTime(TimeSpan.FromSeconds(seconds.Value));
+			}
 		}
 
 		public ICommand ResetTimeCommand { get; private set; }
@@ -437,6 +454,7 @@ namespace ZLDF.Scoreboard.FightOperator.ViewModels
 			DecreaseFighterScoreCommand = new DelegateCommand<Fighter>(DecreaseFighterScore);
 
 			StartStopCommand = new DelegateCommand(StartStop);
+			AddSecondsCommand = new DelegateCommand<float?>(AddSeconds);
 			ResetTimeCommand = new DelegateCommand(ResetTime);
 
 			MoveToNextFightCommand = new DelegateCommand(MoveToNextFight);
