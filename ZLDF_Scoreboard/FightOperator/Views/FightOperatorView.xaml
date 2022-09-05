@@ -5,6 +5,7 @@
 		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 		xmlns:con="clr-namespace:ZLDF.Scoreboard.Converters"
 		xmlns:local="clr-namespace:ZLDF.Scoreboard.FightOperator.Views"
+		xmlns:sys="clr-namespace:System;assembly=mscorlib"
 		mc:Ignorable="d"
 		Title="Оператор табло"
 		x:Name="ThisView"
@@ -40,7 +41,7 @@
 				<Grid Grid.Row="0" Background="White">
 					<TextBlock Text="Ристалище 1" d:Text="Ристалище 1" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,10,0,0"/>
 
-					<Button Content="+1 балл" Command="{Binding IncreaseFighterScoreCommand}"  Height="45" Width="50" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="20,0,0,50">
+					<Button Content="+1 (Q)" Command="{Binding IncreaseFighterScoreCommand}"  Height="45" Width="50" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="20,0,0,50">
 						<Button.CommandParameter>
 							<MultiBinding Converter="{StaticResource LeftSelector}">
 								<Binding Path="CurrentDuel.FirstFighter"/>
@@ -49,7 +50,7 @@
 							</MultiBinding>
 						</Button.CommandParameter>
 					</Button>
-					<Button Content="-1 балл" Command="{Binding DecreaseFighterScoreCommand}" Height="45" Width="50" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="20,50,0,0">
+					<Button Content="-1 (Z)" Command="{Binding DecreaseFighterScoreCommand}" Height="45" Width="50" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="20,50,0,0">
 						<Button.CommandParameter>
 							<MultiBinding Converter="{StaticResource LeftSelector}">
 								<Binding Path="CurrentDuel.FirstFighter"/>
@@ -75,7 +76,7 @@
 						</TextBlock.Background>
 					</TextBlock>
 
-					<Button Content="+1 балл" Command="{Binding IncreaseFighterScoreCommand}" Height="45" Width="50" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,20,50">
+					<Button Content="+1 (P)" Command="{Binding IncreaseFighterScoreCommand}" Height="45" Width="50" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,20,50">
 						<Button.CommandParameter>
 							<MultiBinding Converter="{StaticResource RightSelector}">
 								<Binding Path="CurrentDuel.FirstFighter"/>
@@ -84,7 +85,7 @@
 							</MultiBinding>
 						</Button.CommandParameter>
 					</Button>
-					<Button Content="-1 балл" Command="{Binding DecreaseFighterScoreCommand}" Height="45" Width="50" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,50,20,0">
+					<Button Content="-1 (M)" Command="{Binding DecreaseFighterScoreCommand}" Height="45" Width="50" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,50,20,0">
 						<Button.CommandParameter>
 							<MultiBinding Converter="{StaticResource RightSelector}">
 								<Binding Path="CurrentDuel.FirstFighter"/>
@@ -110,7 +111,7 @@
 						</TextBlock.Background>
 					</TextBlock>
 
-					<TextBlock d:Text="0:00,00" Text="{Binding CurrentDuel.RemainingTime, StringFormat=m\\:ss\\\,ff}" TextWrapping="Wrap" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,30"/>
+					<TextBlock Text="{Binding CurrentDuel.RemainingTime, StringFormat=m\\:ss\\\,ff}" d:Text="0:00,00" TextWrapping="Wrap" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,30"/>
 					<StatusBar Height="20" VerticalAlignment="Bottom">
 						<TextBlock Text="{Binding CurrentDuel.State}" d:Text="InProgress" TextWrapping="Wrap"/>
 					</StatusBar>
@@ -120,9 +121,28 @@
 				</Grid>
 
 				<Grid Grid.Row="2" Background="LightGray">
-					<Button Content="Пауза" Command="{Binding StartStopCommand}" Height="50" Width="180" HorizontalAlignment="Center" VerticalAlignment="Center" />
+					<StackPanel Orientation="Horizontal" Height="40" VerticalAlignment="Top" HorizontalAlignment="Center">
+						<Button Content="+1 сек (F)" Command="{Binding AddSecondsCommand}" Padding="5" Margin="5">
+							<Button.CommandParameter>
+								<sys:Single>1</sys:Single>
+							</Button.CommandParameter>
+						</Button>
+						<Button Content="-1 сек (G)" Command="{Binding AddSecondsCommand}" Padding="5" Margin="5">
+							<Button.CommandParameter>
+								<sys:Single>-1</sys:Single>
+							</Button.CommandParameter>
+						</Button>
+						<Button Content="+1 мин (J)" Command="{Binding AddSecondsCommand}" Padding="5" Margin="5">
+							<Button.CommandParameter>
+								<sys:Single>60</sys:Single>
+							</Button.CommandParameter>
+						</Button>
+					</StackPanel>
+
+					<Button Content="Пауза (пробел)" Command="{Binding StartStopCommand}" Height="50" Width="180" HorizontalAlignment="Center" VerticalAlignment="Center" />
+
 					<StackPanel Orientation="Horizontal" Height="40" VerticalAlignment="Bottom">
-						<Button Content="Поменять местами" Command="{Binding SwapFightersCommand}" Padding="5" DataContext="{Binding ElementName=ThisView, Mode=OneWay}" Margin="5"/>
+						<Button Content="Поменять местами (T)" Command="{Binding SwapFightersCommand}" Padding="5" DataContext="{Binding ElementName=ThisView, Mode=OneWay}" Margin="5"/>
 						<Button Content="Отложить бой" Command="{Binding PostponeFightCommand}" Padding="5" Margin="5"/>
 						<Button Content="Завершить бой" Command="{Binding FinishFightCommand}" Padding="5" Margin="5"/>
 					</StackPanel>
