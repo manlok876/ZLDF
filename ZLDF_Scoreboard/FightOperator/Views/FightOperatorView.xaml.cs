@@ -103,14 +103,12 @@ namespace ZLDF.Scoreboard.FightOperator.Views
 		#region Input
 
 		/*
-			F1,F2,F3 или Q,W,E - прибавить левому бойцу 1, 2, или 3 балла
-			F4 или Z - снять 1 балл
-			F12,F11,F10 или P,O,I - прибавить правому бойцу 1, 2, или 3 балла
-			F9 или M - снять 1 балл
+			F1 / Q - прибавить левому бойцу 1 балл
+			F4 / Z - снять 1 балл
+			F12 / P - прибавить правому бойцу 1 балл
+			F9 / M - снять 1 балл
 
-			F5 - отметить обоюдку
-			F6 - убрать обоюдку
-			F8 - перезапуск матча
+			R - перезапуск матча
 			F7 или Y - последний сход
 
 			Пробел - пауза
@@ -132,26 +130,10 @@ namespace ZLDF.Scoreboard.FightOperator.Views
 			{
 				ViewModel?.IncreaseFighterScore(GetLeftFighter());
 			}
-			//else if (e.Key == Key.W || e.Key == Key.F2)
-			//{
-			//	//leftScore += 2;
-			//}
-			//else if (e.Key == Key.E || e.Key == Key.F3)
-			//{
-			//	//leftScore += 3;
-			//}
 			else if (e.Key == Key.Z || e.Key == Key.F4)
 			{
 				ViewModel?.DecreaseFighterScore(GetLeftFighter());
 			}
-			//else if (e.Key == Key.I || e.Key == Key.System)
-			//{
-			//	//rightScore += 3;
-			//}
-			//else if (e.Key == Key.O || e.Key == Key.F11)
-			//{
-			//	//rightScore += 2;
-			//}
 			else if (e.Key == Key.P || e.Key == Key.F12)
 			{
 				ViewModel?.IncreaseFighterScore(GetRightFighter());
@@ -180,26 +162,6 @@ namespace ZLDF.Scoreboard.FightOperator.Views
 			{
 				ViewModel?.RestartFight();
 			}
-			//else if (e.Key == Key.F5)
-			//{
-			//	//doubleHits++;
-			//	//UpdateDoubleHits();
-			//}
-			//else if (e.Key == Key.F6)
-			//{
-			//	//if (doubleHits > 0)
-			//	//{
-			//	//	doubleHits--;
-			//	//	UpdateDoubleHits();
-			//	//}
-			//}
-			//else if (e.Key == Key.Y || e.Key == Key.F7)
-			//{
-			//	//timeLeft = currentGamemode.FinalRoundTime;
-			//	//TimerTextBlock.Background = Brushes.LightGreen;
-			//	//matchInProgress = true;
-			//	//UpdateTimer();
-			//}
 		}
 
 		#endregion // Input
