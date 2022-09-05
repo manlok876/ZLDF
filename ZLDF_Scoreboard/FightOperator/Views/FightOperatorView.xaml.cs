@@ -176,7 +176,7 @@ namespace ZLDF.Scoreboard.FightOperator.Views
 			{
 				ViewModel?.IncreaseRemainingTime(new TimeSpan(0, 1, 0));
 			}
-			else if (e.Key == Key.F8)
+			else if (e.Key == Key.R)
 			{
 				ViewModel?.RestartFight();
 			}
