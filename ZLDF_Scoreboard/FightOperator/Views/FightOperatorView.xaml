@@ -46,7 +46,7 @@
 							<MultiBinding Converter="{StaticResource LeftSelector}">
 								<Binding Path="CurrentDuel.FirstFighter"/>
 								<Binding Path="CurrentDuel.SecondFighter"/>
-								<Binding ElementName="ThisView" Path="IsFlipped"/>
+								<Binding Path="IsFlipped"/>
 							</MultiBinding>
 						</Button.CommandParameter>
 					</Button>
@@ -55,7 +55,7 @@
 							<MultiBinding Converter="{StaticResource LeftSelector}">
 								<Binding Path="CurrentDuel.FirstFighter"/>
 								<Binding Path="CurrentDuel.SecondFighter"/>
-								<Binding ElementName="ThisView" Path="IsFlipped"/>
+								<Binding Path="IsFlipped"/>
 							</MultiBinding>
 						</Button.CommandParameter>
 					</Button>
@@ -64,14 +64,14 @@
 							<MultiBinding Converter="{StaticResource LeftSelector}">
 								<Binding Path="CurrentDuel.FirstFighterScore"/>
 								<Binding Path="CurrentDuel.SecondFighterScore"/>
-								<Binding ElementName="ThisView" Path="IsFlipped"/>
+								<Binding Path="IsFlipped"/>
 							</MultiBinding>
 						</TextBlock.Text>
 						<TextBlock.Background>
 							<MultiBinding Converter="{StaticResource LeftSelector}">
 								<Binding Path="FirstFighterColor" Converter="{StaticResource ColorConverter}"/>
 								<Binding Path="SecondFighterColor" Converter="{StaticResource ColorConverter}"/>
-								<Binding ElementName="ThisView" Path="IsFlipped"/>
+								<Binding Path="IsFlipped"/>
 							</MultiBinding>
 						</TextBlock.Background>
 					</TextBlock>
@@ -81,7 +81,7 @@
 							<MultiBinding Converter="{StaticResource RightSelector}">
 								<Binding Path="CurrentDuel.FirstFighter"/>
 								<Binding Path="CurrentDuel.SecondFighter"/>
-								<Binding ElementName="ThisView" Path="IsFlipped"/>
+								<Binding Path="IsFlipped"/>
 							</MultiBinding>
 						</Button.CommandParameter>
 					</Button>
@@ -90,7 +90,7 @@
 							<MultiBinding Converter="{StaticResource RightSelector}">
 								<Binding Path="CurrentDuel.FirstFighter"/>
 								<Binding Path="CurrentDuel.SecondFighter"/>
-								<Binding ElementName="ThisView" Path="IsFlipped"/>
+								<Binding Path="IsFlipped"/>
 							</MultiBinding>
 						</Button.CommandParameter>
 					</Button>
@@ -99,14 +99,14 @@
 							<MultiBinding Converter="{StaticResource RightSelector}">
 								<Binding Path="CurrentDuel.FirstFighterScore"/>
 								<Binding Path="CurrentDuel.SecondFighterScore"/>
-								<Binding ElementName="ThisView" Path="IsFlipped"/>
+								<Binding Path="IsFlipped"/>
 							</MultiBinding>
 						</TextBlock.Text>
 						<TextBlock.Background>
 							<MultiBinding Converter="{StaticResource RightSelector}">
 								<Binding Path="FirstFighterColor" Converter="{StaticResource ColorConverter}"/>
 								<Binding Path="SecondFighterColor" Converter="{StaticResource ColorConverter}"/>
-								<Binding ElementName="ThisView" Path="IsFlipped"/>
+								<Binding Path="IsFlipped"/>
 							</MultiBinding>
 						</TextBlock.Background>
 					</TextBlock>
@@ -142,7 +142,7 @@
 					<Button Content="Пауза (пробел)" Command="{Binding StartStopCommand}" Height="50" Width="180" HorizontalAlignment="Center" VerticalAlignment="Center" />
 
 					<StackPanel Orientation="Horizontal" Height="40" VerticalAlignment="Bottom">
-						<Button Content="Поменять местами (T)" Command="{Binding SwapFightersCommand}" Padding="5" DataContext="{Binding ElementName=ThisView, Mode=OneWay}" Margin="5"/>
+						<Button Content="Поменять местами (T)" Command="{Binding SwapSidesCommand}" Padding="5" Margin="5"/>
 						<Button Content="Отложить бой" Command="{Binding PostponeFightCommand}" Padding="5" Margin="5"/>
 						<Button Content="Завершить бой" Command="{Binding FinishFightCommand}" Padding="5" Margin="5"/>
 					</StackPanel>

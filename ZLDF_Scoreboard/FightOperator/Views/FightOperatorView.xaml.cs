@@ -51,42 +51,20 @@ namespace ZLDF.Scoreboard.FightOperator.Views
 			RaisePropertyChanged(nameof(ViewModel));
 		}
 
-		private bool bIsFlipped = false;
-		public bool IsFlipped
-		{
-			get
-			{
-				return bIsFlipped;
-			}
-			private set
-			{
-				bIsFlipped = value;
-				RaisePropertyChanged(nameof(IsFlipped));
-			}
-		}
-
-		public ICommand SwapFightersCommand { get; private set; }
-		void SwapFighters()
-		{
-			IsFlipped = !IsFlipped;
-		}
-
 		public Fighter GetLeftFighter()
 		{
-			return IsFlipped ? ViewModel.SecondFighter : ViewModel.FirstFighter;
+			return ViewModel.IsFlipped ? ViewModel.SecondFighter : ViewModel.FirstFighter;
 		}
 		
 		public Fighter GetRightFighter()
 		{
-			return IsFlipped ? ViewModel.FirstFighter : ViewModel.SecondFighter;
+			return ViewModel.IsFlipped ? ViewModel.FirstFighter : ViewModel.SecondFighter;
 		}
 
 		public FightOperatorView()
 		{
 			InitializeComponent();
 
-			SwapFightersCommand = new DelegateCommand(SwapFighters);
-			
 			KeyDown += new KeyEventHandler(OnButtonKeyDown);
 		}
 
@@ -144,7 +122,7 @@ namespace ZLDF.Scoreboard.FightOperator.Views
 			}
 			else if (e.Key == Key.T)
 			{
-				SwapFighters();
+				ViewModel?.SwapSides();
 			}
 			else if (e.Key == Key.F)
 			{
