@@ -92,27 +92,30 @@ namespace ZLDF.MainHost.Testing.ViewModels
 			}
 		}
 
-		int CompareRatings(FighterStats rating1, FighterStats rating2)
+		private float WinWeight = 3;
+		private float DrawWeight = 1;
+
+		float CalculateRating(FighterStats stats)
 		{
-			if (rating1 == rating2)
+			return stats.WinCount * WinWeight + stats.DrawCount * DrawWeight;
+		}
+
+		int CompareRatings(FighterStats stats1, FighterStats stats2)
+		{
+			if (stats1 == stats2)
 			{
 				return 0;
 			}
 
-			if (rating1.WinPercentage != rating2.WinPercentage)
+			float rating1 = CalculateRating(stats1);
+			float rating2 = CalculateRating(stats2);
+
+			if (rating1 == rating2)
 			{
-				return (rating1.WinPercentage > rating2.WinPercentage ? -1 : 1);
-			}
-			else if (rating1.DrawPercentage != rating2.DrawPercentage)
-			{
-				return (rating1.DrawPercentage > rating2.DrawPercentage ? -1 : 1);
-			}
-			else if (rating1.AverageScoreDifference != rating2.AverageScoreDifference)
-			{
-				return (rating1.AverageScoreDifference > rating2.AverageScoreDifference ? -1 : 1);
+				return (stats1.AverageScoreDifference > stats2.AverageScoreDifference ? -1 : 1);
 			}
 
-			return 0;
+			return (rating1 > rating2 ? -1 : 1);
 		}
 
 		private Dictionary<string, Club> _clubMap = new Dictionary<string, Club>();
