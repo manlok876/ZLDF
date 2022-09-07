@@ -27,7 +27,7 @@
 			</DockPanel>
 			<Button x:Name="genGroupsButton" Margin="5,5,5,5" Content="Составить группы" Command="{Binding MakeGroupsCommand}"/>
 		</StackPanel>
-		<DockPanel Grid.Column="2">
+		<DockPanel Grid.Column="2" Margin="5,5,5,5">
 			<TextBlock Text="Группы (Фамилия Имя Клуб)" HorizontalAlignment="Stretch" Margin="5,5,5,5" VerticalAlignment="Top" DockPanel.Dock="Top"/>
 			<TextBox x:Name="groupsTextBlock" Text="{Binding GroupsListString}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="5,5,5,5" DockPanel.Dock="Top"/>
 
