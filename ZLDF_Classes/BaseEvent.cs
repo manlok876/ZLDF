@@ -71,7 +71,7 @@ namespace ZLDF.Classes
 
 		protected BaseEvent()
 		{
-
+			Id = Guid.NewGuid();
 		}
 	}
 }
