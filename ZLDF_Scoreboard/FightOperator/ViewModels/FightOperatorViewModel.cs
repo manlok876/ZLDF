@@ -9,9 +9,12 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Threading;
 using System.Diagnostics;
+using System.IO;
+using System.DirectoryServices;
 using Prism.Mvvm;
 using Prism.Commands;
 using ZLDF.Classes;
+using ZLDF.Classes.Logging;
 using ZLDF.Scoreboard.Scoreboard.Views;
 using ZLDF.Scoreboard.Scoreboard.ViewModels;
 
@@ -33,6 +36,7 @@ namespace ZLDF.Scoreboard.FightOperator.ViewModels
 				if (_currentDuel is not null)
 				{
 					_currentDuel.PropertyChanged -= ScoreChangedListener;
+					CurDuelLogger?.Flush();
 				}
 
 				InitTimerFromDuel(value);
@@ -40,6 +44,8 @@ namespace ZLDF.Scoreboard.FightOperator.ViewModels
 				SetProperty(ref _currentDuel!, value);
 
 				_currentDuel!.PropertyChanged += ScoreChangedListener;
+
+				CurDuelLogger = new FileLogger(GetLogPathForDuel(_currentDuel));
 			}
 		}
 
@@ -156,6 +162,8 @@ namespace ZLDF.Scoreboard.FightOperator.ViewModels
 			}
 		}
 
+		#region Positioning
+
 		private bool _bIsFlipped = false;
 		public bool IsFlipped
 		{
@@ -168,6 +176,8 @@ namespace ZLDF.Scoreboard.FightOperator.ViewModels
 
 		public ICommand SwapSidesCommand { get; private set; }
 		public void SwapSides() => IsFlipped = !IsFlipped;
+
+		#endregion // Positioning
 
 		#region Scoreboard
 
@@ -260,17 +270,22 @@ namespace ZLDF.Scoreboard.FightOperator.ViewModels
 		public void IncreaseFighterScore(Fighter fighter)
 		{
 			CurrentDuel.AddFighterScore(fighter, 1);
+			string FighterNum = fighter == FirstFighter ? "First" : "Second";
+			LogDuelEvent(new StringMessage($"{FighterNum} fighter: +1 point"));
 		}
 
 		public ICommand DecreaseFighterScoreCommand { get; private set; }
 		public void DecreaseFighterScore(Fighter fighter)
 		{
 			CurrentDuel.AddFighterScore(fighter, -1);
+			string FighterNum = fighter == FirstFighter ? "First" : "Second";
+			LogDuelEvent(new StringMessage($"{FighterNum} fighter: -1 point"));
 		}
 		protected void ResetScore()
 		{
 			CurrentDuel.FirstFighterScore = 0;
 			CurrentDuel.SecondFighterScore = 0;
+			LogDuelEvent(new StringMessage("Score reset"));
 		}
 
 		#endregion // Scores
@@ -328,12 +343,19 @@ namespace ZLDF.Scoreboard.FightOperator.ViewModels
 				return;
 			}
 
+			if (!CurrentDuel.HasStarted)
+			{
+				LogDuelEvent(new StringMessage("Began duel"));
+			}
+
 			if (!CurrentDuel.IsOver)
 			{
 				CurrentDuel.State = EventState.InProgress;
 			}
 			// TODO: check if we can continue fight
 			FightTimer.Start();
+
+			LogDuelEvent(new StringMessage("Started fight time"));
 		}
 
 		public void StopFightTimer()
@@ -343,18 +365,22 @@ namespace ZLDF.Scoreboard.FightOperator.ViewModels
 				return;
 			}
 			FightTimer.Stop();
+
+			LogDuelEvent(new StringMessage("Paused fight time"));
 		}
 
 		public void IncreaseRemainingTime(TimeSpan timeSpan)
 		{
 			FightTimer.RemainingTime += timeSpan;
 			UpdateFightRemainingTime();
+			LogDuelEvent(new StringMessage($"Fight time increased by {timeSpan.TotalSeconds} seconds"));
 		}
 
 		public void DecreaseRemainingTime(TimeSpan timeSpan)
 		{
 			FightTimer.RemainingTime -= timeSpan;
 			UpdateFightRemainingTime();
+			LogDuelEvent(new StringMessage($"Fight time decreased by {-timeSpan.TotalSeconds} seconds"));
 		}
 
 		public ICommand AddSecondsCommand { get; private set; }
@@ -380,6 +406,8 @@ namespace ZLDF.Scoreboard.FightOperator.ViewModels
 			FightTimer.Stop();
 			FightTimer.Reset();
 			UpdateFightRemainingTime();
+
+			LogDuelEvent(new StringMessage("Fight time reset"));
 		}
 
 		#endregion // Time
@@ -441,6 +469,32 @@ namespace ZLDF.Scoreboard.FightOperator.ViewModels
 
 		#endregion // Sound
 
+		#region Logging
+
+		private FileLogger GlobalLogger { get; set; }
+
+		protected void LogGlobal(Message message)
+		{
+			GlobalLogger.Log(message);
+		}
+
+		private FileLogger? CurDuelLogger { get; set; }
+
+		public static string GetLogPathForDuel(Duel duel)
+		{
+			return $"Logs/Duel_{duel.Id}_" +
+				$"({duel.FirstFighter.LastName}_{duel.FirstFighter.FirstName.First()}_vs_" +
+				$"{duel.SecondFighter.LastName}_{duel.SecondFighter.FirstName.First()})" +
+				$".txt";
+		}
+
+		protected void LogDuelEvent(Message message)
+		{
+			CurDuelLogger?.Log(message);
+		}
+
+		#endregion // Logging
+
 		public ICommand ExitAppCommand { get; private set; }
 		public void ExitApp()
 		{
@@ -449,6 +503,9 @@ namespace ZLDF.Scoreboard.FightOperator.ViewModels
 
 		public FightOperatorViewModel()
 		{
+			Directory.CreateDirectory("Logs");
+			GlobalLogger = new FileLogger($"Logs/FOVM_Log_{DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss")}.txt");
+
 			FirstFighterColor = Colors.Red;
 			SecondFighterColor = Colors.Blue;
 
