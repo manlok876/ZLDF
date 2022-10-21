@@ -17,7 +17,7 @@ namespace ZLDF.Classes
 		public Guid Id
 		{
 			get { return _id; }
-			private set
+			set
 			{
 				SetProperty(ref _id, value);
 			}
