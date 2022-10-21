@@ -12,20 +12,20 @@
 			<RowDefinition Height="*"/>
 		</Grid.RowDefinitions>
 		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="3*"/>
 			<ColumnDefinition Width="*"/>
-			<ColumnDefinition Width="*"/>
-			<ColumnDefinition Width="*"/>
+			<ColumnDefinition Width="3*"/>
 		</Grid.ColumnDefinitions>
 		<DockPanel HorizontalAlignment="Stretch" Margin="5,5,5,5">
-			<TextBlock Text="Бои (Фамилия Имя Клуб Счёт)" HorizontalAlignment="Stretch" Margin="5,5,5,5" VerticalAlignment="Top" DockPanel.Dock="Top"/>
+			<TextBlock Text="Бои (DuelId Время Id Фамилия Имя Клуб Счёт)" HorizontalAlignment="Stretch" Margin="5,5,5,5" VerticalAlignment="Top" DockPanel.Dock="Top"/>
 			<TextBox x:Name="fightersTextBox" Text="{Binding DuelsListString}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="5,5,5,5" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch" VerticalScrollBarVisibility="Visible" AcceptsTab="True" AcceptsReturn="True" DockPanel.Dock="Top"/>
 		</DockPanel>
 		<StackPanel Grid.Column="1" Margin="0,50,0,0">
 			<Button x:Name="genGroupsButton" Margin="5,5,5,5" Content="Построить рейтинг" Command="{Binding BuildRatingsCommand}"/>
 		</StackPanel>
 		<DockPanel Grid.Column="2">
-			<TextBlock Text="Рейтинг (Фамилия Имя Клуб W L D Нанесено Пропущено)" HorizontalAlignment="Stretch" Margin="5,5,5,5" VerticalAlignment="Top" DockPanel.Dock="Top"/>
-			<TextBox x:Name="groupsTextBlock" Text="{Binding RatingsListString}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="5,5,5,5" DockPanel.Dock="Top"/>
+			<TextBlock Text="Рейтинг (Id Фамилия Имя Клуб W L D Нанесено Пропущено)" HorizontalAlignment="Stretch" Margin="5" VerticalAlignment="Top" DockPanel.Dock="Top"/>
+			<TextBox x:Name="groupsTextBlock" Text="{Binding RatingsListString}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="5" DockPanel.Dock="Top"/>
 		</DockPanel>
 	</Grid>
 </UserControl>
