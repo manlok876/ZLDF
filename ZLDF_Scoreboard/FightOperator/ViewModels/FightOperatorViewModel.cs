@@ -76,10 +76,86 @@ namespace ZLDF.Scoreboard.FightOperator.ViewModels
 			RaisePropertyChanged(nameof(AllDuels));
 		}
 
+		protected void AddDuelsToList(IEnumerable<Duel> newDuels)
+		{
+			foreach (Duel newDuel in newDuels)
+			{
+				if (_duels.Contains(newDuel))
+				{
+					continue;
+				}
+				_duels.Add(newDuel);
+				newDuel.State = EventState.Scheduled;
+			}
+			RaisePropertyChanged(nameof(AllDuels));
+		}
+
 		protected void ClearFightsList()
 		{
 			_duels.Clear();
 			RaisePropertyChanged(nameof(AllDuels));
+		}
+
+		public Duel? GetNextUnfinishedFight(bool bLoop = true)
+		{
+			if (_duels.Count < 1)
+			{
+				return null;
+			}
+
+			int fightsFromStart = _duels.Count;
+			int fightsFromEnd = 0;
+
+			if (CurrentDuel is not null)
+			{
+				int currentFightIdx = _duels.IndexOf(CurrentDuel);
+				if (currentFightIdx >= 0 && currentFightIdx < _duels.Count)
+				{
+					fightsFromStart = currentFightIdx;
+					fightsFromEnd = (_duels.Count - 1) - currentFightIdx;
+				}
+			}
+
+			List<Duel> reorderedDuels = new List<Duel>();
+			if (fightsFromEnd > 0)
+			{
+				reorderedDuels.AddRange(_duels.GetRange(_duels.Count - fightsFromEnd, fightsFromEnd));
+			}
+			if (bLoop && fightsFromStart > 0)
+			{
+				reorderedDuels.AddRange(_duels.GetRange(0, fightsFromStart));
+			}
+
+			foreach (Duel duel in reorderedDuels)
+			{
+				if (!duel.IsOver)
+				{
+					return duel;
+				}
+			}
+
+			return null;
+		}
+
+		public Duel? GetNextFight(bool bLoop = true)
+		{
+			if (_duels.Count < 1)
+			{
+				return null;
+			}
+
+			if (CurrentDuel is null)
+			{
+				return _duels[0];
+			}
+
+			int nextFightIdx = _duels.IndexOf(CurrentDuel) + 1;
+			if (nextFightIdx == -1 || nextFightIdx >= _duels.Count)
+			{
+				nextFightIdx = 0;
+			}
+
+			return _duels[nextFightIdx];
 		}
 
 		public ICommand MoveToNextFightCommand { get; private set; }
@@ -90,19 +166,15 @@ namespace ZLDF.Scoreboard.FightOperator.ViewModels
 				AddDuelToList(CreateEmptyDuel());
 			}
 
-			if (CurrentDuel is null)
+			Duel? nextDuel = GetNextFight();
+
+			if (nextDuel is null)
 			{
 				MoveToFight(_duels[0]);
 				return;
 			}
 
-			int nextFightIdx = _duels.IndexOf(CurrentDuel) + 1;
-			if (nextFightIdx == -1 || nextFightIdx >= _duels.Count)
-			{
-				nextFightIdx = 0;
-			}
-
-			MoveToFight(_duels[nextFightIdx]);
+			MoveToFight(nextDuel);
 		}
 
 		public ICommand MoveToFightCommand { get; private set; }
