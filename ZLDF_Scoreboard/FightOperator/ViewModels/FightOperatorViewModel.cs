@@ -36,7 +36,7 @@ namespace ZLDF.Scoreboard.FightOperator.ViewModels
 				if (_currentDuel is not null)
 				{
 					_currentDuel.PropertyChanged -= ScoreChangedListener;
-					CurDuelLogger?.Flush();
+					CurDuelLogger?.CloseLogFile();
 				}
 
 				InitTimerFromDuel(value);
