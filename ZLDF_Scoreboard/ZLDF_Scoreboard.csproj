@@ -6,7 +6,17 @@
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
     <RootNamespace>$(MSBuildProjectName.Replace("_", "."))</RootNamespace>
+    <ApplicationIcon>logo.ico</ApplicationIcon>
+    <PackageIcon>logo.ico</PackageIcon>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Images\logo.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="logo.ico" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Prism.Wpf" Version="8.1.97" />
@@ -17,13 +27,20 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="Images\logo.jpg">
+    <Resource Include="Images\logo.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="logo.ico">
+    </Resource>
+    <Resource Include="logo.ico">
       <PackagePath>\</PackagePath>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <Pack>True</Pack>
+    </Resource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="logo.ico">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
     </None>
   </ItemGroup>
 
