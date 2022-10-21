@@ -81,10 +81,10 @@ namespace ZLDF.Scoreboard.FightOperator.Views
 		#region Input
 
 		/*
-			F1 / Q - прибавить левому бойцу 1 балл
-			F4 / Z - снять 1 балл
-			F12 / P - прибавить правому бойцу 1 балл
-			F9 / M - снять 1 балл
+			F1 / W - прибавить левому бойцу 1 балл
+			F4 / Q - снять 1 балл
+			F12 / O - прибавить правому бойцу 1 балл
+			F9 / P - снять 1 балл
 
 			R - перезапуск матча
 			F7 или Y - последний сход
@@ -104,19 +104,19 @@ namespace ZLDF.Scoreboard.FightOperator.Views
 			{
 				ViewModel?.StartStop();
 			}
-			else if (e.Key == Key.Q || e.Key == Key.F1)
+			else if (e.Key == Key.W || e.Key == Key.F1)
 			{
 				ViewModel?.IncreaseFighterScore(GetLeftFighter());
 			}
-			else if (e.Key == Key.Z || e.Key == Key.F4)
+			else if (e.Key == Key.Q || e.Key == Key.F4)
 			{
 				ViewModel?.DecreaseFighterScore(GetLeftFighter());
 			}
-			else if (e.Key == Key.P || e.Key == Key.F12)
+			else if (e.Key == Key.O || e.Key == Key.F12)
 			{
 				ViewModel?.IncreaseFighterScore(GetRightFighter());
 			}
-			else if (e.Key == Key.M || e.Key == Key.F9)
+			else if (e.Key == Key.P || e.Key == Key.F9)
 			{
 				ViewModel?.DecreaseFighterScore(GetRightFighter());
 			}
