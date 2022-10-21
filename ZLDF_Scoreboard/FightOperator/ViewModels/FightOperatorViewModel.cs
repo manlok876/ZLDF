@@ -15,6 +15,7 @@ using Prism.Mvvm;
 using Prism.Commands;
 using ZLDF.Classes;
 using ZLDF.Classes.Logging;
+using ZLDF.Scoreboard.Views;
 using ZLDF.Scoreboard.Scoreboard.Views;
 using ZLDF.Scoreboard.Scoreboard.ViewModels;
 
@@ -225,6 +226,25 @@ namespace ZLDF.Scoreboard.FightOperator.ViewModels
 			CurrentDuel.State = EventState.Finished;
 			AddDuelToList(CreateEmptyDuel());
 			MoveToNextFight();
+		}
+
+		public ICommand OpenFightsImportDialogCommand { get; private set; }
+		public void OpenFightsImportDialog()
+		{
+			ImportFightsTSVDialog importDialog = new ImportFightsTSVDialog();
+			if (importDialog.ShowDialog() == true)
+			{
+				ClearFightsList();
+				AddDuelsToList(importDialog.Duels);
+				MoveToNextFight();
+			}
+		}
+
+		public ICommand OpenFightsExportDialogCommand { get; private set; }
+		public void OpenFightsExportDialog()
+		{
+			ExportFightsTSVDialog exportDialog = new ExportFightsTSVDialog(AllDuels);
+			exportDialog.ShowDialog();
 		}
 
 		#endregion // Fights
@@ -631,6 +651,9 @@ namespace ZLDF.Scoreboard.FightOperator.ViewModels
 			RestartFightCommand = new DelegateCommand(RestartFight);
 			PostponeFightCommand = new DelegateCommand(PostponeFight);
 			FinishFightCommand = new DelegateCommand(FinishFight);
+
+			OpenFightsImportDialogCommand = new DelegateCommand(OpenFightsImportDialog);
+			OpenFightsExportDialogCommand = new DelegateCommand(OpenFightsExportDialog);
 		}
 	}
 }
