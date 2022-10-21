@@ -1,0 +1,21 @@
+﻿<Window x:Class="ZLDF.Scoreboard.Views.ImportFightsTSVDialog"
+		xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		xmlns:local="clr-namespace:ZLDF.Scoreboard.Views"
+		mc:Ignorable="d"
+		Title="Импортировать список боёв"
+		Height="450" Width="400">
+	<DockPanel>
+		<Grid DockPanel.Dock="Bottom" Height="50">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="*"/>
+				<ColumnDefinition Width="*"/>
+			</Grid.ColumnDefinitions>
+			<Button x:Name="CancelButton" IsCancel="True" Content="Отмена" Margin="5" Grid.Column="0"/>
+			<Button x:Name="SubmitButton" Click="SubmitButton_Click" Content="Ок" Margin="5" Grid.Column="1"/>
+		</Grid>
+		<TextBox x:Name="DuelsTextBox" AcceptsTab="True" AcceptsReturn="True" TextWrapping="NoWrap" BorderBrush="Green" BorderThickness="5" Margin="5" DockPanel.Dock="Top"/>
+	</DockPanel>
+</Window>
