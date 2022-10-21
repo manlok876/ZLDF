@@ -7,26 +7,22 @@
 			mc:Ignorable="d" 
 			d:DesignHeight="540" d:DesignWidth="960"
 			Background="#FF4E4E4E">
-	<Grid Background="#FFC5C5C5" Margin="10,10,10,10">
+	<Grid Background="#FFC5C5C5" Margin="10">
 		<Grid.RowDefinitions>
 			<RowDefinition Height="*"/>
 		</Grid.RowDefinitions>
 		<Grid.ColumnDefinitions>
 			<ColumnDefinition Width="*"/>
-			<ColumnDefinition Width="*"/>
-			<ColumnDefinition Width="*"/>
+			<ColumnDefinition Width="4*"/>
 		</Grid.ColumnDefinitions>
-		<DockPanel HorizontalAlignment="Stretch" Margin="5,5,5,5">
-			<TextBlock Text="Бойцы (Фамилия Имя Клуб)" HorizontalAlignment="Stretch" Margin="5,5,5,5" VerticalAlignment="Top" DockPanel.Dock="Top"/>
-			<TextBox x:Name="fightersTextBox" Text="{Binding FightersListString}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="5,5,5,5" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch" VerticalScrollBarVisibility="Visible" AcceptsTab="True" AcceptsReturn="True" DockPanel.Dock="Top"/>
+		<DockPanel HorizontalAlignment="Stretch" Margin="5">
+			<TextBlock Text="Бойцы (Id Фамилия Имя Клуб)" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="5" DockPanel.Dock="Top"/>
+			<Button x:Name="genFightsButton" Command="{Binding RunMatchmakingCommand}" Content="Получить бои" Margin="5" DockPanel.Dock="Top"/>
+			<TextBox x:Name="fightersTextBox" Text="{Binding FightersListString}" AcceptsTab="True" AcceptsReturn="True" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch" VerticalScrollBarVisibility="Visible" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="5" DockPanel.Dock="Top"/>
 		</DockPanel>
-		<StackPanel Grid.Column="1" Margin="0,50,0,0">
-			<Button x:Name="genFightsButton" Margin="5,5,5,5" Content="Получить бои" Command="{Binding RunMatchmakingCommand}"/>
-		</StackPanel>
-		<DockPanel Grid.Column="2">
-			<TextBlock Text="Бои (Фамилия Имя Клуб Счёт)" HorizontalAlignment="Stretch" Margin="5,5,5,5" VerticalAlignment="Top" DockPanel.Dock="Top"/>
-			<TextBox x:Name="groupsTextBlock" Text="{Binding FightsListString}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="5,5,5,5" DockPanel.Dock="Top"/>
-
+		<DockPanel Grid.Column="1">
+			<TextBlock Text="Бои (DuelId Время Фамилия Имя Клуб Счёт)" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="5" DockPanel.Dock="Top"/>
+			<TextBox x:Name="groupsTextBlock" Text="{Binding FightsListString}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" FontFamily="Consolas" Margin="5" DockPanel.Dock="Top"/>
 		</DockPanel>
 	</Grid>
 </UserControl>
