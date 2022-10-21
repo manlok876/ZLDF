@@ -12,7 +12,7 @@ namespace ZLDF.Classes
 		private string _city;
 		private Club? _club;
 
-		public Guid Id { get; private set; }
+		public Guid Id { get; set; }
 		public string FirstName
 		{
 			get { return _firstName; }
