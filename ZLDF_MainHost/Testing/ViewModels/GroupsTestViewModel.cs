@@ -84,7 +84,7 @@ namespace ZLDF.MainHost.Testing.ViewModels
 					foreach (Group group in _groups)
 					{
 						groupIdx++;
-						strWriter.WriteLine($"Группа {groupIdx}");
+						strWriter.WriteLine($"\tГруппа {groupIdx}");
 						foreach (Fighter fighter in group.Fighters)
 						{
 							strWriter.Write($"{fighter.LastName}\t{fighter.FirstName}");
