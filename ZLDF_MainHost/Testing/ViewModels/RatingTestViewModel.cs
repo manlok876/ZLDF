@@ -118,30 +118,6 @@ namespace ZLDF.MainHost.Testing.ViewModels
 			return (rating1 > rating2 ? -1 : 1);
 		}
 
-		private Dictionary<string, Club> _clubMap = new Dictionary<string, Club>();
-		private void AddClub(Club club)
-		{
-			_clubMap.Add(club.Name, club);
-		}
-		private Club? GetClubByName(string clubName)
-		{
-			if (_clubMap.ContainsKey(clubName))
-			{
-				return _clubMap[clubName];
-			}
-			return null;
-		}
-		public IEnumerable<Club> Clubs
-		{
-			get
-			{
-				return _clubMap.Values;
-			}
-		}
-
-		private IEnumerable<Fighter>? _fighters;
-		private Dictionary<string, Fighter> _fighterMap = new Dictionary<string, Fighter>();
-
 		public string DuelsListString
 		{
 			get;
@@ -166,7 +142,9 @@ namespace ZLDF.MainHost.Testing.ViewModels
 				{
 					foreach (FighterStats fighterStat in _ratings)
 					{
-						strWriter.Write($"{fighterStat.Fighter.LastName} {fighterStat.Fighter.FirstName}");
+						strWriter.Write(ZLDFUtils.GetTSVFromFighter(fighterStat.Fighter));
+						strWriter.Write('\t');
+						strWriter.Write(CalculateRating(fighterStat));
 						strWriter.Write('\t');
 						strWriter.Write(fighterStat.WinCount);
 						strWriter.Write('\t');
@@ -251,100 +229,10 @@ namespace ZLDF.MainHost.Testing.ViewModels
 
 		public IEnumerable<Duel> ParseFightsFromTSV(string duelsListString)
 		{
-			List<Duel> result = new List<Duel>();
-
-			using (StringReader sr = new StringReader(duelsListString))
-			{
-				List<string> lines = new List<string>();
-				string? line;
-				while ((line = sr.ReadLine()) != null)
-				{
-					lines.Add(line);
-				}
-				while (lines.Count > 1)
-				{
-					Duel? duel = ParseDuelFromTSVStrings(lines[0], lines[1]);
-					if (duel != null)
-					{
-						result.Add(duel);
-					}
-					lines.RemoveAt(0);
-					lines.RemoveAt(0);
-					if (lines.Count > 0)
-					{
-						// Empty line
-						lines.RemoveAt(0);
-					}
-				}
-			}
-
+			List<Duel> result = new List<Duel>(ZLDFUtils.ParseDuelsFromTSVString(duelsListString));
 			return result;
 		}
 
-		public Duel? ParseDuelFromTSVStrings(string firstFighterString, string secondFighterString)
-		{
-			string[] firstFighterData = firstFighterString.Split('\t');
-			string[] secondFighterData = secondFighterString.Split('\t');
-			int firstFighterScore, secondFighterScore;
-			if (!int.TryParse(firstFighterData.Last(), out firstFighterScore) ||
-				!int.TryParse(secondFighterData.Last(), out secondFighterScore))
-			{
-				return null;
-			}
-
-			Fighter? firstFighter = ParseFighterFromTSVString(firstFighterString);
-			Fighter? secondFighter = ParseFighterFromTSVString(secondFighterString);
-			if (firstFighter is null || secondFighter is null)
-			{
-				return null;
-			}
-
-			Duel result = new Duel();
-			result.FirstFighter = firstFighter;
-			result.FirstFighterScore = firstFighterScore;
-			result.SecondFighter = secondFighter;
-			result.SecondFighterScore = secondFighterScore;
-
-			return result;
-		}
-
-		public Fighter? ParseFighterFromTSVString(string fighterString)
-		{
-			// LastName FirstName	Club ("-" if no club)
-			string[] fighterData = fighterString.Split('\t');
-			if (fighterData.Length < 2)
-			{
-				return null;
-			}
-			string fighterLastName = fighterData[0];
-			string fighterName = fighterData[1];
-			string clubName = fighterData[2];
-			string fighterFullName = $"{fighterLastName} {fighterName}";
-
-			if (_fighterMap.ContainsKey(fighterFullName))
-			{
-				return _fighterMap[fighterFullName];
-			}
-
-			// Try finding club in previous
-			Club? fighterClub = GetClubByName(clubName);
-			if (fighterClub == null)
-			{
-				fighterClub = new Club();
-				fighterClub.Name = clubName;
-				AddClub(fighterClub);
-			}
-
-			// Create Fighter object with given data and return
-			Fighter fighter = new Fighter();
-			fighter.FirstName = fighterName;
-			fighter.LastName = fighterLastName;
-			fighter.Club = fighterClub;
-
-			_fighterMap.Add(fighterFullName, fighter);
-
-			return fighter;
-		}
 		#endregion
 
 		public RatingTestViewModel()
