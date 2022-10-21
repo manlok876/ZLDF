@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.IO;
 using System.Diagnostics;
 using System.Threading.Tasks;
@@ -87,19 +88,9 @@ namespace ZLDF.MainHost.Testing.ViewModels
 						{
 							continue;
 						}
-						strWriter.Write($"{duel.FirstFighter.LastName}\t{duel.FirstFighter.FirstName}");
-						strWriter.Write('\t');
-						strWriter.Write(duel.FirstFighter.Club?.Name ?? "-");
-						strWriter.Write('\t');
-						strWriter.Write("0");
-						strWriter.WriteLine();
 
-						strWriter.Write($"{duel.SecondFighter.LastName}\t{duel.SecondFighter.FirstName}");
-						strWriter.Write('\t');
-						strWriter.Write(duel.SecondFighter.Club?.Name ?? "-");
-						strWriter.Write('\t');
-						strWriter.Write("0");
-						strWriter.WriteLine();
+						string duelTSV = ZLDFUtils.GetTSVFromDuel(duel);
+						strWriter.Write(duelTSV);
 
 						strWriter.WriteLine();
 					}
@@ -134,6 +125,7 @@ namespace ZLDF.MainHost.Testing.ViewModels
 		#endregion
 
 		#region Parsing
+
 		public IEnumerable<Fighter> ParseFightersFromTSV(string fightersListString)
 		{
 			List<Fighter> result = new List<Fighter>();
@@ -143,7 +135,7 @@ namespace ZLDF.MainHost.Testing.ViewModels
 				string? fighterData;
 				while ((fighterData = sr.ReadLine()) != null)
 				{
-					Fighter? fighter = ParseFighterFromTSVString(fighterData);
+					Fighter? fighter = ZLDFUtils.ParseFighterFromTSVString(fighterData);
 					if (fighter != null)
 					{
 						result.Add(fighter);
@@ -154,27 +146,6 @@ namespace ZLDF.MainHost.Testing.ViewModels
 			return result;
 		}
 
-		public Fighter? ParseFighterFromTSVString(string fighterString)
-		{
-			// LastName 	FirstName	Club ("-" if no club)
-			string[] fighterData = fighterString.Split('\t');
-			if (fighterData.Length < 3)
-			{
-				return null;
-			}
-			string fighterLastName = fighterData[0];
-			string fighterName = fighterData[1];
-			string clubName = fighterData[2];
-
-			// Create Fighter object with given data and return
-			Fighter fighter = new Fighter();
-			fighter.FirstName = fighterName;
-			fighter.LastName = fighterLastName;
-			fighter.Club = new Club();
-			fighter.Club.Name = clubName;
-
-			return fighter;
-		}
 		#endregion
 
 		public RoundRobinMMTestViewModel()
