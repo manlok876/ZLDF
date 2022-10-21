@@ -46,6 +46,16 @@ namespace ZLDF.Scoreboard.FightOperator.ViewModels
 				_currentDuel!.PropertyChanged += ScoreChangedListener;
 
 				CurDuelLogger = new FileLogger(GetLogPathForDuel(_currentDuel));
+
+				RaisePropertyChanged(nameof(NextDuel));
+			}
+		}
+
+		public Duel? NextDuel
+		{
+			get
+			{
+				return GetNextUnfinishedFight();
 			}
 		}
 
