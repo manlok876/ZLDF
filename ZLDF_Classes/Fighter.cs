@@ -68,6 +68,8 @@ namespace ZLDF.Classes
 
 		public Fighter()
 		{
+			Id = Guid.NewGuid();
+
 			_firstName = "Ivan";
 			_lastName = "Ivanov";
 
