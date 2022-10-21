@@ -29,98 +29,146 @@
 			<Grid.ColumnDefinitions>
 				<ColumnDefinition Width="*" />
 				<ColumnDefinition Width="10" />
-				<ColumnDefinition Width="2*" />
+				<ColumnDefinition Width="1.8*" />
 			</Grid.ColumnDefinitions>
 			<Grid Grid.Column="2" Margin="10,10,10,10">
 				<Grid.RowDefinitions>
-					<RowDefinition Height="*" />
-					<RowDefinition Height="10" />
+					<RowDefinition Height="1.5*" />
+					<RowDefinition Height="0" />
+					<RowDefinition Height="20" />
+					<RowDefinition Height="5" />
 					<RowDefinition Height="*" />
 				</Grid.RowDefinitions>
 
 				<Grid Grid.Row="0" Background="White">
-					<TextBlock Text="Ристалище 1" d:Text="Ристалище 1" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,10,0,0"/>
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="*"/>
+						<ColumnDefinition Width="*"/>
+						<ColumnDefinition Width="*"/>
+					</Grid.ColumnDefinitions>
 
-					<Button Content="+1 (Q)" Command="{Binding IncreaseFighterScoreCommand}"  Height="45" Width="50" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="20,0,0,50">
-						<Button.CommandParameter>
-							<MultiBinding Converter="{StaticResource LeftSelector}">
-								<Binding Path="CurrentDuel.FirstFighter"/>
-								<Binding Path="CurrentDuel.SecondFighter"/>
-								<Binding Path="IsFlipped"/>
-							</MultiBinding>
-						</Button.CommandParameter>
-					</Button>
-					<Button Content="-1 (Z)" Command="{Binding DecreaseFighterScoreCommand}" Height="45" Width="50" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="20,50,0,0">
-						<Button.CommandParameter>
-							<MultiBinding Converter="{StaticResource LeftSelector}">
-								<Binding Path="CurrentDuel.FirstFighter"/>
-								<Binding Path="CurrentDuel.SecondFighter"/>
-								<Binding Path="IsFlipped"/>
-							</MultiBinding>
-						</Button.CommandParameter>
-					</Button>
-					<TextBlock x:Name="RightScoreText" d:Text="15" FontSize="44" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="120,0,0,0">
-						<TextBlock.Text>
-							<MultiBinding Converter="{StaticResource LeftSelector}">
-								<Binding Path="CurrentDuel.FirstFighterScore"/>
-								<Binding Path="CurrentDuel.SecondFighterScore"/>
-								<Binding Path="IsFlipped"/>
-							</MultiBinding>
-						</TextBlock.Text>
-						<TextBlock.Background>
-							<MultiBinding Converter="{StaticResource LeftSelector}">
-								<Binding Path="FirstFighterColor" Converter="{StaticResource ColorConverter}"/>
-								<Binding Path="SecondFighterColor" Converter="{StaticResource ColorConverter}"/>
-								<Binding Path="IsFlipped"/>
-							</MultiBinding>
-						</TextBlock.Background>
-					</TextBlock>
+					<Grid Grid.Column="0">
+						<Grid.RowDefinitions>
+							<RowDefinition Height="2*"/>
+							<RowDefinition Height="*"/>
+						</Grid.RowDefinitions>
 
-					<Button Content="+1 (P)" Command="{Binding IncreaseFighterScoreCommand}" Height="45" Width="50" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,20,50">
-						<Button.CommandParameter>
-							<MultiBinding Converter="{StaticResource RightSelector}">
-								<Binding Path="CurrentDuel.FirstFighter"/>
-								<Binding Path="CurrentDuel.SecondFighter"/>
-								<Binding Path="IsFlipped"/>
-							</MultiBinding>
-						</Button.CommandParameter>
-					</Button>
-					<Button Content="-1 (M)" Command="{Binding DecreaseFighterScoreCommand}" Height="45" Width="50" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,50,20,0">
-						<Button.CommandParameter>
-							<MultiBinding Converter="{StaticResource RightSelector}">
-								<Binding Path="CurrentDuel.FirstFighter"/>
-								<Binding Path="CurrentDuel.SecondFighter"/>
-								<Binding Path="IsFlipped"/>
-							</MultiBinding>
-						</Button.CommandParameter>
-					</Button>
-					<TextBlock x:Name="LeftScoreText" d:Text="1" FontSize="44" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,120,0">
-						<TextBlock.Text>
-							<MultiBinding Converter="{StaticResource RightSelector}">
-								<Binding Path="CurrentDuel.FirstFighterScore"/>
-								<Binding Path="CurrentDuel.SecondFighterScore"/>
-								<Binding Path="IsFlipped"/>
-							</MultiBinding>
-						</TextBlock.Text>
-						<TextBlock.Background>
-							<MultiBinding Converter="{StaticResource RightSelector}">
-								<Binding Path="FirstFighterColor" Converter="{StaticResource ColorConverter}"/>
-								<Binding Path="SecondFighterColor" Converter="{StaticResource ColorConverter}"/>
-								<Binding Path="IsFlipped"/>
-							</MultiBinding>
-						</TextBlock.Background>
-					</TextBlock>
+						<DockPanel VerticalAlignment="Center" Grid.Row="0">
+							<TextBlock x:Name="LeftNameText" d:Text="Максименко" FontSize="14" HorizontalAlignment="Center" DockPanel.Dock="Bottom">
+								<TextBlock.Text>
+									<MultiBinding Converter="{StaticResource LeftSelector}">
+										<Binding Path="CurrentDuel.FirstFighter.LastName"/>
+										<Binding Path="CurrentDuel.SecondFighter.LastName"/>
+										<Binding Path="IsFlipped"/>
+									</MultiBinding>
+								</TextBlock.Text>
+							</TextBlock>
+							<TextBlock x:Name="LeftScoreText" d:Text="15" TextAlignment="Center" Foreground="White" d:Background="Red" FontSize="44" VerticalAlignment="Center" HorizontalAlignment="Stretch">
+								<TextBlock.Text>
+									<MultiBinding Converter="{StaticResource LeftSelector}">
+										<Binding Path="CurrentDuel.FirstFighterScore"/>
+										<Binding Path="CurrentDuel.SecondFighterScore"/>
+										<Binding Path="IsFlipped"/>
+									</MultiBinding>
+								</TextBlock.Text>
+								<TextBlock.Background>
+									<MultiBinding Converter="{StaticResource LeftSelector}">
+										<Binding Path="FirstFighterColor" Converter="{StaticResource ColorConverter}"/>
+										<Binding Path="SecondFighterColor" Converter="{StaticResource ColorConverter}"/>
+										<Binding Path="IsFlipped"/>
+									</MultiBinding>
+								</TextBlock.Background>
+							</TextBlock>
+						</DockPanel>
 
-					<TextBlock Text="{Binding CurrentDuel.RemainingTime, StringFormat=m\\:ss\\\,ff}" d:Text="0:00,00" TextWrapping="Wrap" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,30"/>
-					<StatusBar Height="20" VerticalAlignment="Bottom">
-						<TextBlock Text="{Binding CurrentDuel.State}" d:Text="InProgress" TextWrapping="Wrap"/>
-					</StatusBar>
+						<UniformGrid Columns="2" Grid.Row="1">
+							<Button Content="-1 (Q)" Command="{Binding DecreaseFighterScoreCommand}" Margin="10">
+								<Button.CommandParameter>
+									<MultiBinding Converter="{StaticResource LeftSelector}">
+										<Binding Path="CurrentDuel.FirstFighter"/>
+										<Binding Path="CurrentDuel.SecondFighter"/>
+										<Binding Path="IsFlipped"/>
+									</MultiBinding>
+								</Button.CommandParameter>
+							</Button>
+
+							<Button Content="+1 (W)" Command="{Binding IncreaseFighterScoreCommand}" Margin="10">
+								<Button.CommandParameter>
+									<MultiBinding Converter="{StaticResource LeftSelector}">
+										<Binding Path="CurrentDuel.FirstFighter"/>
+										<Binding Path="CurrentDuel.SecondFighter"/>
+										<Binding Path="IsFlipped"/>
+									</MultiBinding>
+								</Button.CommandParameter>
+							</Button>
+						</UniformGrid>
+					</Grid>
+
+					<TextBlock Text="{Binding ArenaText}" d:Text="Ристалище 1" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,10,0,0" Grid.Column="1" FontSize="20" FontWeight="Bold"/>
+
+					<Grid Grid.Column="2">
+						<Grid.RowDefinitions>
+							<RowDefinition Height="2*"/>
+							<RowDefinition Height="*"/>
+						</Grid.RowDefinitions>
+
+						<DockPanel VerticalAlignment="Center" Grid.Row="0">
+							<TextBlock x:Name="RightNameText" d:Text="Орехов" FontSize="14" HorizontalAlignment="Center" DockPanel.Dock="Bottom">
+								<TextBlock.Text>
+									<MultiBinding Converter="{StaticResource RightSelector}">
+										<Binding Path="CurrentDuel.FirstFighter.LastName"/>
+										<Binding Path="CurrentDuel.SecondFighter.LastName"/>
+										<Binding Path="IsFlipped"/>
+									</MultiBinding>
+								</TextBlock.Text>
+							</TextBlock>
+							<TextBlock x:Name="RightScoreText" d:Text="1" TextAlignment="Center" Foreground="White" d:Background="Blue" FontSize="44" VerticalAlignment="Center" HorizontalAlignment="Stretch" DockPanel.Dock="Top">
+								<TextBlock.Text>
+									<MultiBinding Converter="{StaticResource RightSelector}">
+										<Binding Path="CurrentDuel.FirstFighterScore"/>
+										<Binding Path="CurrentDuel.SecondFighterScore"/>
+										<Binding Path="IsFlipped"/>
+									</MultiBinding>
+								</TextBlock.Text>
+								<TextBlock.Background>
+									<MultiBinding Converter="{StaticResource RightSelector}">
+										<Binding Path="FirstFighterColor" Converter="{StaticResource ColorConverter}"/>
+										<Binding Path="SecondFighterColor" Converter="{StaticResource ColorConverter}"/>
+										<Binding Path="IsFlipped"/>
+									</MultiBinding>
+								</TextBlock.Background>
+							</TextBlock>
+						</DockPanel>
+
+						<UniformGrid Columns="2" Grid.Row="1">
+							<Button Content="+1 (O)" Command="{Binding IncreaseFighterScoreCommand}" Margin="10">
+								<Button.CommandParameter>
+									<MultiBinding Converter="{StaticResource RightSelector}">
+										<Binding Path="CurrentDuel.FirstFighter"/>
+										<Binding Path="CurrentDuel.SecondFighter"/>
+										<Binding Path="IsFlipped"/>
+									</MultiBinding>
+								</Button.CommandParameter>
+							</Button>
+							<Button Content="-1 (P)" Command="{Binding DecreaseFighterScoreCommand}" Margin="10">
+								<Button.CommandParameter>
+									<MultiBinding Converter="{StaticResource RightSelector}">
+										<Binding Path="CurrentDuel.FirstFighter"/>
+										<Binding Path="CurrentDuel.SecondFighter"/>
+										<Binding Path="IsFlipped"/>
+									</MultiBinding>
+								</Button.CommandParameter>
+							</Button>
+						</UniformGrid>
+					</Grid>
+
+					<TextBlock Text="{Binding CurrentDuel.RemainingTime, StringFormat=m\\:ss\\\,ff}" d:Text="0:00,00" TextWrapping="Wrap" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,30" Grid.Column="1" FontSize="20" FontWeight="Bold"/>
 					<!--
 					- current fight info
 					-->
 				</Grid>
 
-				<Grid Grid.Row="2" Background="LightGray">
+				<Grid Grid.Row="4" Background="LightGray">
 					<StackPanel Orientation="Horizontal" Height="40" VerticalAlignment="Top" HorizontalAlignment="Center">
 						<Button Content="+1 сек (F)" Command="{Binding AddSecondsCommand}" Padding="5" Margin="5">
 							<Button.CommandParameter>
@@ -151,6 +199,10 @@
 						- increase/decrease time manually
 					-->
 				</Grid>
+
+				<StatusBar VerticalAlignment="Bottom" Grid.Row="2">
+					<TextBlock Text="{Binding CurrentDuel.State}" d:Text="InProgress" TextWrapping="Wrap"/>
+				</StatusBar>
 			</Grid>
 
 			<DockPanel Margin="10,10,10,10" Grid.Column="0">
@@ -158,22 +210,36 @@
 					<Grid Background="White">
 						<TextBlock HorizontalAlignment="Center"  TextWrapping="Wrap" Text="Не подключен к хосту" VerticalAlignment="Top" Width="200"/>
 						<Button Content="Меню" HorizontalAlignment="Left"  VerticalAlignment="Center" Margin="160,0,0,0" Height="39" Width="50"/>
-						<TextBox HorizontalAlignment="Left" Margin="10,39,0,0" TextWrapping="Wrap" Text="Ристалище ..." ToolTip="ID ристалища" VerticalAlignment="Top" Width="125" Height="20"/>
+						<TextBox HorizontalAlignment="Left" Margin="10,39,0,0" TextWrapping="Wrap" Text="{Binding ArenaText}" d:Text="Ристалище 1" ToolTip="ID ристалища" VerticalAlignment="Top" Width="125" Height="20" MaxLines="1"/>
 						<TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Ристалище:" VerticalAlignment="Center" Height="18" Width="102" Margin="10,0,0,0"/>
 					</Grid>
 				</Border>
 				<TextBlock Text="Табло" DockPanel.Dock="Top"/>
 				<StackPanel Orientation="Vertical" Background="SeaShell" DockPanel.Dock="Top">
-					<StackPanel Orientation="Horizontal" Margin="5">
-						<CheckBox Name="ScoreboardMirrorCheckBox" IsChecked="{Binding ScoreboardVM.IsMirrored}" d:IsChecked="True"/>
-						<TextBlock Text="Зеркальное отображение"/>
-					</StackPanel>
+					<UniformGrid Columns="3">
+						<StackPanel Orientation="Horizontal" Margin="5">
+							<CheckBox Name="ScoreboardMirrorCheckBox" IsChecked="{Binding ScoreboardVM.IsMirrored}" d:IsChecked="True"/>
+							<TextBlock Text="Зеркально"/>
+						</StackPanel>
+						<StackPanel Orientation="Horizontal" Margin="5">
+							<CheckBox Name="ScoreboardNamesCheckBox" IsChecked="{Binding ScoreboardVM.IsMirrored}" d:IsChecked="True"/>
+							<TextBlock Text="Имена"/>
+						</StackPanel>
+						<StackPanel Orientation="Horizontal" Margin="5">
+							<CheckBox Name="ScoreboardClubsCheckBox" IsChecked="{Binding ScoreboardVM.IsMirrored}" d:IsChecked="True"/>
+							<TextBlock Text="Клубы"/>
+						</StackPanel>
+					</UniformGrid>
 					<UniformGrid Rows="1" DockPanel.Dock="Top">
 						<Button Command="{Binding CloseScoreboardCommand}" Content="Закрыть" Margin="5"/>
 						<Button Command="{Binding OpenScoreboardCommand}" Content="Показать" Margin="5"/>
 						<Button Command="{Binding MaximizeScoreboardCommand}" Content="Развернуть" Margin="5"/>
 					</UniformGrid>
 				</StackPanel>
+				<UniformGrid Rows="1" DockPanel.Dock="Bottom">
+					<Button Command="{Binding OpenFightsImportDialogCommand}" Content="Загрузить" Margin="5"/>
+					<Button Command="{Binding OpenFightsExportDialogCommand}" Content="Выгрузить" Margin="5"/>
+				</UniformGrid>
 				<TextBlock Text="Очередь боёв" DockPanel.Dock="Top"/>
 				<ListView Name="FightsList" d:ItemsSource="{d:SampleData ItemCount=5}" ItemsSource="{Binding AllDuels}" Background="SeaShell" SelectedItem="{Binding CurrentDuel, Mode=OneWay}" MouseDoubleClick="FightsList_MouseDoubleClick">
 					<ListView.View>
@@ -183,8 +249,8 @@
 									<Setter Property="Visibility" Value="Collapsed"/>
 								</Style>
 							</GridView.ColumnHeaderContainerStyle>
-							<GridViewColumn DisplayMemberBinding="{Binding FirstFighter.LastName}"/>
-							<GridViewColumn DisplayMemberBinding="{Binding SecondFighter.LastName}"/>
+							<GridViewColumn DisplayMemberBinding="{Binding FirstFighter.LastName}" Width="100"/>
+							<GridViewColumn DisplayMemberBinding="{Binding SecondFighter.LastName}" Width="70"/>
 							<GridViewColumn>
 								<GridViewColumn.CellTemplate>
 									<DataTemplate>
