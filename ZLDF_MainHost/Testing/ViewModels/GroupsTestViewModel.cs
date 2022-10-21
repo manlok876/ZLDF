@@ -87,9 +87,7 @@ namespace ZLDF.MainHost.Testing.ViewModels
 						strWriter.WriteLine($"\tГруппа {groupIdx}");
 						foreach (Fighter fighter in group.Fighters)
 						{
-							strWriter.Write($"{fighter.LastName}\t{fighter.FirstName}");
-							strWriter.Write('\t');
-							strWriter.Write(fighter.Club?.Name ?? "-");
+							strWriter.Write(ZLDFUtils.GetTSVFromFighter(fighter));
 							strWriter.WriteLine();
 						}
 						strWriter.WriteLine();
@@ -130,9 +128,22 @@ namespace ZLDF.MainHost.Testing.ViewModels
 				string? fighterData;
 				while ((fighterData = sr.ReadLine()) != null)
 				{
-					Fighter? fighter = ParseFighterFromTSVString(fighterData);
+					Fighter? fighter = ZLDFUtils.ParseFighterFromTSVString(fighterData);
 					if (fighter != null)
 					{
+						if (fighter.Club != null)
+						{
+							// Try finding club in previous
+							Club? fighterClub = GetClubByName(fighter.Club.Name);
+							if (fighterClub != null)
+							{
+								fighter.Club = fighterClub;
+							}
+							else
+							{
+								AddClub(fighter.Club);
+							}
+						}
 						result.Add(fighter);
 					}
 				}
@@ -141,35 +152,6 @@ namespace ZLDF.MainHost.Testing.ViewModels
 			return result;
 		}
 
-		public Fighter? ParseFighterFromTSVString(string fighterString)
-		{
-			// LastName 	FirstName	Club ("-" if no club)
-			string[] fighterData = fighterString.Split('\t');
-			if (fighterData.Length != 3)
-			{
-				return null;
-			}
-			string fighterLastName = fighterData[0];
-			string fighterName = fighterData[1];
-			string clubName = fighterData[2];
-
-			// Try finding club in previous
-			Club? fighterClub = GetClubByName(clubName);
-			if (fighterClub == null)
-			{
-				fighterClub = new Club();
-				fighterClub.Name = clubName;
-				AddClub(fighterClub);
-			}
-
-			// Create Fighter object with given data and return
-			Fighter fighter = new Fighter();
-			fighter.FirstName = fighterName;
-			fighter.LastName = fighterLastName;
-			fighter.Club = fighterClub;
-
-			return fighter;
-		}
 		#endregion
 
 		internal GroupsTestViewModel()
