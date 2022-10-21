@@ -162,6 +162,19 @@ namespace ZLDF.Scoreboard.FightOperator.ViewModels
 			}
 		}
 
+		private string _arenaText;
+		public string ArenaText
+		{
+			get
+			{
+				return _arenaText;
+			}
+			set
+			{
+				SetProperty(ref _arenaText, value);
+			}
+		}
+
 		#region Positioning
 
 		private bool _bIsFlipped = false;
@@ -505,6 +518,8 @@ namespace ZLDF.Scoreboard.FightOperator.ViewModels
 		{
 			Directory.CreateDirectory("Logs");
 			GlobalLogger = new FileLogger($"Logs/FOVM_Log_{DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss")}.txt");
+
+			ArenaText = "Ристалище 1";
 
 			FirstFighterColor = Colors.Red;
 			SecondFighterColor = Colors.Blue;
