@@ -133,7 +133,7 @@ namespace ZLDF.Classes
 				@"(?<club1>.*)\s(?<score1>\d+)\s*" +
 				@"^\k<duelId>\s(?<remainingTime>\S*)\s" +
 				@"(?:(?<fighterId2>.{32,38})\s)?(?<lastName2>\w+)\s(?<firstName2>\w+)\s" +
-				@"(?<club2>.*)\s(?<score2>\d+)\s";
+				@"(?<club2>.*)\s(?<score2>\d+)\s?";
 
 			Regex duelRegex =
 				new Regex(duelFormat, RegexOptions.Multiline, TimeSpan.FromMilliseconds(150));
