@@ -153,9 +153,11 @@ namespace ZLDF.Classes
 		{
 			FirstFighter = firstFighter;
 			SecondFighter = secondFighter;
+
 			FirstFighterScore = 0;
 			SecondFighterScore = 0;
-			TotalTime = new TimeSpan(0, 1, 0);
+
+			TotalTime = new TimeSpan(0, 1, 20);
 			RemainingTime = TotalTime;
 		}
 	}
