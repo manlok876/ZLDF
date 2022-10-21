@@ -11,17 +11,23 @@ namespace ZLDF.Classes.Logging
 	public class FileLogger : Logger
 	{
 		private TextWriter _writer;
+		private bool _disposed = false;
 
 		private void CreateLogFile(string filePath)
 		{
 			_writer = new StreamWriter(filePath, true);
 		}
 
-		private void CloseLogFile()
+		public void CloseLogFile()
 		{
 			Trace.WriteLine("Closed log file");
+			if (_disposed)
+			{
+				return;
+			}
 			Flush();
 			_writer.Close();
+			_disposed = true;
 		}
 
 		public override void Log(Message message)
