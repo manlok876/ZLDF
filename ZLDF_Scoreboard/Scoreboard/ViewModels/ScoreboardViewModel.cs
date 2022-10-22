@@ -21,6 +21,8 @@ namespace ZLDF.Scoreboard.Scoreboard.ViewModels
 			get { return _operatorViewModel; }
 		}
 
+		#region Mirroring
+
 		private bool _bIsMirrored = true;
 		public bool IsMirrored
 		{
@@ -45,6 +47,39 @@ namespace ZLDF.Scoreboard.Scoreboard.ViewModels
 		{
 			RaisePropertyChanged(nameof(IsFlipped));
 		}
+
+		#endregion // Mirroring
+
+		#region FightersInfo
+
+		private bool _displayFighterName = true;
+		public bool DisplayFighterName
+		{
+			get
+			{
+				return _displayFighterName;
+			}
+			set
+			{
+				SetProperty(ref _displayFighterName, value);
+				RaisePropertyChanged(nameof(DisplayFighterClub));
+			}
+		}
+
+		private bool _displayFighterClub = true;
+		public bool DisplayFighterClub
+		{
+			get
+			{
+				return DisplayFighterName && _displayFighterClub;
+			}
+			set
+			{
+				SetProperty(ref _displayFighterClub, value);
+			}
+		}
+
+		#endregion // FightersInfo
 
 		public ScoreboardViewModel(FightOperatorViewModel operatorViewModel)
 		{
