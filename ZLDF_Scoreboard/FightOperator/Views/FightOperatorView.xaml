@@ -222,11 +222,11 @@
 							<TextBlock Text="Зеркально"/>
 						</StackPanel>
 						<StackPanel Orientation="Horizontal" Margin="5">
-							<CheckBox Name="ScoreboardNamesCheckBox" IsChecked="{Binding ScoreboardVM.IsMirrored}" d:IsChecked="True"/>
+							<CheckBox Name="ScoreboardNamesCheckBox" IsChecked="{Binding ScoreboardVM.DisplayFighterName}" d:IsChecked="True"/>
 							<TextBlock Text="Имена"/>
 						</StackPanel>
 						<StackPanel Orientation="Horizontal" Margin="5">
-							<CheckBox Name="ScoreboardClubsCheckBox" IsChecked="{Binding ScoreboardVM.IsMirrored}" d:IsChecked="True"/>
+							<CheckBox Name="ScoreboardClubsCheckBox" IsChecked="{Binding ScoreboardVM.DisplayFighterClub}" d:IsChecked="True"/>
 							<TextBlock Text="Клубы"/>
 						</StackPanel>
 					</UniformGrid>
