@@ -17,6 +17,23 @@
 		<con:RightDataSelector x:Key="RightSelector"/>
 		<con:ColorToBrushConverter x:Key="ColorConverter"/>
 		<con:EventStateToBrushConverter x:Key="FightStateBrush"/>
+		<con:FighterToNameConverter x:Key="FighterNameConverter"/>
+
+		<sys:Boolean x:Key="True">true</sys:Boolean>
+		<sys:Boolean x:Key="False">false</sys:Boolean>
+
+		<Style x:Key="ScoreTextStyle" TargetType="TextBlock">
+			<Setter Property="TextAlignment" Value="Center"/>
+			<Setter Property="FontWeight" Value="DemiBold"/>
+			<Setter Property="Foreground" Value="White"/>
+			<Setter Property="Margin" Value="5"/>
+		</Style>
+
+		<Style x:Key="FighterNameStyle" TargetType="TextBlock">
+			<Setter Property="TextAlignment" Value="Center"/>
+			<Setter Property="FontWeight" Value="DemiBold"/>
+			<Setter Property="Margin" Value="2"/>
+		</Style>
 	</Window.Resources>
 
 	<DockPanel LastChildFill="True">
@@ -42,46 +59,52 @@
 
 				<Grid Grid.Row="0" Background="White">
 					<Grid.ColumnDefinitions>
-						<ColumnDefinition Width="*"/>
-						<ColumnDefinition Width="*"/>
-						<ColumnDefinition Width="*"/>
+						<ColumnDefinition/>
+						<ColumnDefinition/>
+						<ColumnDefinition/>
 					</Grid.ColumnDefinitions>
 
 					<Grid Grid.Column="0">
 						<Grid.RowDefinitions>
 							<RowDefinition Height="2*"/>
-							<RowDefinition Height="*"/>
+							<RowDefinition Height="0.5*"/>
+							<RowDefinition Height="1.2*"/>
 						</Grid.RowDefinitions>
 
-						<DockPanel VerticalAlignment="Center" Grid.Row="0">
-							<TextBlock x:Name="LeftNameText" d:Text="Максименко" FontSize="14" HorizontalAlignment="Center" DockPanel.Dock="Bottom">
-								<TextBlock.Text>
-									<MultiBinding Converter="{StaticResource LeftSelector}">
-										<Binding Path="CurrentDuel.FirstFighter.LastName"/>
-										<Binding Path="CurrentDuel.SecondFighter.LastName"/>
-										<Binding Path="IsFlipped"/>
-									</MultiBinding>
-								</TextBlock.Text>
-							</TextBlock>
-							<TextBlock x:Name="LeftScoreText" d:Text="15" TextAlignment="Center" Foreground="White" d:Background="Red" FontSize="44" VerticalAlignment="Center" HorizontalAlignment="Stretch">
-								<TextBlock.Text>
-									<MultiBinding Converter="{StaticResource LeftSelector}">
-										<Binding Path="CurrentDuel.FirstFighterScore"/>
-										<Binding Path="CurrentDuel.SecondFighterScore"/>
-										<Binding Path="IsFlipped"/>
-									</MultiBinding>
-								</TextBlock.Text>
-								<TextBlock.Background>
-									<MultiBinding Converter="{StaticResource LeftSelector}">
-										<Binding Path="FirstFighterColor" Converter="{StaticResource ColorConverter}"/>
-										<Binding Path="SecondFighterColor" Converter="{StaticResource ColorConverter}"/>
-										<Binding Path="IsFlipped"/>
-									</MultiBinding>
-								</TextBlock.Background>
-							</TextBlock>
-						</DockPanel>
+						<Border d:Background="Red">
+							<Border.Background>
+								<MultiBinding Converter="{StaticResource LeftSelector}">
+									<Binding Path="FirstFighterColor" Converter="{StaticResource ColorConverter}"/>
+									<Binding Path="SecondFighterColor" Converter="{StaticResource ColorConverter}"/>
+									<Binding Path="IsFlipped"/>
+								</MultiBinding>
+							</Border.Background>
+							<Viewbox>
+								<TextBlock x:Name="LeftScoreText" d:Text="15" Style="{StaticResource ScoreTextStyle}">
+									<TextBlock.Text>
+										<MultiBinding Converter="{StaticResource LeftSelector}">
+											<Binding Path="CurrentDuel.FirstFighterScore"/>
+											<Binding Path="CurrentDuel.SecondFighterScore"/>
+											<Binding Path="IsFlipped"/>
+										</MultiBinding>
+									</TextBlock.Text>
+								</TextBlock>
+							</Viewbox>
+						</Border>
 
-						<UniformGrid Columns="2" Grid.Row="1">
+						<Viewbox Grid.Row="1">
+							<TextBlock x:Name="LeftLastNameText" d:Text="Максименко Д." Style="{StaticResource FighterNameStyle}">
+								<TextBlock.Text>
+									<MultiBinding Converter="{StaticResource LeftSelector}">
+										<Binding Path="CurrentDuel.FirstFighter" Converter="{StaticResource FighterNameConverter}" ConverterParameter="{StaticResource True}"/>
+										<Binding Path="CurrentDuel.SecondFighter" Converter="{StaticResource FighterNameConverter}" ConverterParameter="{StaticResource True}"/>
+										<Binding Path="IsFlipped"/>
+									</MultiBinding>
+								</TextBlock.Text>
+							</TextBlock>
+						</Viewbox>
+						
+						<UniformGrid Columns="2" Grid.Row="2">
 							<Button Content="-1 (Q)" Command="{Binding DecreaseFighterScoreCommand}" Margin="10">
 								<Button.CommandParameter>
 									<MultiBinding Converter="{StaticResource LeftSelector}">
@@ -109,38 +132,44 @@
 					<Grid Grid.Column="2">
 						<Grid.RowDefinitions>
 							<RowDefinition Height="2*"/>
-							<RowDefinition Height="*"/>
+							<RowDefinition Height="0.5*"/>
+							<RowDefinition Height="1.2*"/>
 						</Grid.RowDefinitions>
 
-						<DockPanel VerticalAlignment="Center" Grid.Row="0">
-							<TextBlock x:Name="RightNameText" d:Text="Орехов" FontSize="14" HorizontalAlignment="Center" DockPanel.Dock="Bottom">
-								<TextBlock.Text>
-									<MultiBinding Converter="{StaticResource RightSelector}">
-										<Binding Path="CurrentDuel.FirstFighter.LastName"/>
-										<Binding Path="CurrentDuel.SecondFighter.LastName"/>
-										<Binding Path="IsFlipped"/>
-									</MultiBinding>
-								</TextBlock.Text>
-							</TextBlock>
-							<TextBlock x:Name="RightScoreText" d:Text="1" TextAlignment="Center" Foreground="White" d:Background="Blue" FontSize="44" VerticalAlignment="Center" HorizontalAlignment="Stretch" DockPanel.Dock="Top">
-								<TextBlock.Text>
-									<MultiBinding Converter="{StaticResource RightSelector}">
-										<Binding Path="CurrentDuel.FirstFighterScore"/>
-										<Binding Path="CurrentDuel.SecondFighterScore"/>
-										<Binding Path="IsFlipped"/>
-									</MultiBinding>
-								</TextBlock.Text>
-								<TextBlock.Background>
-									<MultiBinding Converter="{StaticResource RightSelector}">
-										<Binding Path="FirstFighterColor" Converter="{StaticResource ColorConverter}"/>
-										<Binding Path="SecondFighterColor" Converter="{StaticResource ColorConverter}"/>
-										<Binding Path="IsFlipped"/>
-									</MultiBinding>
-								</TextBlock.Background>
-							</TextBlock>
-						</DockPanel>
+						<Border d:Background="Blue" Grid.Row="0">
+							<Border.Background>
+								<MultiBinding Converter="{StaticResource RightSelector}">
+									<Binding Path="FirstFighterColor" Converter="{StaticResource ColorConverter}"/>
+									<Binding Path="SecondFighterColor" Converter="{StaticResource ColorConverter}"/>
+									<Binding Path="IsFlipped"/>
+								</MultiBinding>
+							</Border.Background>
+							<Viewbox>
+								<TextBlock x:Name="RightScoreText" d:Text="1" Style="{StaticResource ScoreTextStyle}">
+									<TextBlock.Text>
+										<MultiBinding Converter="{StaticResource RightSelector}">
+											<Binding Path="CurrentDuel.FirstFighterScore"/>
+											<Binding Path="CurrentDuel.SecondFighterScore"/>
+											<Binding Path="IsFlipped"/>
+										</MultiBinding>
+									</TextBlock.Text>
+								</TextBlock>
+							</Viewbox>
+						</Border>
 
-						<UniformGrid Columns="2" Grid.Row="1">
+						<Viewbox Grid.Row="1">
+							<TextBlock x:Name="RightNameText" d:Text="Орехов Д." Style="{StaticResource FighterNameStyle}">
+								<TextBlock.Text>
+									<MultiBinding Converter="{StaticResource RightSelector}">
+										<Binding Path="CurrentDuel.FirstFighter"  Converter="{StaticResource FighterNameConverter}" ConverterParameter="{StaticResource True}"/>
+										<Binding Path="CurrentDuel.SecondFighter" Converter="{StaticResource FighterNameConverter}" ConverterParameter="{StaticResource True}"/>
+										<Binding Path="IsFlipped"/>
+									</MultiBinding>
+								</TextBlock.Text>
+							</TextBlock>
+						</Viewbox>
+						
+						<UniformGrid Columns="2" Grid.Row="2">
 							<Button Content="+1 (O)" Command="{Binding IncreaseFighterScoreCommand}" Margin="10">
 								<Button.CommandParameter>
 									<MultiBinding Converter="{StaticResource RightSelector}">
@@ -250,7 +279,7 @@
 								</Style>
 							</GridView.ColumnHeaderContainerStyle>
 							<GridViewColumn DisplayMemberBinding="{Binding FirstFighter.LastName}" Width="100"/>
-							<GridViewColumn DisplayMemberBinding="{Binding SecondFighter.LastName}" Width="70"/>
+							<GridViewColumn DisplayMemberBinding="{Binding SecondFighter.LastName}" Width="100"/>
 							<GridViewColumn>
 								<GridViewColumn.CellTemplate>
 									<DataTemplate>
