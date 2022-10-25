@@ -137,7 +137,7 @@
 			
 			<Border Name="LeftBG" Grid.Row="1" Grid.Column="0">
 				<Viewbox Margin="20">
-					<TextBlock Name="LeftScoreTextBlock" d:Text="1" TextAlignment="Center" VerticalAlignment="Center">
+					<TextBlock Name="LeftScoreTextBlock" d:Text="1" TextAlignment="Center" VerticalAlignment="Center" Margin="0,-2,0,-2">
 						<TextBlock.Text>
 							<MultiBinding Converter="{StaticResource LeftSelector}">
 								<Binding Path="FightOperatorVM.CurrentDuel.FirstFighterScore"/>
@@ -162,7 +162,7 @@
 
 			<Border Name="RightBG" Grid.Row="1" Grid.Column="2">
 				<Viewbox Margin="20">
-					<TextBlock Name="RightScoreTextBlock" d:Text="45" TextAlignment="Center" VerticalAlignment="Center">
+					<TextBlock Name="RightScoreTextBlock" d:Text="45" TextAlignment="Center" VerticalAlignment="Center" Margin="0,-2,0,-2">
 						<TextBlock.Text>
 							<MultiBinding Converter="{StaticResource RightSelector}">
 								<Binding Path="FightOperatorVM.CurrentDuel.FirstFighterScore"/>
