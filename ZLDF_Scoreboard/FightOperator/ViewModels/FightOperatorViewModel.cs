@@ -224,7 +224,6 @@ namespace ZLDF.Scoreboard.FightOperator.ViewModels
 		{
 			StopFightTimer();
 			CurrentDuel.State = EventState.Finished;
-			AddDuelToList(CreateEmptyDuel());
 			MoveToNextFight();
 		}
 
