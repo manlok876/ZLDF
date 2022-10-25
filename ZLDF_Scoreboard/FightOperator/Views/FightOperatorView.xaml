@@ -34,6 +34,10 @@
 			<Setter Property="FontWeight" Value="DemiBold"/>
 			<Setter Property="Margin" Value="2"/>
 		</Style>
+		
+		<Style TargetType="Button">
+			<Setter Property="Focusable" Value="False"/>
+		</Style>
 	</Window.Resources>
 
 	<DockPanel LastChildFill="True">
