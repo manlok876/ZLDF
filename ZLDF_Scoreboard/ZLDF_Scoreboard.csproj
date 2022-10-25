@@ -18,12 +18,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="Images\logo.png">
+    <Resource Include="Images\logo.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Images\logo_no_text.png">
+    </Resource>
+    <Resource Include="Images\logo_no_text.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    </Resource>
     <Content Include="logo.ico">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
