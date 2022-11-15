@@ -93,11 +93,17 @@ namespace ZLDF.MainHost.Testing.ViewModels
 		}
 
 		private float WinWeight = 3;
-		private float DrawWeight = 1;
+		private float DrawWeight = 2;
+		private float LossWeight = 1;
 
 		float CalculateRating(FighterStats stats)
 		{
-			return stats.WinCount * WinWeight + stats.DrawCount * DrawWeight;
+			return stats.WinCount * WinWeight + stats.DrawCount * DrawWeight + stats.LossCount * LossWeight;
+		}
+
+		float CalculateAverageRating(FighterStats stats)
+		{
+			return CalculateRating(stats) / stats.TotalFights;
 		}
 
 		int CompareRatings(FighterStats stats1, FighterStats stats2)
@@ -107,8 +113,8 @@ namespace ZLDF.MainHost.Testing.ViewModels
 				return 0;
 			}
 
-			float rating1 = CalculateRating(stats1);
-			float rating2 = CalculateRating(stats2);
+			float rating1 = CalculateAverageRating(stats1);
+			float rating2 = CalculateAverageRating(stats2);
 
 			if (rating1 == rating2)
 			{
