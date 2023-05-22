@@ -1,8 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net6.0-windows</TargetFramework>
+    <TargetFramework>net7.0-windows</TargetFramework>
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
     <RootNamespace>$(MSBuildProjectName.Replace("_", "."))</RootNamespace>
@@ -10,11 +9,9 @@
     <PackageIcon>logo.ico</PackageIcon>
     <BaseOutputPath>..\Build\</BaseOutputPath>
   </PropertyGroup>
-
   <ItemGroup>
     <None Remove="logo.ico" />
   </ItemGroup>
-
   <ItemGroup>
     <Resource Include="logo.ico">
       <Pack>True</Pack>
@@ -22,19 +19,19 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>
-
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="6.0.0" />
     <PackageReference Include="Prism.Wpf" Version="8.1.97" />
+    <PackageReference Include="Microsoft.DotNet.UpgradeAssistant.Extensions.Default.Analyzers" Version="0.4.421302">
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Windows.Compatibility" Version="7.0.1" />
   </ItemGroup>
-
   <ItemGroup>
     <ProjectReference Include="..\ZLDF_Classes\ZLDF_Classes.csproj" />
   </ItemGroup>
-
   <ItemGroup>
     <Folder Include="Data\Parsing\" />
     <Folder Include="Views\Nomination\" />
   </ItemGroup>
-
 </Project>

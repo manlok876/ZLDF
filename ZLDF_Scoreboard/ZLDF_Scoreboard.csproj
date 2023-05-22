@@ -1,8 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net6.0-windows</TargetFramework>
+    <TargetFramework>net7.0-windows</TargetFramework>
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
     <RootNamespace>$(MSBuildProjectName.Replace("_", "."))</RootNamespace>
@@ -10,13 +9,11 @@
     <PackageIcon>logo.ico</PackageIcon>
     <BaseOutputPath>..\Build\</BaseOutputPath>
   </PropertyGroup>
-
   <ItemGroup>
     <None Remove="Images\logo.jpg" />
     <None Remove="Images\logo.png" />
     <None Remove="Images\logo_no_text.png" />
   </ItemGroup>
-
   <ItemGroup>
     <Resource Include="Images\logo.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -28,15 +25,16 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
-
   <ItemGroup>
     <PackageReference Include="Prism.Wpf" Version="8.1.97" />
+    <PackageReference Include="Microsoft.DotNet.UpgradeAssistant.Extensions.Default.Analyzers" Version="0.4.421302">
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Windows.Compatibility" Version="7.0.1" />
   </ItemGroup>
-
   <ItemGroup>
     <ProjectReference Include="..\ZLDF_Classes\ZLDF_Classes.csproj" />
   </ItemGroup>
-
   <ItemGroup>
     <Resource Include="Images\logo.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -47,12 +45,10 @@
       <Pack>True</Pack>
     </Resource>
   </ItemGroup>
-
   <ItemGroup>
     <None Update="logo.ico">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
     </None>
   </ItemGroup>
-
 </Project>
