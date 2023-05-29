@@ -2,6 +2,8 @@
 
 ZLDF_*/bin
 ZLDF_*/obj
+*/bin
+*/obj
 
 Build/
 
