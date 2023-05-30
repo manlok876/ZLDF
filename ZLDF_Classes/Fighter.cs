@@ -6,12 +6,10 @@ namespace ZLDF.Classes
 {
 	public class Fighter : BindableBase
 	{
-		private string _firstName;
-		private string _lastName;
-		private string _city;
-		private Club? _club;
 
 		public Guid Id { get; set; }
+
+		private string _firstName = "Ivan";
 		public string FirstName
 		{
 			get { return _firstName; }
@@ -21,6 +19,7 @@ namespace ZLDF.Classes
 				RaisePropertyChanged(nameof(FullName));
 			}
 		}
+		private string _lastName = "Ivanov";
 		public string LastName
 		{
 			get { return _lastName; }
@@ -38,6 +37,7 @@ namespace ZLDF.Classes
 			} 
 		}
 
+		private string _city = "City";
 		public string City
 		{
 			get { return _city; }
@@ -46,6 +46,7 @@ namespace ZLDF.Classes
 				SetProperty(ref _city, value);
 			}
 		}
+		private Club? _club = null;
 		public Club? Club
 		{
 			get { return _club; }
@@ -68,12 +69,6 @@ namespace ZLDF.Classes
 		public Fighter()
 		{
 			Id = Guid.NewGuid();
-
-			_firstName = "Ivan";
-			_lastName = "Ivanov";
-
-			_city = "City";
-			_club = null;
 		}
 	}
 }
