@@ -98,7 +98,6 @@ namespace NetTest.ViewModels
 
 		public async Task ListenToRequest()
 		{
-			// получаем контекст
 			HttpListenerContext context = await Server.GetContextAsync();
 
 			if (CurrentContext != null)
