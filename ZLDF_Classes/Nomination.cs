@@ -86,21 +86,21 @@ namespace ZLDF.Classes
 			RaisePropertyChanged(nameof(Fighters));
 		}
 
-		public MatchmakingBase Matchmaking
-		{
-			get;
-			private set;
-		}
+		//public MatchmakingBase Matchmaking
+		//{
+		//	get;
+		//	private set;
+		//}
 
-		public void SetMatchmaking(MatchmakingBase matchmaker)
-		{
-			if (Matchmaking != null)
-			{
-				return;
-			}
-			Matchmaking = matchmaker;
-			RaisePropertyChanged(nameof(Matchmaking));
-		}
+		//public void SetMatchmaking(MatchmakingBase matchmaker)
+		//{
+		//	if (Matchmaking != null)
+		//	{
+		//		return;
+		//	}
+		//	Matchmaking = matchmaker;
+		//	RaisePropertyChanged(nameof(Matchmaking));
+		//}
 
 		// Fight rules
 
