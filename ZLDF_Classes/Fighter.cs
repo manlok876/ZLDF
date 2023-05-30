@@ -16,7 +16,6 @@ namespace ZLDF.Classes
 			set
 			{
 				SetProperty(ref _firstName, value);
-				RaisePropertyChanged(nameof(FullName));
 			}
 		}
 		private string _lastName = "Ivanov";
@@ -26,15 +25,7 @@ namespace ZLDF.Classes
 			set
 			{
 				SetProperty(ref _lastName, value);
-				RaisePropertyChanged(nameof(FullName));
 			}
-		}
-		public string FullName
-		{
-			get
-			{
-				return $"{LastName} {FirstName}";
-			} 
 		}
 
 		private string _city = "City";
