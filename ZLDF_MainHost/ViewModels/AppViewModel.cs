@@ -37,7 +37,17 @@ namespace ZLDF.MainHost.ViewModels
 		public ICommand CreateTournamentCommand { get; private set; }
 		private void CreateTournament(string name)
 		{
-			Tournament newTournament = TestData.GenerateTestTournament(5, 3);
+			Tournament newTournament;
+			CreateTournamentDialog createDialog = new CreateTournamentDialog();
+			if (createDialog.ShowDialog() == true)
+			{
+				newTournament = createDialog.Tournament;
+			}
+			else
+			{
+				return;
+			}
+
 			TournamentConnection tournamentConnection = TestData.GenerateTestConnection(newTournament.Name);
 			using (TournamentDbContext tournamentDbContext = new TournamentDbContext(tournamentConnection))
 			{
@@ -92,7 +102,7 @@ namespace ZLDF.MainHost.ViewModels
 
 			_selectedTournament = null;
 
-			CreateTournamentCommand = new DelegateCommand<string>(CreateTournament, (name) => true);
+			CreateTournamentCommand = new DelegateCommand<string>(CreateTournament);
 			
 			SelectTournamentCommand = new DelegateCommand<TournamentConnection>(SelectTournament, (tournament) => true);
 			OpenSelectedTournamentCommand = new DelegateCommand(OpenSelectedTournament, CanOpenSelectedTournament);
