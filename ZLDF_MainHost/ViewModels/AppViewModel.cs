@@ -19,12 +19,12 @@ namespace ZLDF.MainHost.ViewModels
 	internal class AppViewModel : BindableBase
 	{
 		private List<TournamentConnection> _tournaments;
-		private TournamentConnection? _selectedTournament;
-
 		public ImmutableArray<TournamentConnection> Tournaments
 		{
 			get { return _tournaments.ToImmutableArray(); }
 		}
+
+		private TournamentConnection? _selectedTournament;
 		public TournamentConnection? SelectedTournament
 		{
 			get { return _selectedTournament; }

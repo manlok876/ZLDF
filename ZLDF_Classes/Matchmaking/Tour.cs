@@ -10,8 +10,6 @@ namespace ZLDF.Classes.Matchmaking
 	public class Tour : Event
 	{
 		private EventState _tourState = EventState.Unknown;
-		private ObservableCollection<Fight> _fights = new ObservableCollection<Fight>();
-
 		public override EventState State
 		{
 			get
@@ -23,12 +21,14 @@ namespace ZLDF.Classes.Matchmaking
 				SetProperty(ref _tourState, value);
 			}
 		}
-		public ObservableCollection<Fight> Fights
+
+		private ObservableCollection<Fight> _fights = new ObservableCollection<Fight>();
+		public IEnumerable<Fight> Fights
 		{
 			get { return _fights; }
 			private set
 			{
-				SetProperty(ref _fights, value);
+				SetProperty(ref _fights, new ObservableCollection<Fight>(value));
 			}
 		}
 

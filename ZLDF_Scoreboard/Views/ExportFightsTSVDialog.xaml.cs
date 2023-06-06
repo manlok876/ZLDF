@@ -20,9 +20,13 @@ namespace ZLDF.Scoreboard.Views
 	/// </summary>
 	public partial class ExportFightsTSVDialog : Window
 	{
+		private IEnumerable<Duel> _duels;
+
 		public ExportFightsTSVDialog(IEnumerable<Duel> duels)
 		{
 			InitializeComponent();
+
+			_duels = duels;
 
 			DuelsTextBox.Text = ZLDFUtils.GetTSVFromDuels(duels);
 		}

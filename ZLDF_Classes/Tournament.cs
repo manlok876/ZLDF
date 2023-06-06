@@ -9,8 +9,6 @@ namespace ZLDF.Classes
 	public class Tournament : Event
 	{
 		private EventState _tournamentState = EventState.Unknown;
-		private string _name;
-
 		public override EventState State
 		{
 			get { return _tournamentState; }
@@ -19,6 +17,8 @@ namespace ZLDF.Classes
 				SetProperty(ref _tournamentState, value);
 			}
 		}
+
+		private string _name = "Some Tournament";
 		public string Name
 		{
 			get { return _name; }
@@ -39,7 +39,6 @@ namespace ZLDF.Classes
 		}
 
 		private ObservableCollection<Fighter> _fighters = new ObservableCollection<Fighter>();
-
 		public ObservableCollection<Fighter> Fighters
 		{
 			get { return _fighters; }
@@ -96,7 +95,6 @@ namespace ZLDF.Classes
 
 		public Tournament()
 		{
-			_name = "Some Tournament";
 		}
 	}
 }
