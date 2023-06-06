@@ -87,7 +87,6 @@ namespace ZLDF.MainHost.ViewModels
 			IEnumerable<string> localTournamentFiles = Directory.EnumerateFiles("Tournaments", "*.db");
 			foreach (string file in localTournamentFiles)
 			{
-				Console.WriteLine(file);
 				_tournaments.Add(new TournamentConnection(file));
 			}
 
