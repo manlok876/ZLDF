@@ -9,11 +9,9 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Prism.Mvvm;
 using Prism.Commands;
-using ZLDF.Classes;
 using ZLDF.Classes.Matchmaking;
 using ZLDF.MainHost.Data;
 using ZLDF.MainHost.Data.EF;
-using ZLDF.MainHost.Views.Tournament;
 
 namespace ZLDF.MainHost.Testing.ViewModels
 {

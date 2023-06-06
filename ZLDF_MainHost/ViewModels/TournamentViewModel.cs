@@ -13,7 +13,6 @@ using ZLDF.Classes;
 using ZLDF.Classes.Matchmaking;
 using ZLDF.MainHost.Data;
 using ZLDF.MainHost.Data.EF;
-using ZLDF.MainHost.Views.Tournament;
 using Microsoft.EntityFrameworkCore;
 
 namespace ZLDF.MainHost.ViewModels

@@ -6,7 +6,6 @@
 		xmlns:local="clr-namespace:ZLDF.MainHost.Views"
 		xmlns:vm="clr-namespace:ZLDF.MainHost.ViewModels"
 		xmlns:v="clr-namespace:ZLDF.MainHost.Views"
-		xmlns:tv="clr-namespace:ZLDF.MainHost.Views.Tournament"
 		xmlns:classes="clr-namespace:ZLDF.Classes;assembly=ZLDF_Classes"
 		mc:Ignorable="d"
 		Title="{Binding Model.Name}" Height="450" Width="800"
@@ -25,7 +24,7 @@
 			<TabControl.ItemsSource>
 				<CompositeCollection>
 					<TabItem Header="Турнир">
-						<tv:TFightersListView DataContext="{Binding }"/>
+						<v:TFightersListView DataContext="{Binding }"/>
 					</TabItem>
 					<CollectionContainer Collection="{Binding Source={StaticResource Nominations}}"/>
 				</CompositeCollection>

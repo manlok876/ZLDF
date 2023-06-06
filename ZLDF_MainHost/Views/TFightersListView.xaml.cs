@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace ZLDF.MainHost.Views.Tournament
+namespace ZLDF.MainHost.Views
 {
 	/// <summary>
 	/// Interaction logic for TFightersListView.xaml
