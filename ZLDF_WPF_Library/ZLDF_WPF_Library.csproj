@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net7.0-windows</TargetFramework>
+		<Nullable>enable</Nullable>
+		<UseWPF>true</UseWPF>
+		<RootNamespace>ZLDF.WPF</RootNamespace>
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\ZLDF_Classes\ZLDF_Classes.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Using Include="Prism.Mvvm" />
+		<Using Include="ZLDF.Classes" />
+	</ItemGroup>
+</Project>
