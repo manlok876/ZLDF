@@ -21,15 +21,15 @@ namespace ZLDF.MainHost
 		{
 			base.OnStartup(e);
 
-			MainTestingView app = new MainTestingView();
-			MainTestingViewModel context = new MainTestingViewModel();
+			//MainTestingView test = new MainTestingView();
+			//MainTestingViewModel testContext = new MainTestingViewModel();
+			//test.DataContext = testContext;
+			//test.Show();
+
+			AppView app = new AppView();
+			AppViewModel context = new AppViewModel();
 			app.DataContext = context;
 			app.Show();
-
-			//AppView app = new AppView();
-			//AppViewModel context = new AppViewModel();
-			//app.DataContext = context;
-			//app.Show();
 		}
 	}
 }
