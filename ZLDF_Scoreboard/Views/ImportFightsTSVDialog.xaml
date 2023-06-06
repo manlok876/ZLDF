@@ -8,14 +8,10 @@
 		Title="Импортировать список боёв"
 		Height="450" Width="400">
 	<DockPanel>
-		<Grid DockPanel.Dock="Bottom" Height="50">
-			<Grid.ColumnDefinitions>
-				<ColumnDefinition Width="*"/>
-				<ColumnDefinition Width="*"/>
-			</Grid.ColumnDefinitions>
-			<Button x:Name="CancelButton" IsCancel="True" Content="Отмена" Margin="5" Grid.Column="0"/>
+		<UniformGrid DockPanel.Dock="Bottom" Height="50" Rows="1">
+			<Button x:Name="CancelButton" IsCancel="True" Content="Отмена" Margin="5" Grid.Column="0" />
 			<Button x:Name="SubmitButton" Click="SubmitButton_Click" Content="Ок" Margin="5" Grid.Column="1"/>
-		</Grid>
+		</UniformGrid>
 		<TextBox x:Name="DuelsTextBox" AcceptsTab="True" AcceptsReturn="True" TextWrapping="NoWrap" BorderBrush="Green" BorderThickness="5" Margin="5" DockPanel.Dock="Top"/>
 	</DockPanel>
 </Window>
