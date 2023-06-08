@@ -1,0 +1,22 @@
+﻿<Window x:Class="ZLDF.App.Views.MainWindow"
+		xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:prism="http://prismlibrary.com/"
+		xmlns:zldf_wpf="clr-namespace:ZLDF.WPF;assembly=ZLDF.WPF"
+		prism:ViewModelLocator.AutoWireViewModel="True"
+		Title="{Binding Title}" Height="700" Width="1050" >
+	<Grid>
+		<!--<TabControl>
+			<TabItem Header="Test" >
+				<ContentControl prism:RegionManager.RegionName="{x:Static zldf_wpf:RegionNames.TestRegion}" />
+			</TabItem>
+			<TabItem Header="Main Host" >
+				<ContentControl prism:RegionManager.RegionName="{x:Static zldf_wpf:RegionNames.MainHostRegion}" />
+			</TabItem>
+			<TabItem Header="Scoreboard" >
+				<ContentControl prism:RegionManager.RegionName="{x:Static zldf_wpf:RegionNames.ScoreboardRegion}" />
+			</TabItem>
+		</TabControl>-->
+		<TabControl prism:RegionManager.RegionName="{x:Static zldf_wpf:RegionNames.TestRegion}" />
+	</Grid>
+</Window>
