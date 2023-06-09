@@ -10,6 +10,7 @@
   <ItemGroup>
     <ProjectReference Include="..\ZLDF.Core\ZLDF.Core.csproj" />
     <ProjectReference Include="..\ZLDF.MainHost\ZLDF.MainHost.csproj" />
+    <ProjectReference Include="..\ZLDF.Scoreboard\ZLDF.Scoreboard.csproj" />
     <ProjectReference Include="..\ZLDF.WPF\ZLDF.WPF.csproj" />
   </ItemGroup>
 </Project>

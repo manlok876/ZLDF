@@ -3,6 +3,7 @@ using Prism.Modularity;
 using System.Windows;
 using ZLDF.App.Views;
 using ZLDF.MainHost;
+using ZLDF.Scoreboard;
 
 namespace ZLDF.App
 {
@@ -24,7 +25,9 @@ namespace ZLDF.App
 		protected override void ConfigureModuleCatalog(IModuleCatalog moduleCatalog)
 		{
 			base.ConfigureModuleCatalog(moduleCatalog);
+
 			moduleCatalog.AddModule<MainHostModule>();
+			moduleCatalog.AddModule<ScoreboardModule>();
 		}
 	}
 }
