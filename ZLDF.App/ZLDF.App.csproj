@@ -1,16 +1,20 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-  <PropertyGroup>
-    <OutputType>WinExe</OutputType>
-    <TargetFramework>net7.0-windows</TargetFramework>
-    <UseWPF>true</UseWPF>
-  </PropertyGroup>
-  <ItemGroup>
-    <PackageReference Include="Prism.DryIoc" Version="8.1.97" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\ZLDF.Core\ZLDF.Core.csproj" />
-    <ProjectReference Include="..\ZLDF.MainHost\ZLDF.MainHost.csproj" />
-    <ProjectReference Include="..\ZLDF.Scoreboard\ZLDF.Scoreboard.csproj" />
-    <ProjectReference Include="..\ZLDF.WPF\ZLDF.WPF.csproj" />
-  </ItemGroup>
+
+	<PropertyGroup>
+		<OutputType>WinExe</OutputType>
+		<TargetFramework>net7.0-windows</TargetFramework>
+		<UseWPF>true</UseWPF>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Prism.DryIoc" Version="8.1.97" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\ZLDF.Core\ZLDF.Core.csproj" />
+		<ProjectReference Include="..\ZLDF.MainHost\ZLDF.MainHost.csproj" />
+		<ProjectReference Include="..\ZLDF.Scoreboard\ZLDF.Scoreboard.csproj" />
+		<ProjectReference Include="..\ZLDF.WPF\ZLDF.WPF.csproj" />
+	</ItemGroup>
+
 </Project>
