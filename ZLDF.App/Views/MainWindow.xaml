@@ -5,7 +5,11 @@
 		xmlns:zldf_wpf="clr-namespace:ZLDF.WPF;assembly=ZLDF.WPF"
 		prism:ViewModelLocator.AutoWireViewModel="True"
 		Title="{Binding Title}" Height="700" Width="1050" >
-	<Grid>
+	<DockPanel>
+		<StackPanel Orientation="Horizontal" DockPanel.Dock="Top" >
+			<Button x:Name="MainHostButton" Content="MainHost" Click="MainHostButton_Click" />
+			<Button x:Name="ScoreboardButton" Content="Scoreboard" Click="ScoreboardButton_Click" />
+		</StackPanel>
 		<!--<TabControl>
 			<TabItem Header="Test" >
 				<ContentControl prism:RegionManager.RegionName="{x:Static zldf_wpf:RegionNames.TestRegion}" />
@@ -17,6 +21,13 @@
 				<ContentControl prism:RegionManager.RegionName="{x:Static zldf_wpf:RegionNames.ScoreboardRegion}" />
 			</TabItem>
 		</TabControl>-->
-		<TabControl prism:RegionManager.RegionName="{x:Static zldf_wpf:RegionNames.TestRegion}" />
-	</Grid>
+		<TabControl prism:RegionManager.RegionName="{x:Static zldf_wpf:RegionNames.TestRegion}" >
+			<TabControl.Resources>
+				<Style TargetType="TabItem">
+					<Setter Property="Header" Value="{Binding DataContext.Title}" />
+				</Style>
+			</TabControl.Resources>
+		</TabControl>
+		<!--<ContentControl prism:RegionManager.RegionName="{x:Static zldf_wpf:RegionNames.TestRegion}" />-->
+	</DockPanel>
 </Window>
