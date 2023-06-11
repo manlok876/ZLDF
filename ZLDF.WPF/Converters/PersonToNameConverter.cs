@@ -8,7 +8,7 @@ using ZLDF.Core;
 
 namespace ZLDF.WPF.Converters
 {
-	internal class PersonToNameConverter : IValueConverter
+	public class PersonToNameConverter : IValueConverter
 	{
 		public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
 		{
