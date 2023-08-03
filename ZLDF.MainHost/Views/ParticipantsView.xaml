@@ -24,12 +24,15 @@
 		<ListBox Width="300" Margin="10,10,0,10" HorizontalAlignment="Left" ItemsSource="{Binding Fighters}" SelectedItem="{Binding SelectedFighter}">
 			<ListBox.Resources>
 				<DataTemplate DataType="{x:Type zldf_core:Person}">
-					<TextBlock>
-						<TextBlock.Text>
-							<!--TODO: full name not updating-->
-							<Binding Converter="{StaticResource PersonNameConverter}" ConverterParameter="{StaticResource True}"/>
-						</TextBlock.Text>
-					</TextBlock>
+					<Grid>
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="*"/>
+							<ColumnDefinition Width="5"/>
+							<ColumnDefinition Width="*"/>
+						</Grid.ColumnDefinitions>
+						<TextBlock Text="{Binding LastName}" Grid.Column="0" />
+						<TextBlock Text="{Binding FirstName}" Grid.Column="2" />
+					</Grid>
 				</DataTemplate>
 			</ListBox.Resources>
 		</ListBox>
