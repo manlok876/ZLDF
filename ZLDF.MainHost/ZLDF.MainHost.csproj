@@ -2,6 +2,7 @@
 
 	<PropertyGroup>
 		<TargetFramework>net7.0-windows</TargetFramework>
+		<Nullable>enable</Nullable>
 		<UseWPF>true</UseWPF>
 	</PropertyGroup>
 
@@ -11,6 +12,7 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\ZLDF.Core\ZLDF.Core.csproj" />
+		<ProjectReference Include="..\ZLDF.DataAccess\ZLDF.DataAccess.csproj" />
 		<ProjectReference Include="..\ZLDF.WPF\ZLDF.WPF.csproj" />
 	</ItemGroup>
 
