@@ -4,6 +4,7 @@ using System.Windows;
 using ZLDF.App.Views;
 using ZLDF.MainHost;
 using ZLDF.Scoreboard;
+using ZLDF.Temp;
 
 namespace ZLDF.App
 {
@@ -28,6 +29,7 @@ namespace ZLDF.App
 
 			moduleCatalog.AddModule<MainHostModule>();
 			moduleCatalog.AddModule<ScoreboardModule>();
+			moduleCatalog.AddModule<TempModule>();
 		}
 	}
 }
