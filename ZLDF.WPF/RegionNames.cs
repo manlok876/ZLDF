@@ -11,7 +11,10 @@ namespace ZLDF.WPF
 		public static string TestRegion = "TestRegion";
 
 		public static string RegistrationRegion = "RegistrationRegion";
+
 		public static string MainHostRegion = "MainHostRegion";
+
 		public static string ScoreboardRegion = "ScoreboardRegion";
+
 	}
 }
