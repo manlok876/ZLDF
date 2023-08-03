@@ -16,15 +16,21 @@ namespace ZLDF.Temp.Services
 			new Person()
 		};
 
-		Person IPeopleDatabase.AddNewPerson()
+		public Person AddNewPerson()
 		{
 			Person newPerson = new Person();
 			people.Add(newPerson);
 			return newPerson;
 		}
 
-		void IPeopleDatabase.AddOrUpdatePerson(Person person)
+		public void AddPerson(Person person)
 		{
+			if (people.Contains(person))
+			{
+				return;
+			}
+
+			people.Add(person);
 		}
 
 		public void RemovePerson(Person person)
@@ -37,7 +43,7 @@ namespace ZLDF.Temp.Services
 			people.Remove(person);
 		}
 
-		IEnumerable<Person> IPeopleDatabase.GetAllPeople()
+		public IEnumerable<Person> GetAllPeople()
 		{
 			return people;
 		}

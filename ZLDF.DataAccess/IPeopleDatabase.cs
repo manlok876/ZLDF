@@ -11,7 +11,7 @@ namespace ZLDF.DataAccess
 	{
 		public Person AddNewPerson();
 
-		public void AddOrUpdatePerson(Person person);
+		public void AddPerson(Person person);
 
 		public void RemovePerson(Person person);
 
