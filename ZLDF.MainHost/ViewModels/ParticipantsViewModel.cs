@@ -36,7 +36,7 @@ namespace ZLDF.MainHost.ViewModels
 			_addFighterCommand ?? (_addFighterCommand = new DelegateCommand(AddFighter));
 		public void AddFighter()
 		{
-			Person newPerson = _peopleDatabase.AddNewPerson();
+			Person newPerson = _peopleDatabase.CreatePerson();
 			Fighters.Add(newPerson);
 		}
 

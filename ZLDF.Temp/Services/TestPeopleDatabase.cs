@@ -16,7 +16,7 @@ namespace ZLDF.Temp.Services
 			new Person()
 		};
 
-		public Person AddNewPerson()
+		public Person CreatePerson()
 		{
 			Person newPerson = new Person();
 			people.Add(newPerson);

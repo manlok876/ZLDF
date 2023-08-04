@@ -9,10 +9,8 @@ namespace ZLDF.DataAccess
 {
 	public interface IPeopleDatabase
 	{
-		public Person AddNewPerson();
-
+		public Person CreatePerson();
 		public void AddPerson(Person person);
-
 		public void RemovePerson(Person person);
 
 		public IEnumerable<Person> GetAllPeople();
