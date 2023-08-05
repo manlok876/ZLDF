@@ -25,7 +25,7 @@ namespace ZLDF.MainHost
 			_regionManager.RegisterViewWithRegion<HostStartMenu>(RegionNames.MainHostRegion);
 			_regionManager.RegisterViewWithRegion<MainHostView>(RegionNames.ShellRegion);
 
-			//containerRegistry.RegisterForNavigation<MainHostView, MainHostViewModel>();
+			containerRegistry.RegisterForNavigation<TournamentView, TournamentViewModel>();
 		}
 	}
 }
