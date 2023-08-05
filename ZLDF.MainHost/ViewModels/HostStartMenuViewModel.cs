@@ -7,9 +7,9 @@ using Prism.Commands;
 using Prism.Ioc;
 
 using ZLDF.Core;
-//using ZLDF.DataAccess;
-//using ZLDF.Temp.EF;
-//using ZLDF.Temp.Services;
+using ZLDF.DataAccess;
+using ZLDF.Temp.EF;
+using ZLDF.Temp.Services;
 
 namespace ZLDF.MainHost.ViewModels
 {
@@ -32,15 +32,15 @@ namespace ZLDF.MainHost.ViewModels
 			Tournament createdTournament = new Tournament();
 			createdTournament.Title = NewTournamentTitle;
 
-			//using (TournamentDbContext tournamentDbContext = new TournamentDbContext(filePath))
-			//{
-			//	tournamentDbContext.Database.EnsureCreated();
-			//	tournamentDbContext.Add(createdTournament);
-			//	tournamentDbContext.SaveChanges();
-			//}
+			using (TournamentDbContext tournamentDbContext = new TournamentDbContext(filePath))
+			{
+				tournamentDbContext.Database.EnsureCreated();
+				tournamentDbContext.Add(createdTournament);
+				tournamentDbContext.SaveChanges();
+			}
 
-			//TestTournamentDatabase tournamentDb = new TestTournamentDatabase();
-			//_containerRegistry.RegisterInstance<ITournamentDatabase>(tournamentDb);
+			TestTournamentDatabase tournamentDb = new TestTournamentDatabase(createdTournament);
+			_containerRegistry.RegisterInstance<ITournamentDatabase>(tournamentDb);
 		}
 
 		private DelegateCommand<string>? _loadTournamenCommand;
