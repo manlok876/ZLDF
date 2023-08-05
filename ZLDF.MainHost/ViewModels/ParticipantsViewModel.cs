@@ -18,49 +18,49 @@ namespace ZLDF.MainHost.ViewModels
 
 		private ObservableCollection<Person> _people = new ObservableCollection<Person>();
 
-		public ObservableCollection<Person> Fighters
+		public ObservableCollection<Person> People
 		{
 			get { return _people; }
 			set { SetProperty(ref _people, value); }
 		}
 
-		private Person? _selectedFighter;
-		public Person? SelectedFighter
+		private Person? _selectedPerson;
+		public Person? SelectedPerson
 		{
-			get { return _selectedFighter; }
-			set { SetProperty(ref _selectedFighter, value); }
+			get { return _selectedPerson; }
+			set { SetProperty(ref _selectedPerson, value); }
 		}
 
-		private DelegateCommand _addFighterCommand;
+		private DelegateCommand? _addFighterCommand;
 		public DelegateCommand AddFighterCommand =>
-			_addFighterCommand ?? (_addFighterCommand = new DelegateCommand(AddFighter));
+			_addFighterCommand ??= new DelegateCommand(AddFighter);
 		public void AddFighter()
 		{
 			Person newPerson = _peopleDatabase.CreatePerson();
-			Fighters.Add(newPerson);
+			People.Add(newPerson);
 		}
 
-		private DelegateCommand _removeFighterCommand;
+		private DelegateCommand? _removeFighterCommand;
 		public DelegateCommand RemoveFighterCommand =>
-			_removeFighterCommand ?? (_removeFighterCommand = new DelegateCommand(RemoveFighter));
+			_removeFighterCommand ??= new DelegateCommand(RemoveFighter);
 		public void RemoveFighter()
 		{
-			if (SelectedFighter is null)
+			if (SelectedPerson is null)
 			{
 				return;
 			}
 
-			_peopleDatabase.RemovePerson(SelectedFighter);
-			Fighters.Remove(SelectedFighter);
-			SelectedFighter = Fighters.FirstOrDefault();
+			_peopleDatabase.RemovePerson(SelectedPerson);
+			People.Remove(SelectedPerson);
+			SelectedPerson = People.FirstOrDefault();
 		}
 
 		public ParticipantsViewModel(IPeopleDatabase peopleDB)
 		{
 			_peopleDatabase = peopleDB;
 
-			Fighters = new ObservableCollection<Person>(_peopleDatabase.GetAllPeople());
-			SelectedFighter = Fighters.FirstOrDefault();
+			People = new ObservableCollection<Person>(_peopleDatabase.GetAllPeople());
+			SelectedPerson = People.FirstOrDefault();
 		}
 
 	}
