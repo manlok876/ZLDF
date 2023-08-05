@@ -7,15 +7,6 @@
 			 xmlns:prism="http://prismlibrary.com/"
 			 prism:ViewModelLocator.AutoWireViewModel="True"
 			 xmlns:zldf_wpf="clr-namespace:ZLDF.WPF;assembly=ZLDF.WPF"
-			 xmlns:local="clr-namespace:ZLDF.MainHost.Views"
 			 d:DesignHeight="900" d:DesignWidth="1600">
-	<ContentControl prism:RegionManager.RegionName="{x:Static zldf_wpf:RegionNames.MainHostRegion}">
-		<!--<TabControl>
-			<TabItem Header="Participants">
-				<local:ParticipantsView/>
-			</TabItem>
-			<TabItem Header="Arenas">
-			</TabItem>
-		</TabControl>-->
-	</ContentControl>
+	<ContentControl prism:RegionManager.RegionName="{x:Static zldf_wpf:RegionNames.MainHostRegion}" />
 </UserControl>
