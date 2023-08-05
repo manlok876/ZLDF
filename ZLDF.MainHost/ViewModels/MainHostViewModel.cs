@@ -11,13 +11,6 @@ namespace ZLDF.MainHost.ViewModels
 	{
 		public string Title => "Main Host";
 
-		private string _message = "Main Host View";
-		public string Message
-		{
-			get { return _message; }
-			set { SetProperty(ref _message, value); }
-		}
-
 		public MainHostViewModel()
 		{
 
