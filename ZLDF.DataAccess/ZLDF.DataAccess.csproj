@@ -7,6 +7,10 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+	  <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="7.0.9" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<ProjectReference Include="..\ZLDF.Core\ZLDF.Core.csproj" />
 	</ItemGroup>
 
