@@ -27,9 +27,9 @@ namespace ZLDF.App
 		{
 			base.ConfigureModuleCatalog(moduleCatalog);
 
+			moduleCatalog.AddModule<TempModule>();
 			moduleCatalog.AddModule<MainHostModule>();
 			moduleCatalog.AddModule<ScoreboardModule>();
-			moduleCatalog.AddModule<TempModule>();
 		}
 	}
 }
