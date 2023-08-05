@@ -22,7 +22,10 @@ namespace ZLDF.MainHost
 
 		public void RegisterTypes(IContainerRegistry containerRegistry)
 		{
-			containerRegistry.RegisterForNavigation<MainHostView, MainHostViewModel>();
+			_regionManager.RegisterViewWithRegion<HostStartMenu>(RegionNames.MainHostRegion);
+			_regionManager.RegisterViewWithRegion<MainHostView>(RegionNames.ShellRegion);
+
+			//containerRegistry.RegisterForNavigation<MainHostView, MainHostViewModel>();
 		}
 	}
 }
