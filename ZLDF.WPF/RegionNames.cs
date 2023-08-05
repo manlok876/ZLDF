@@ -8,13 +8,15 @@ namespace ZLDF.WPF
 {
 	public static class RegionNames
 	{
-		public static string TestRegion = "TestRegion";
+		public static string TestRegion = "Region_Test";
 
-		public static string RegistrationRegion = "RegistrationRegion";
+		public static string ShellRegion = "Region_Shell";
 
-		public static string MainHostRegion = "MainHostRegion";
+		public static string RegistrationRegion = "Region_Registration";
 
-		public static string ScoreboardRegion = "ScoreboardRegion";
+		public static string MainHostRegion = "Region_MainHost";
+
+		public static string ScoreboardRegion = "Region_Scoreboard";
 
 	}
 }
