@@ -13,6 +13,7 @@
 	<ItemGroup>
 		<ProjectReference Include="..\ZLDF.Core\ZLDF.Core.csproj" />
 		<ProjectReference Include="..\ZLDF.DataAccess\ZLDF.DataAccess.csproj" />
+		<ProjectReference Include="..\ZLDF.Temp\ZLDF.Temp.csproj" />
 		<ProjectReference Include="..\ZLDF.WPF\ZLDF.WPF.csproj" />
 	</ItemGroup>
 
