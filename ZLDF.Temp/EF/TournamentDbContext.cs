@@ -16,7 +16,7 @@ namespace ZLDF.Temp.EF
 	{
 		public string ConnectionString { get; private set; }
 
-		internal DbSet<Tournament> Tournaments { get; set; }
+		public DbSet<Tournament> Tournaments { get; set; }
 
 		protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 		{
