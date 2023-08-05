@@ -21,13 +21,12 @@
 				<ContentControl prism:RegionManager.RegionName="{x:Static zldf_wpf:RegionNames.ScoreboardRegion}" />
 			</TabItem>
 		</TabControl>-->
-		<TabControl prism:RegionManager.RegionName="{x:Static zldf_wpf:RegionNames.TestRegion}" >
-			<TabControl.Resources>
+		<TabControl prism:RegionManager.RegionName="{x:Static zldf_wpf:RegionNames.ShellRegion}" >
+			<TabControl.ItemContainerStyle>
 				<Style TargetType="TabItem">
 					<Setter Property="Header" Value="{Binding DataContext.Title}" />
 				</Style>
-			</TabControl.Resources>
+			</TabControl.ItemContainerStyle>
 		</TabControl>
-		<!--<ContentControl prism:RegionManager.RegionName="{x:Static zldf_wpf:RegionNames.TestRegion}" />-->
 	</DockPanel>
 </Window>

@@ -22,12 +22,12 @@ namespace ZLDF.App.Views
 
 		private void MainHostButton_Click(object sender, RoutedEventArgs e)
 		{
-			_regionManager.RequestNavigate(RegionNames.TestRegion, "MainHostView");
+			_regionManager.RequestNavigate(RegionNames.ShellRegion, "MainHostView");
 		}
 
 		private void ScoreboardButton_Click(object sender, RoutedEventArgs e)
 		{
-			_regionManager.RequestNavigate(RegionNames.TestRegion, "ScoreboardView");
+			_regionManager.RequestNavigate(RegionNames.ShellRegion, "ScoreboardView");
 		}
 	}
 }
