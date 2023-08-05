@@ -15,40 +15,28 @@ namespace ZLDF.Core
 		public Guid Id
 		{
 			get => _id;
-			set
-			{
-				SetProperty(ref _id, value);
-			}
+			set { SetProperty(ref _id, value); }
 		}
 
 		private string _firstName = "Ivan";
 		public string FirstName
 		{
 			get => _firstName;
-			set
-			{
-				SetProperty(ref _firstName, value);
-			}
+			set { SetProperty(ref _firstName, value); }
 		}
 
 		private string _lastName = "Ivanov";
 		public string LastName
 		{
 			get => _lastName;
-			set
-			{
-				SetProperty(ref _lastName, value);
-			}
+			set { SetProperty(ref _lastName, value); }
 		}
 
 		private string _city = "City";
 		public string City
 		{
 			get => _city;
-			set
-			{
-				SetProperty(ref _city, value);
-			}
+			set { SetProperty(ref _city, value); }
 		}
 
 		#region Clubs
