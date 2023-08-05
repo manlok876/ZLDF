@@ -14,7 +14,7 @@ namespace ZLDF.Temp
 
 		public void RegisterTypes(IContainerRegistry containerRegistry)
 		{
-			containerRegistry.Register<IPeopleDatabase, Services.TestPeopleDatabase>();
+			containerRegistry.RegisterSingleton<IPeopleDatabase, Services.TestPeopleDatabase>();
 		}
 	}
 }
