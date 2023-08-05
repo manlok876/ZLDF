@@ -10,5 +10,7 @@ namespace ZLDF.DataAccess
 	public interface ITournamentDatabase
 	{
 		public Tournament TournamentObject { get; }
+
+		public void Init(Tournament tournament);
 	}
 }

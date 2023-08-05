@@ -13,7 +13,7 @@ namespace ZLDF.Temp.Services
 		private Tournament _tournament;
 		public Tournament TournamentObject => _tournament;
 
-		public TestTournamentDatabase(Tournament tournament)
+		public void Init(Tournament tournament)
 		{
 			_tournament = tournament;
 		}
