@@ -1,5 +1,7 @@
-﻿using Prism.Regions;
-using System.Windows;
+﻿using System.Windows;
+
+using Prism.Regions;
+
 using ZLDF.WPF;
 
 namespace ZLDF.App.Views
