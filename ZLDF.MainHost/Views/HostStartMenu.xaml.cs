@@ -1,6 +1,8 @@
 ﻿using Microsoft.Win32;
+using Prism.Regions;
 using System.Windows.Controls;
 using ZLDF.MainHost.ViewModels;
+using ZLDF.WPF;
 
 namespace ZLDF.MainHost.Views
 {
@@ -9,19 +11,25 @@ namespace ZLDF.MainHost.Views
 	/// </summary>
 	public partial class HostStartMenu : UserControl
 	{
-		public HostStartMenu()
+		private readonly IRegionManager _regionManager;
+
+		public HostStartMenu(IRegionManager regionManager)
 		{
 			InitializeComponent();
+
+			_regionManager = regionManager;
 		}
 
 		private void CreateButton_Click(object sender, System.Windows.RoutedEventArgs e)
 		{
 			SaveFileDialog dialog = new SaveFileDialog();
+			dialog.OverwritePrompt = true;
 
 			if (dialog.ShowDialog() == true)
 			{
 				string destinationFilePath = dialog.FileName;
 				(DataContext as HostStartMenuViewModel)?.CreateTournament(destinationFilePath);
+				_regionManager.RequestNavigate(RegionNames.MainHostRegion, "TournamentView");
 			}
 		}
 
@@ -32,7 +40,12 @@ namespace ZLDF.MainHost.Views
 			if (dialog.ShowDialog() == true)
 			{
 				string destinationFilePath = dialog.FileName;
-				(DataContext as HostStartMenuViewModel)?.LoadTournament(destinationFilePath);
+				bool? result = (DataContext as HostStartMenuViewModel)?.LoadTournament(destinationFilePath);
+
+				if (result ?? false)
+				{
+					_regionManager.RequestNavigate(RegionNames.MainHostRegion, "TournamentView");
+				}
 			}
 		}
 	}
