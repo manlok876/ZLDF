@@ -21,6 +21,7 @@ namespace ZLDF.Temp.EF
 
 		protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{
+			base.OnModelCreating(modelBuilder);
 		}
 
 		public TournamentDbContext(DatabaseReference dbReference) : base(dbReference)
