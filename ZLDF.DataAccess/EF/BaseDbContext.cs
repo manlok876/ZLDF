@@ -12,13 +12,20 @@ namespace ZLDF.DataAccess.EF
 {
 	public class BaseDbContext : DbContext
 	{
-		public DatabaseReference DatabaseReference { get; private set; }
+		public DatabaseReference DbReference { get; private set; }
 
-		protected string ConnectionString => GetConnectionString(DatabaseReference);
+		protected string ConnectionString => GetConnectionString(DbReference);
 
 		protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 		{
-			optionsBuilder.UseSqlite(ConnectionString);
+			switch (DbReference.ConnectionType)
+			{
+				case DatabaseType.SQLite:
+					optionsBuilder.UseSqlite(ConnectionString);
+					break;
+				default:
+					break;
+			}
 			base.OnConfiguring(optionsBuilder);
 		}
 
@@ -34,14 +41,14 @@ namespace ZLDF.DataAccess.EF
 
 		public BaseDbContext(DatabaseReference databaseReference)
 		{
-			DatabaseReference = databaseReference;
+			DbReference = databaseReference;
 		}
 
 		// Default constructor assumes url is a SQLite filepath
 		public BaseDbContext(string url)
 		{
-			DatabaseReference = new DatabaseReference(url);
-			DatabaseReference.ConnectionType = DatabaseType.SQLite;
+			DbReference = new DatabaseReference(url);
+			DbReference.ConnectionType = DatabaseType.SQLite;
 		}
 	}
 }
