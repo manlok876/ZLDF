@@ -18,60 +18,52 @@ namespace ZLDF.MainHost.ViewModels
 	public class HostStartMenuViewModel : BindableBase
 	{
 		private readonly ITournamentDatabase _tournamentDatabase;
+		private readonly ITournamentService _tournamentService;
 		private readonly IRegionManager _regionManager;
 
 		public HostStartMenuViewModel(
 			ITournamentDatabase tournamentDatabase,
+			ITournamentService tournamentService,
 			IRegionManager regionManager)
 		{
 			_tournamentDatabase = tournamentDatabase;
+			_tournamentService = tournamentService;
 			_regionManager = regionManager;
 		}
 
 		public string NewTournamentTitle { get; set; } = "New Tournament";
 
-		private DelegateCommand<string>? _createTournamenCommand;
+		private DelegateCommand<string>? _createTournamentCommand;
 		public DelegateCommand<string> CreateTournamentCommand =>
-			_createTournamenCommand ??= new DelegateCommand<string>(CreateTournament);
+			_createTournamentCommand ??= new DelegateCommand<string>(CreateTournament);
 
 		public void CreateTournament(string filePath)
 		{
-			Tournament createdTournament = new Tournament();
-			createdTournament.Title = NewTournamentTitle;
+			//Tournament createdTournament = new Tournament();
+			//createdTournament.Title = NewTournamentTitle;
+			//_tournamentDatabase.SetTournament(createdTournament);
 
-			using (TournamentDbContext tournamentDbContext = new TournamentDbContext(filePath))
-			{
-				// Wipe, if needed we should ask for overwrite in dialog
-				tournamentDbContext.Database.EnsureDeleted();
-				tournamentDbContext.Database.EnsureCreated();
-				tournamentDbContext.Add(createdTournament);
-				tournamentDbContext.SaveChanges();
-			}
-
-			_tournamentDatabase.Init(createdTournament);
+			Tournament createdTournament = _tournamentService.CreateNewTournament();
+			_tournamentService.SetTournamentTitle(NewTournamentTitle);
 
 			_regionManager.RequestNavigate(RegionNames.MainHostRegion, "TournamentView");
 		}
 
-		private DelegateCommand<string>? _loadTournamenCommand;
+		private DelegateCommand<string>? _loadTournamentCommand;
 		public DelegateCommand<string> LoadTournamentCommand =>
-			_loadTournamenCommand ??= new DelegateCommand<string>(LoadTournament);
+			_loadTournamentCommand ??= new DelegateCommand<string>(LoadTournament);
 
 		public void LoadTournament(string filePath)
 		{
-			Tournament? loadedTournament;
+			DatabaseReference dbReference = new DatabaseReference(filePath);
+			_tournamentDatabase.ConnectToDatabase(dbReference);
 
-			using (TournamentDbContext tournamentDbContext = new TournamentDbContext(filePath))
-			{
-				loadedTournament = tournamentDbContext.Tournaments.FirstOrDefault();
-			}
+			Tournament loadedTournament = _tournamentService.LoadTournament();
 
 			if (loadedTournament == null)
 			{
 				return;
 			}
-
-			_tournamentDatabase.Init(loadedTournament);
 
 			_regionManager.RequestNavigate(RegionNames.MainHostRegion, "TournamentView");
 		}

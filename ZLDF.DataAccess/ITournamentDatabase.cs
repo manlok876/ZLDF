@@ -9,8 +9,12 @@ namespace ZLDF.DataAccess
 {
 	public interface ITournamentDatabase
 	{
-		public Tournament TournamentObject { get; }
+		public Tournament? TournamentObject { get; }
 
-		public void Init(Tournament tournament);
+		public void ConnectToDatabase(DatabaseReference dbReference);
+
+		public void SetTournament(Tournament tournament);
+		public Tournament? LoadTournament();
+		public void SaveTournament();
 	}
 }

@@ -16,6 +16,7 @@ namespace ZLDF.Temp
 		{
 			containerRegistry.RegisterSingleton<IPeopleDatabase, Services.TestPeopleDatabase>();
 			containerRegistry.RegisterSingleton<ITournamentDatabase, Services.TestTournamentDatabase>();
+			containerRegistry.RegisterSingleton<ITournamentService, Services.TournamentService>();
 		}
 	}
 }
