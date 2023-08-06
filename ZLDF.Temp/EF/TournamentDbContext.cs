@@ -9,6 +9,7 @@ using System.Windows.Media.Media3D;
 using Microsoft.EntityFrameworkCore;
 
 using ZLDF.Core;
+using ZLDF.DataAccess;
 
 namespace ZLDF.Temp.EF
 {
@@ -23,18 +24,20 @@ namespace ZLDF.Temp.EF
 			optionsBuilder.UseSqlite(ConnectionString);
 			base.OnConfiguring(optionsBuilder);
 		}
+
 		protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{
 		}
-		public static string GetConnectionString(TournamentConnection tournamentConnection)
+
+		public static string GetConnectionString(DatabaseReference dbReference)
 		{
-			string result = $"Data Source={tournamentConnection.URL}";
+			string result = $"Data Source={dbReference.URL}";
 			return result;
 		}
 
-		public TournamentDbContext(TournamentConnection tournamentConnection)
+		public TournamentDbContext(DatabaseReference dbReference)
 		{
-			ConnectionString = GetConnectionString(tournamentConnection);
+			ConnectionString = GetConnectionString(dbReference);
 		}
 
 		public TournamentDbContext(string url)
