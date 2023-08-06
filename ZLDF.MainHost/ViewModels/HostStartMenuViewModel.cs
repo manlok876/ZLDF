@@ -11,23 +11,28 @@ using ZLDF.DataAccess;
 using ZLDF.Temp.EF;
 using ZLDF.Temp.Services;
 using Prism.Regions;
+using ZLDF.WPF;
 
 namespace ZLDF.MainHost.ViewModels
 {
 	public class HostStartMenuViewModel : BindableBase
 	{
 		private readonly ITournamentDatabase _tournamentDatabase;
+		private readonly IRegionManager _regionManager;
 
-		public HostStartMenuViewModel(ITournamentDatabase tournamentDatabase)
+		public HostStartMenuViewModel(
+			ITournamentDatabase tournamentDatabase,
+			IRegionManager regionManager)
 		{
 			_tournamentDatabase = tournamentDatabase;
+			_regionManager = regionManager;
 		}
 
 		public string NewTournamentTitle { get; set; } = "New Tournament";
 
-		//private DelegateCommand<string>? _createTournamenCommand;
-		//public DelegateCommand<string> CreateTournamentCommand =>
-		//	_createTournamenCommand ??= new DelegateCommand<string>(CreateTournament);
+		private DelegateCommand<string>? _createTournamenCommand;
+		public DelegateCommand<string> CreateTournamentCommand =>
+			_createTournamenCommand ??= new DelegateCommand<string>(CreateTournament);
 
 		public void CreateTournament(string filePath)
 		{
@@ -45,30 +50,30 @@ namespace ZLDF.MainHost.ViewModels
 
 			_tournamentDatabase.Init(createdTournament);
 
+			_regionManager.RequestNavigate(RegionNames.MainHostRegion, "TournamentView");
 		}
 
-		//private DelegateCommand<string>? _loadTournamenCommand;
-		//public DelegateCommand<string> LoadTournamentCommand =>
-		//	_loadTournamenCommand ??= new DelegateCommand<string>(LoadTournament);
+		private DelegateCommand<string>? _loadTournamenCommand;
+		public DelegateCommand<string> LoadTournamentCommand =>
+			_loadTournamenCommand ??= new DelegateCommand<string>(LoadTournament);
 
-		public bool LoadTournament(string filePath)
+		public void LoadTournament(string filePath)
 		{
 			Tournament? loadedTournament;
 
 			using (TournamentDbContext tournamentDbContext = new TournamentDbContext(filePath))
 			{
-				
 				loadedTournament = tournamentDbContext.Tournaments.FirstOrDefault();
 			}
 
 			if (loadedTournament == null)
 			{
-				return false;
+				return;
 			}
 
 			_tournamentDatabase.Init(loadedTournament);
 
-			return true;
+			_regionManager.RequestNavigate(RegionNames.MainHostRegion, "TournamentView");
 		}
 	}
 }

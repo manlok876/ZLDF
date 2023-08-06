@@ -11,13 +11,9 @@ namespace ZLDF.MainHost.Views
 	/// </summary>
 	public partial class HostStartMenu : UserControl
 	{
-		private readonly IRegionManager _regionManager;
-
-		public HostStartMenu(IRegionManager regionManager)
+		public HostStartMenu()
 		{
 			InitializeComponent();
-
-			_regionManager = regionManager;
 		}
 
 		private void CreateButton_Click(object sender, System.Windows.RoutedEventArgs e)
@@ -29,7 +25,6 @@ namespace ZLDF.MainHost.Views
 			{
 				string destinationFilePath = dialog.FileName;
 				(DataContext as HostStartMenuViewModel)?.CreateTournament(destinationFilePath);
-				_regionManager.RequestNavigate(RegionNames.MainHostRegion, "TournamentView");
 			}
 		}
 
@@ -40,12 +35,7 @@ namespace ZLDF.MainHost.Views
 			if (dialog.ShowDialog() == true)
 			{
 				string destinationFilePath = dialog.FileName;
-				bool? result = (DataContext as HostStartMenuViewModel)?.LoadTournament(destinationFilePath);
-
-				if (result ?? false)
-				{
-					_regionManager.RequestNavigate(RegionNames.MainHostRegion, "TournamentView");
-				}
+				(DataContext as HostStartMenuViewModel)?.LoadTournament(destinationFilePath);
 			}
 		}
 	}
