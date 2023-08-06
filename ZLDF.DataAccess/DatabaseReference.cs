@@ -17,13 +17,13 @@ namespace ZLDF.DataAccess
 
 		public string URL { get; set; }
 
-		internal DatabaseReference()
+		public DatabaseReference()
 		{
 			ConnectionType = DatabaseType.SQLite;
 			URL = "";
 		}
 
-		internal DatabaseReference(string url)
+		public DatabaseReference(string url)
 		{
 			URL = url;
 			ConnectionType = DatabaseType.SQLite;
