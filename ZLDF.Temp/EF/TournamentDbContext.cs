@@ -12,6 +12,14 @@ namespace ZLDF.Temp.EF
 {
 	public class TournamentDbContext : BaseDbContext
 	{
+		public TournamentDbContext(DatabaseReference dbReference) : base(dbReference)
+		{
+		}
+
+		public TournamentDbContext(string url) : base(url)
+		{
+		}
+
 		public DbSet<Tournament> Tournaments { get; set; }
 
 		protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -22,14 +30,6 @@ namespace ZLDF.Temp.EF
 		protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{
 			base.OnModelCreating(modelBuilder);
-		}
-
-		public TournamentDbContext(DatabaseReference dbReference) : base(dbReference)
-		{
-		}
-
-		public TournamentDbContext(string url) : base(url)
-		{
 		}
 	}
 }
