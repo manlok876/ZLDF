@@ -68,6 +68,7 @@ namespace ZLDF.Temp.Services
 				new TournamentDbContext(DbReference))
 			{
 				tournamentDbContext.Update(_tournament);
+				tournamentDbContext.SaveChanges();
 			}
 		}
 	}

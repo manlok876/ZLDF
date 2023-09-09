@@ -39,9 +39,8 @@ namespace ZLDF.MainHost.ViewModels
 
 		public void CreateTournament(string filePath)
 		{
-			//Tournament createdTournament = new Tournament();
-			//createdTournament.Title = NewTournamentTitle;
-			//_tournamentDatabase.SetTournament(createdTournament);
+			DatabaseReference dbReference = new DatabaseReference(filePath);
+			_tournamentDatabase.ConnectToDatabase(dbReference);
 
 			Tournament createdTournament = _tournamentService.CreateNewTournament();
 			_tournamentService.SetTournamentTitle(NewTournamentTitle);
