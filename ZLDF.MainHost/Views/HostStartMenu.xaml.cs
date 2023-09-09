@@ -1,5 +1,4 @@
 ﻿using Microsoft.Win32;
-using Prism.Regions;
 using System.Windows.Controls;
 using ZLDF.MainHost.ViewModels;
 using ZLDF.WPF;
@@ -16,9 +15,13 @@ namespace ZLDF.MainHost.Views
 			InitializeComponent();
 		}
 
+		private string FileFilter = "SQLite Database (*.sqlite)|*.sqlite|All files (*.*)|*.*";
+
 		private void CreateButton_Click(object sender, System.Windows.RoutedEventArgs e)
 		{
 			SaveFileDialog dialog = new SaveFileDialog();
+			dialog.FileName = NewTournamentTitle.Text;
+			dialog.Filter = FileFilter;
 			dialog.OverwritePrompt = true;
 
 			if (dialog.ShowDialog() == true)
@@ -31,6 +34,7 @@ namespace ZLDF.MainHost.Views
 		private void LoadButton_Click(object sender, System.Windows.RoutedEventArgs e)
 		{
 			OpenFileDialog dialog = new OpenFileDialog();
+			dialog.Filter = FileFilter;
 
 			if (dialog.ShowDialog() == true)
 			{

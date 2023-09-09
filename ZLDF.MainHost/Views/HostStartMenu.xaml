@@ -16,7 +16,7 @@
 		<StackPanel Orientation="Vertical" Margin="5" Grid.Column="0" >
 			<UniformGrid Columns="2">
 				<TextBlock Text="Title" />
-				<TextBox Text="{Binding NewTournamentTitle}" />
+				<TextBox x:Name="NewTournamentTitle" Text="{Binding NewTournamentTitle}" />
 			</UniformGrid>
 			<Button x:Name="CreateButton" Click="CreateButton_Click" Content="Create tournament" />
 		</StackPanel>

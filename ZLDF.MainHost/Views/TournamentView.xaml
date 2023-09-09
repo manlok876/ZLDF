@@ -10,8 +10,10 @@
 			 d:DesignHeight="450" d:DesignWidth="800"
 			 >
 	<Grid>
-
 		<TabControl>
+			<TabItem Header="Tournament">
+				<ListView Margin="415,5,224,257" Height="135" />
+			</TabItem>
 			<TabItem Header="Participants">
 				<local:ParticipantsView/>
 			</TabItem>
