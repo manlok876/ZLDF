@@ -43,6 +43,10 @@ namespace ZLDF.Temp.Services
 			{
 				CreateNewTournament();
 			}
+			else
+			{
+				Tournament = loadedTournament;
+			}
 
 			return Tournament;
 		}
