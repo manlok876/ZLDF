@@ -42,6 +42,12 @@ namespace ZLDF.DataAccess.EF
 
 		protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{
+			modelBuilder.Entity<Tournament>().ToTable("Tournaments");
+			modelBuilder.Entity<Person>().ToTable("People");
+			modelBuilder.Entity<Tournament>().
+				HasMany(t => t.Participants).
+				WithOne().
+				IsRequired(false);
 		}
 
 		public static string GetConnectionString(DatabaseReference databaseReference)
