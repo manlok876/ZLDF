@@ -14,7 +14,18 @@ namespace ZLDF.DataAccess.EF
 	{
 		public DatabaseReference DbReference { get; private set; }
 
+		public BaseDbContext(DatabaseReference databaseReference)
+		{
+			DbReference = databaseReference;
+		}
 		protected string ConnectionString => GetConnectionString(DbReference);
+
+		// Default constructor assumes url is a SQLite filepath
+		public BaseDbContext(string url)
+		{
+			DbReference = new DatabaseReference(url);
+			DbReference.ConnectionType = DatabaseType.SQLite;
+		}
 
 		protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 		{
@@ -37,18 +48,6 @@ namespace ZLDF.DataAccess.EF
 		{
 			string result = $"Data Source={databaseReference.URL}";
 			return result;
-		}
-
-		public BaseDbContext(DatabaseReference databaseReference)
-		{
-			DbReference = databaseReference;
-		}
-
-		// Default constructor assumes url is a SQLite filepath
-		public BaseDbContext(string url)
-		{
-			DbReference = new DatabaseReference(url);
-			DbReference.ConnectionType = DatabaseType.SQLite;
 		}
 	}
 }
