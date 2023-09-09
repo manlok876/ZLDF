@@ -16,6 +16,14 @@ namespace ZLDF.MainHost.ViewModels
 	{
 		private IPeopleDatabase _peopleDatabase;
 
+		public ParticipantsViewModel(IPeopleDatabase peopleDB)
+		{
+			_peopleDatabase = peopleDB;
+
+			People = new ObservableCollection<Person>(_peopleDatabase.GetAllPeople());
+			SelectedPerson = People.FirstOrDefault();
+		}
+
 		private ObservableCollection<Person> _people = new ObservableCollection<Person>();
 
 		public ObservableCollection<Person> People
@@ -38,6 +46,17 @@ namespace ZLDF.MainHost.ViewModels
 		{
 			Person newPerson = _peopleDatabase.CreatePerson();
 			People.Add(newPerson);
+			SelectedPerson = newPerson;
+		}
+
+		public void UpdateFighter()
+		{
+			if (SelectedPerson is null)
+			{
+				return;
+			}
+
+			_peopleDatabase.UpdatePerson(SelectedPerson);
 		}
 
 		private DelegateCommand? _removeFighterCommand;
@@ -52,14 +71,6 @@ namespace ZLDF.MainHost.ViewModels
 
 			_peopleDatabase.RemovePerson(SelectedPerson);
 			People.Remove(SelectedPerson);
-			SelectedPerson = People.FirstOrDefault();
-		}
-
-		public ParticipantsViewModel(IPeopleDatabase peopleDB)
-		{
-			_peopleDatabase = peopleDB;
-
-			People = new ObservableCollection<Person>(_peopleDatabase.GetAllPeople());
 			SelectedPerson = People.FirstOrDefault();
 		}
 

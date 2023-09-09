@@ -25,14 +25,14 @@ namespace ZLDF.Temp.Services
 		public void SetTournament(Tournament tournament)
 		{
 			_tournament = tournament;
-			using (TournamentDbContext tournamentDbContext =
-				new TournamentDbContext(DbReference))
+			using (TournamentDbContext dbContext = new
+				TournamentDbContext(DbReference))
 			{
 				// Wipe, if needed we should ask for overwrite in dialog
-				tournamentDbContext.Database.EnsureDeleted();
-				tournamentDbContext.Database.EnsureCreated();
-				tournamentDbContext.Add(tournament);
-				tournamentDbContext.SaveChanges();
+				dbContext.Database.EnsureDeleted();
+				dbContext.Database.EnsureCreated();
+				dbContext.Add(tournament);
+				dbContext.SaveChanges();
 			}
 		}
 
@@ -40,10 +40,10 @@ namespace ZLDF.Temp.Services
 		{
 			if (_tournament == null)
 			{
-				using (TournamentDbContext tournamentDbContext =
+				using (TournamentDbContext dbContext =
 					new TournamentDbContext(DbReference))
 				{
-					_tournament = tournamentDbContext.Tournaments.FirstOrDefault();
+					_tournament = dbContext.Tournaments.FirstOrDefault();
 				}
 			}
 
@@ -56,11 +56,11 @@ namespace ZLDF.Temp.Services
 			{
 				return;
 			}
-			using (TournamentDbContext tournamentDbContext =
+			using (TournamentDbContext dbContext =
 				new TournamentDbContext(DbReference))
 			{
-				tournamentDbContext.Update(_tournament);
-				tournamentDbContext.SaveChanges();
+				dbContext.Update(_tournament);
+				dbContext.SaveChanges();
 			}
 		}
 	}

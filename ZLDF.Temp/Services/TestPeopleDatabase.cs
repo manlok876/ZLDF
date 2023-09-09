@@ -5,52 +5,66 @@ using System.Text;
 using System.Threading.Tasks;
 using ZLDF.Core;
 using ZLDF.DataAccess;
+using ZLDF.Temp.EF;
 
 namespace ZLDF.Temp.Services
 {
-	internal class TestPeopleDatabase : IPeopleDatabase
+	public class TestPeopleDatabase : IPeopleDatabase
 	{
-		private List<Person> people = new List<Person>()
+		private readonly IDatabaseService _database;
+		public DatabaseReference DbReference => _database.DbReference;
+
+		public TestPeopleDatabase(IDatabaseService database)
 		{
-			new Person(),
-			new Person()
-		};
+			_database = database;
+		}
 
 		public Person CreatePerson()
 		{
 			Person newPerson = new Person();
-			people.Add(newPerson);
+			AddPerson(newPerson);
 			return newPerson;
 		}
 
 		public void AddPerson(Person person)
 		{
-			if (people.Contains(person))
+			using (PeopleDbContext dbContext =
+				new PeopleDbContext(DbReference))
 			{
-				return;
+				dbContext.Add(person);
+				dbContext.SaveChanges();
 			}
+		}
 
-			people.Add(person);
+		public void UpdatePerson(Person person)
+		{
+			using (PeopleDbContext dbContext =
+				new PeopleDbContext(DbReference))
+			{
+				dbContext.Update(person);
+				dbContext.SaveChanges();
+			}
 		}
 
 		public void RemovePerson(Person person)
 		{
-			if (people.Contains(person))
+			using (PeopleDbContext dbContext =
+				new PeopleDbContext(DbReference))
 			{
-				return;
+				dbContext.Remove(person);
+				dbContext.SaveChanges();
 			}
-
-			people.Remove(person);
 		}
 
 		public IEnumerable<Person> GetAllPeople()
 		{
-			return people;
-		}
-
-		public TestPeopleDatabase()
-		{
-
+			List<Person> result;
+			using (PeopleDbContext dbContext =
+				new PeopleDbContext(DbReference))
+			{
+				result = dbContext.Participants.ToList();
+			}
+			return result;
 		}
 	}
 }

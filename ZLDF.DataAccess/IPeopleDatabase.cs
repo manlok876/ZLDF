@@ -11,6 +11,7 @@ namespace ZLDF.DataAccess
 	{
 		public Person CreatePerson();
 		public void AddPerson(Person person);
+		public void UpdatePerson(Person person);
 		public void RemovePerson(Person person);
 
 		public IEnumerable<Person> GetAllPeople();
