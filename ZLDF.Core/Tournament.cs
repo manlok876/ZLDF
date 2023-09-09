@@ -24,14 +24,14 @@ namespace ZLDF.Core
 		}
 
 		private IList<Person> _participants = new List<Person>();
-		public IEnumerable<Person> Participants
+		public ICollection<Person> Participants
 		{
 			get => _participants;
 			set { SetProperty(ref _participants, new List<Person>(value)); }
 		}
 
 		private IList<Nomination> _nominations = new List<Nomination>();
-		public IEnumerable<Nomination> Nominations
+		public ICollection<Nomination> Nominations
 		{
 			get => _nominations;
 			set { SetProperty(ref _nominations, new List<Nomination>(value)); }
