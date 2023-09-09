@@ -11,20 +11,12 @@ namespace ZLDF.Temp.Services
 {
 	public class TestTournamentDatabase : ITournamentDatabase
 	{
-		private DatabaseReference? _dbReference;
-		public DatabaseReference DbReference =>
-			_dbReference ?? throw new NullReferenceException("TournamentDatabase not connected");
+		private readonly IDatabaseService _database;
+		public DatabaseReference DbReference => _database.DbReference;
 
-		public void ConnectToDatabase(DatabaseReference dbReference)
+		public TestTournamentDatabase(IDatabaseService databaseService)
 		{
-			_dbReference = dbReference;
-
-			using (TournamentDbContext tournamentDbContext =
-				new TournamentDbContext(DbReference))
-			{
-				tournamentDbContext.Database.EnsureCreated();
-				tournamentDbContext.SaveChanges();
-			}
+			_database = databaseService;
 		}
 
 		private Tournament? _tournament;

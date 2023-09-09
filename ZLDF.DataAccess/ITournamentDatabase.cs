@@ -11,8 +11,6 @@ namespace ZLDF.DataAccess
 	{
 		public Tournament? TournamentObject { get; }
 
-		public void ConnectToDatabase(DatabaseReference dbReference);
-
 		public void SetTournament(Tournament tournament);
 		public Tournament? LoadTournament();
 		public void SaveTournament();

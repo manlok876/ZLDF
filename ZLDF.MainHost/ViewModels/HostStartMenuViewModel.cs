@@ -5,28 +5,26 @@ using System.Linq;
 using Prism.Mvvm;
 using Prism.Commands;
 using Prism.Ioc;
+using Prism.Regions;
 
 using ZLDF.Core;
 using ZLDF.DataAccess;
-using ZLDF.Temp.EF;
-using ZLDF.Temp.Services;
-using Prism.Regions;
 using ZLDF.WPF;
 
 namespace ZLDF.MainHost.ViewModels
 {
 	public class HostStartMenuViewModel : BindableBase
 	{
-		private readonly ITournamentDatabase _tournamentDatabase;
+		private readonly IDatabaseService _dbService;
 		private readonly ITournamentService _tournamentService;
 		private readonly IRegionManager _regionManager;
 
 		public HostStartMenuViewModel(
-			ITournamentDatabase tournamentDatabase,
+			IDatabaseService databaseService,
 			ITournamentService tournamentService,
 			IRegionManager regionManager)
 		{
-			_tournamentDatabase = tournamentDatabase;
+			_dbService = databaseService;
 			_tournamentService = tournamentService;
 			_regionManager = regionManager;
 		}
@@ -40,7 +38,7 @@ namespace ZLDF.MainHost.ViewModels
 		public void CreateTournament(string filePath)
 		{
 			DatabaseReference dbReference = new DatabaseReference(filePath);
-			_tournamentDatabase.ConnectToDatabase(dbReference);
+			_dbService.ConnectToDatabase(dbReference);
 
 			Tournament createdTournament = _tournamentService.CreateNewTournament();
 			_tournamentService.SetTournamentTitle(NewTournamentTitle);
@@ -55,7 +53,7 @@ namespace ZLDF.MainHost.ViewModels
 		public void LoadTournament(string filePath)
 		{
 			DatabaseReference dbReference = new DatabaseReference(filePath);
-			_tournamentDatabase.ConnectToDatabase(dbReference);
+			_dbService.ConnectToDatabase(dbReference);
 
 			Tournament loadedTournament = _tournamentService.LoadTournament();
 
