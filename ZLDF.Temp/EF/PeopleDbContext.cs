@@ -20,7 +20,7 @@ namespace ZLDF.Temp.EF
 		{
 		}
 
-		public DbSet<Person> Participants { get; set; }
+		public DbSet<Person> People { get; set; }
 
 		protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 		{

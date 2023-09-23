@@ -62,7 +62,7 @@ namespace ZLDF.Temp.Services
 			using (PeopleDbContext dbContext =
 				new PeopleDbContext(DbReference))
 			{
-				result = dbContext.Participants.ToList();
+				result = dbContext.People.ToList();
 			}
 			return result;
 		}
