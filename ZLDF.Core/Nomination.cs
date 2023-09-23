@@ -9,7 +9,7 @@ namespace ZLDF.Core
 {
 	public class Nomination : BindableBase
 	{
-		private Guid _id = Guid.NewGuid();
+		private Guid _id;
 		public Guid Id
 		{
 			get => _id;
