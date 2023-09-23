@@ -35,7 +35,8 @@ namespace ZLDF.DataAccess.EF
 					optionsBuilder.UseSqlite(ConnectionString);
 					break;
 				default:
-					break;
+					throw new NotImplementedException(
+						$"Unknown DB type: {DbReference.ConnectionType}, DB URL: {DbReference.URL}");
 			}
 			base.OnConfiguring(optionsBuilder);
 		}
