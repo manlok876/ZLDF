@@ -43,7 +43,10 @@ namespace ZLDF.Temp.Services
 				using (TournamentDbContext dbContext =
 					new TournamentDbContext(DbReference))
 				{
+					// TODO: handle null
 					_tournament = dbContext.Tournaments.FirstOrDefault();
+					// TODO: how about we don't load everything?
+					dbContext.Entry(_tournament!).Collection(t => t.Participants).Load();
 				}
 			}
 
