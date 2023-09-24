@@ -48,7 +48,7 @@ namespace ZLDF.DataAccess.EF
 			modelBuilder.Entity<Tournament>().
 				HasMany(t => t.Participants).
 				WithOne().
-				IsRequired(false);
+				IsRequired(true);
 		}
 
 		public static string GetConnectionString(DatabaseReference databaseReference)

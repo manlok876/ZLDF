@@ -15,17 +15,23 @@ namespace ZLDF.MainHost.ViewModels
 	public class ParticipantsViewModel : BindableBase
 	{
 		private IPeopleDatabase _peopleDatabase;
+		private readonly ITournamentDatabase _tournamentDatabase;
 
-		public ParticipantsViewModel(IPeopleDatabase peopleDB)
+		public ParticipantsViewModel(IPeopleDatabase peopleDB,
+			ITournamentDatabase tournamentDB)
 		{
 			_peopleDatabase = peopleDB;
+			_tournamentDatabase = tournamentDB;
 
-			People = new ObservableCollection<Person>(_peopleDatabase.GetAllPeople());
+			if (_tournamentDatabase.TournamentObject == null)
+			{
+				throw new ArgumentNullException($"Tournament object is null for {this}");
+			}
+			People = new ObservableCollection<Person>(_tournamentDatabase.TournamentObject.Participants);
 			SelectedPerson = People.FirstOrDefault();
 		}
 
 		private ObservableCollection<Person> _people = new ObservableCollection<Person>();
-
 		public ObservableCollection<Person> People
 		{
 			get { return _people; }
@@ -44,7 +50,12 @@ namespace ZLDF.MainHost.ViewModels
 			_addFighterCommand ??= new DelegateCommand(AddFighter);
 		public void AddFighter()
 		{
-			Person newPerson = _peopleDatabase.CreatePerson();
+			// TODO: refactor creating new people
+			//Person newPerson = _peopleDatabase.CreatePerson();
+			Person newPerson = new Person();
+			_tournamentDatabase.TournamentObject?.Participants.Add(newPerson);
+			_tournamentDatabase.SaveTournament();
+
 			People.Add(newPerson);
 			SelectedPerson = newPerson;
 		}
@@ -70,6 +81,8 @@ namespace ZLDF.MainHost.ViewModels
 			}
 
 			_peopleDatabase.RemovePerson(SelectedPerson);
+			_tournamentDatabase.TournamentObject?.Participants.Remove(SelectedPerson);
+
 			People.Remove(SelectedPerson);
 			SelectedPerson = People.FirstOrDefault();
 		}
