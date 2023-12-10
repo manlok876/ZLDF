@@ -12,7 +12,18 @@
 	<Grid>
 		<TabControl>
 			<TabItem Header="Tournament">
-				<ListView Margin="415,5,224,257" Height="135" />
+				<Grid>
+					<TextBlock Text="Title"/>
+					<TextBox HorizontalAlignment="Left" Margin="117,10,0,0" TextWrapping="Wrap" Text="{Binding Tournament.Title}" VerticalAlignment="Top" Width="120"/>
+					<DockPanel Margin="10,120,10,10">
+						<TextBlock Text="Nominations" Height="20" Margin="5" DockPanel.Dock="Top"/>
+						<UniformGrid Columns="2" Height="50" DockPanel.Dock="Bottom">
+							<Button x:Name="AddButton" Click="AddButton_Click" Content="Add" Margin="5"/>
+							<Button x:Name="RemoveButton" Click="RemoveButton_Click" Content="Remove" Margin="5"/>
+						</UniformGrid>
+						<ListView Margin="5,0"/>
+					</DockPanel>
+				</Grid>
 			</TabItem>
 			<TabItem Header="Participants">
 				<local:ParticipantsView/>

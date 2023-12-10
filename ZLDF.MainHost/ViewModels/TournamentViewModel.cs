@@ -18,5 +18,15 @@ namespace ZLDF.MainHost.ViewModels
 		}
 
 		public Tournament Tournament => _tournamentDb.TournamentObject;
+
+		public void AddNomination(Nomination newNomination)
+		{
+
+		}
+
+		public void RemoveNomination(Nomination oldNomination)
+		{
+
+		}
 	}
 }

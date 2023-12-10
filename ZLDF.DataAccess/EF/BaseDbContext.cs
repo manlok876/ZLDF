@@ -45,10 +45,21 @@ namespace ZLDF.DataAccess.EF
 		{
 			modelBuilder.Entity<Tournament>().ToTable("Tournaments");
 			modelBuilder.Entity<Person>().ToTable("People");
+			modelBuilder.Entity<Nomination>().ToTable("Nominations");
+
 			modelBuilder.Entity<Tournament>().
 				HasMany(t => t.Participants).
 				WithOne().
 				IsRequired(true);
+
+			//modelBuilder.Entity<Tournament>().
+			//	HasMany(t => t.Nominations).
+			//	WithOne().
+			//	IsRequired(false);
+
+			//modelBuilder.Entity<Nomination>().
+			//	HasMany(n => n.Participants).
+			//	WithMany();
 		}
 
 		public static string GetConnectionString(DatabaseReference databaseReference)
