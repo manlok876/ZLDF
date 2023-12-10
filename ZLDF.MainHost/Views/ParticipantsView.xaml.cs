@@ -1,4 +1,5 @@
-﻿using System.Windows.Controls;
+﻿using System.Diagnostics;
+using System.Windows.Controls;
 using ZLDF.DataAccess;
 using ZLDF.MainHost.ViewModels;
 
@@ -18,6 +19,8 @@ namespace ZLDF.MainHost.Views
 
 		private void HandlePersonDataChanged(object sender, System.Windows.RoutedEventArgs e)
 		{
+			Trace.WriteLine($"Lost focus on {sender}");
+			Trace.WriteLine($"Selected fighter is {ViewModel?.SelectedPerson?.LastName} {ViewModel?.SelectedPerson?.FirstName}");
 			ViewModel?.UpdateFighter();
 		}
 	}
