@@ -24,7 +24,7 @@ namespace ZLDF.Core
 		}
 
 		private IList<Person> _participants = new List<Person>();
-		public IEnumerable<Person> Participants
+		public ICollection<Person> Participants
 		{
 			get => _participants;
 			set { SetProperty(ref _participants, new List<Person>(value)); }
